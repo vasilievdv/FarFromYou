@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Audio from './components/Audio';
+import Track from './components/Track/Track';
 
 function App() {
   return (
     <div className="App">
-      <Audio />
+      <Track />
     </div>
   );
 }

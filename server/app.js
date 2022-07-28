@@ -1,10 +1,19 @@
 require('dotenv').config();
 const express = require('express');
-const { Sequelize } = require('sequelize');
-const cors = require('cors');
 
 const app = express();
+const http = require('http');
+const { Sequelize } = require('sequelize');
+const cors = require('cors');
+const { Server } = require('socket.io');
+
 const PORT = process.env.PORT || 3001;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors()); // app.use(cors(corsOptions));
+
+const server = http.createServer(app);
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -25,14 +34,21 @@ async function base() {
 }
 base();
 
-const corsOptions = {
-  origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+const io = new Server(server, {
+  cors: {
+    origin: true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  },
+});
 
-app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+io.on('connection', (socket) => {
+  console.log(`User connected ${socket.id}`);
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+  // socket.on('send_message', (data) => {
+  //   console.log(data);
+  // });
+});
 
-app.listen(PORT, () => console.log('Server has been started on port 3001'));
+server.listen(PORT, () => console.log('Server has been started on port 3001'));
