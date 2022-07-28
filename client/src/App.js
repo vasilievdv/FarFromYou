@@ -1,11 +1,14 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import './App.css';
-import Audio from './components/Audio';
+
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <Audio />
+      <Navbar />
+      <button type="button" className="btn btn-primary">Button</button>
     </div>
   );
 }
