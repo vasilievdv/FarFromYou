@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'user_id',
       });
       this.belongsToMany(Room, {
-        through: 'Users-Rooms',
+        through: 'Users_Rooms',
         foreignKey: 'user_id',
       });
     }
