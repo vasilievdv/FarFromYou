@@ -9,10 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       room_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Rooms',
+          },
+          key: 'id',
+        },
+        onDelite: 'cascade',
       },
       track_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Tracks',
+          },
+          key: 'id',
+        },
+        onDelite: 'cascade',
       },
       createdAt: {
         allowNull: false,
