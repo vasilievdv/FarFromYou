@@ -12,7 +12,7 @@ import SignUp from './components/Forms/SignUp/SignUp';
 import SignIn from './components/Forms/SignIn/SignIn';
 import { checkAuth } from './redux/actions/userAction';
 import Main from './components/Main/Main';
-import Track from './components/Track/Track';
+// import Track from './components/Track/Track';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +25,6 @@ function App() {
     <>
       <Nav />
       <div className="container py-5">
-        <Track />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/users" element={<PrivateRoute><UserList /></PrivateRoute>} />
