@@ -12,8 +12,6 @@ import SignUp from './components/Forms/SignUp/SignUp';
 import SignIn from './components/Forms/SignIn/SignIn';
 import { checkAuth } from './redux/actions/userAction';
 import Main from './components/Main/Main';
-// import Track from './components/Track/Track';
-import Welcome from './components/Welcome/Welcome';
 import CreateRoom from './components/CreateRoom/CreateRoom';
 import Join from './components/Join/Join';
 
@@ -37,7 +35,6 @@ function App() {
           <Route path="/auth/signout" element={<PrivateRoute><SignOut /></PrivateRoute>} />
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/auth/signin" element={<SignIn />} />
-          <Route path="/createorguest" element={<Welcome />} />
           <Route path="/createroom" element={<CreateRoom />} />
           <Route path="/join" element={<Join />} />
         </Routes>

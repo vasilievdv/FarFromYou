@@ -4,8 +4,6 @@ const checkAuth = require('../middlewares/checkAuth');
 const { User, Room } = require('../../db/models');
 
 router.get('/createorguest', checkAuth, async (req, res) => {
-  const { id } = await req.session.user;
-  console.log('createorguest');
   res.sendStatus(200);
 });
 
