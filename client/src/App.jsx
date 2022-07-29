@@ -25,7 +25,6 @@ function App() {
     <>
       <Nav />
       <div className="container py-5">
-        <Track />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/users" element={<PrivateRoute><UserList /></PrivateRoute>} />

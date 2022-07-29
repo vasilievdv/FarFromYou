@@ -20,7 +20,6 @@
     "redux-thunk": "^2.3.0",
     "socket.io-client": "^4.5.1",
     "socket.io-stream": "^0.5.3",
-    "tailwindcss": "^3.1.6",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
