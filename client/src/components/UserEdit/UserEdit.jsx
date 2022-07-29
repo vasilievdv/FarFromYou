@@ -47,37 +47,43 @@ function UserEdit() {
   if (loader) return <Loader />;
 
   return (
-    <div className="d-flex justify-content-center">
-      <form
-        onSubmit={submitHandler}
-        className="d-flex flex-column align-items-center bg-light text-dark p-3 border rounded-3"
-      >
-        <legend className="text-center mb-4">User Edit</legend>
-        <div className="mb-3">
-          <input
-            onChange={changeHandler}
-            className="form-control"
-            value={userEdit.email}
-            type="email"
-            name="email"
-            placeholder="Email"
-          />
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="text-center lg:text-left" />
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">User Edit</span>
+              </label>
+              <input
+                onChange={changeHandler}
+                value={userEdit.email}
+                type="email"
+                name="email"
+                placeholder="email"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                onChange={changeHandler}
+                value={userEdit.userName}
+                type="text"
+                name="userName"
+                placeholder="password"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control mt-6">
+              <button type="submit" className="btn btn-primary">Edit</button>
+            </div>
+          </div>
         </div>
-
-        <div className="mb-3">
-          <input
-            onChange={changeHandler}
-            className="form-control"
-            value={userEdit.userName}
-            type="text"
-            name="userName"
-            placeholder="Name"
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Edit
-        </button>
-      </form>
+      </div>
     </div>
   );
 }

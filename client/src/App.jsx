@@ -13,6 +13,7 @@ import SignIn from './components/Forms/SignIn/SignIn';
 import { checkAuth } from './redux/actions/userAction';
 import Main from './components/Main/Main';
 import Track from './components/Track/Track';
+import PersonalArea from './components/PersonalArea/PersonalArea';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
           <Route path="/users/:id" element={<PrivateRoute><UserDetail /></PrivateRoute>} />
           <Route path="/user/edit" element={<PrivateRoute><UserEdit /></PrivateRoute>} />
           <Route path="/auth/signout" element={<PrivateRoute><SignOut /></PrivateRoute>} />
+          <Route path="/user/PA" element={<PrivateRoute><PersonalArea /></PrivateRoute>} />
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/auth/signin" element={<SignIn />} />
         </Routes>

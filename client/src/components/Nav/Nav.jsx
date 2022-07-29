@@ -40,6 +40,14 @@ function Nav() {
                     Users
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/user/PA"
+                    className="nav-link"
+                  >
+                    PA
+                  </NavLink>
+                </li>
                 <div className="avatar">
                   <div className="w-10 rounded-full">
                     <img src="https://shapka-youtube.ru/wp-content/uploads/2021/02/avatarka-dlya-skaypa-dlya-parney.jpg" alt="bla" />
