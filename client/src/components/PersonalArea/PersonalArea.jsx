@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import UserEdit from '../UserEdit/UserEdit';
 
 function PersonalArea() {
-  const { user } = useSelector((state) => state);
+  const user = useSelector((state) => state.user);
   return (
     <div>
+      {user && (
       <div tabIndex="0" className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
         <div className="collapse-title text-xl font-medium">
           {user.name}
@@ -16,6 +17,7 @@ function PersonalArea() {
           <p>bla</p>
         </div>
       </div>
+      )}
       <UserEdit />
     </div>
   );

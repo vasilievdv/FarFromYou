@@ -16,7 +16,6 @@ import Track from './components/Track/Track';
 import PersonalArea from './components/PersonalArea/PersonalArea';
 import CreateRoom from './components/CreateRoom/CreateRoom';
 import Room from './components/CreateRoom/Room';
-
 import Join from './components/Join/Join';
 import Footr from './components/Footr/Footr';
 
@@ -38,8 +37,8 @@ function App() {
         <Route path="/user/PA" element={<PrivateRoute><PersonalArea /></PrivateRoute>} />
         <Route path="/auth/signup" element={<SignUp />} />
         <Route path="/auth/signin" element={<SignIn />} />
-        <Route path="/createroom" element={<CreateRoom />} />
         <Route path="/room" element={<Room />} />
+        <Route path="/createroom" element={<CreateRoom />} />
         <Route path="/join" element={<Join />} />
       </Routes>
       <Footr />

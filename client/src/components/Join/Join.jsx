@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 function Join() {
   const [roomall, setRoomall] = useState([]);
@@ -44,7 +45,8 @@ function Join() {
         </div>
         <select value={roomall.id} onChange={roomHandler} className="select select-bordered w-full max-w-xs">
           <option disabled selected>Выберите комнату</option>
-          {roomall && roomall.map((el) => (<option value={el.id}>{el.roomName}</option>))}
+          {roomall
+            && roomall.map((el) => (<option value={el.id}>{el.roomName}</option>))}
         </select>
       </div>
     </div>

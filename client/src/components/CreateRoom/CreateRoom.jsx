@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 function CreateRoom() {
   const [input, setInput] = useState({});
@@ -25,15 +26,13 @@ function CreateRoom() {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({ input, guest }),
-    })
-      .then((res) => (res.json()))
-      .then((date) => setInput(date));
+    });
+    console.log('+++++++', response);
     if (response.ok) {
-      console.log('+++++++', response);
       navigate('/room');
     }
   };
-
+  console.log(guest);
   const valueHandle = (e) => {
     setGuest((prev) => ({ ...prev, id: e.target.value }));
   };
@@ -42,17 +41,16 @@ function CreateRoom() {
     <>
       <div>CreateRoom</div>
       <input name="name" type="text" value={input.name || ''} onChange={inputHandler} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-
       <form>
         <label>
           Выберите гостя:
           <select value={guest.id} onChange={valueHandle}>
-            {userall && userall.map((el) => (<option value={el.id}>{el.userName}</option>))}
+            {userall
+            && userall.map((el) => (<option key={uuidv4()} value={el.id}>{el.userName}</option>))}
           </select>
         </label>
-        <button type="submit" onClick={createHandler} className="btn btn-outline-info">Создать комнату</button>
+        <button type="button" onClick={createHandler} className="btn btn-outline-info">Создать комнату</button>
       </form>
-
     </>
   );
 }
