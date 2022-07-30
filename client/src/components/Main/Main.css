@@ -5,6 +5,15 @@
     width: 100%;
     min-height: 70vh;
     padding: 2rem;
+    justify-content: center;
+
+    
+}
+.card{
+  display: flex;
+  align-self: center;
+  width: 80%;
+  left: 10%;
 }
 
 .welcome-text-block {
@@ -13,10 +22,12 @@
     gap: 1rem;
     color: white;
     width: 40%;
+    
 }
 
 .welcome {
     font-size: 5rem;
+  
 }
 
 .button-group {
@@ -26,4 +37,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
+    
+    
 }
+

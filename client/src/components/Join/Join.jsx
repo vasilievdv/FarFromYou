@@ -16,16 +16,19 @@ function Join() {
 
   console.log(roomall);
 
-  const guestHandler = () => {
-    const responce = fetch('http://localhost:3001/join', {
+  const guestHandler = async () => {
+    const response = await fetch('http://localhost:3001/join', {
       credentials: 'include',
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(roomall), // передать выбранную комнату
-    })
-      .then((res) => (res.json()))
-      .then((date) => console.log(date));
-    if (responce.ok) { navigate('/room'); }
+      body: JSON.stringify(finroom), // передать выбранную комнату
+    });
+    // console.log('+++++++', response);
+
+    if (response.ok) {
+      console.log('+++++++', response);
+      navigate('/room');
+    }
   };
 
   const roomHandler = (e) => {

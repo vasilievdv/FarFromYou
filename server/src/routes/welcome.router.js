@@ -43,9 +43,18 @@ router.get('/join', checkAuth, async (req, res) => {
 });
 
 router.post('/join', checkAuth, async (req, res) => {
-  const { id } = req.session.user;
-  const updateuser = await User.update({ role_id: 3 }, { where: { id } });
-  res.sendStatus(200);
+  console.log(req.body);
+  const { id } = await req.body;
+  try {
+    if (id) {
+      const updateuser = await User.update({ role_id: 3 }, { where: { id: req.session.user.id } });
+      const guests = await Users_Room.create({ user_id: req.session.user.id, room_id: id });
+      console.log(updateuser, guests);
+      return res.sendStatus(200);
+    } return res.sendStatus(402);
+  } catch (error) {
+    return res.sendStatus(401);
+  }
 });
 
 module.exports = router;
