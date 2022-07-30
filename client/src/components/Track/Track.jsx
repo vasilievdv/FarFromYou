@@ -20,7 +20,7 @@ function Track() {
         <a href="audio/music.mp3">Скачайте музыку</a>
       </audio>
       <input />
-      <button type="button" onClick={sendAudio}>ddd </button>
+      <button type="submit" className="btn btn-primary">Button</button>
     </>
 
   );

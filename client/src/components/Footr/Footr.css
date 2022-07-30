@@ -1,0 +1,20 @@
+.footer{
+  flex-direction: column;
+  position: absolute;
+  bottom: 1%;
+}
+.grid{
+  display: flex;
+}
+.link{
+  padding: 5px;
+}
+
+.logo{
+  padding: 5px;
+}
+.form{
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}

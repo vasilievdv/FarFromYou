@@ -29,10 +29,10 @@ function Main() {
           <div className="welcome-text">to our streaming service. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic recusandae, tempore iusto placeat voluptatem cum dolor vero laborum illo velit? Nemo ipsa minus fugit reprehenderit rerum distinctio aut sit sequi.</div>
         </div>
         {user && (
-        <div className="button-group">
-          <button type="submit" onClick={createHandler} className="btn btn-outline-info">Создать комнату</button>
-          <button type="submit" onClick={guestHandler} className="btn btn-outline-info">Присоединиться к комнате</button>
-        </div>
+          <div className="button-group">
+            <button type="submit" onClick={createHandler} className="btn btn-outline-info">Создать комнату</button>
+            <button type="submit" onClick={guestHandler} className="btn btn-outline-info">Присоединиться к комнате</button>
+          </div>
         )}
       </div>
     </div>

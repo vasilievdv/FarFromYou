@@ -12,8 +12,13 @@ import SignUp from './components/Forms/SignUp/SignUp';
 import SignIn from './components/Forms/SignIn/SignIn';
 import { checkAuth } from './redux/actions/userAction';
 import Main from './components/Main/Main';
+import Track from './components/Track/Track';
+import PersonalArea from './components/PersonalArea/PersonalArea';
 import CreateRoom from './components/CreateRoom/CreateRoom';
+import Room from './components/CreateRoom/Room';
+
 import Join from './components/Join/Join';
+import Footr from './components/Footr/Footr';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,23 +28,22 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="App">
       <Nav />
-      <div className="container py-5">
-        {/* <Track /> */}
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/users" element={<PrivateRoute><UserList /></PrivateRoute>} />
-          <Route path="/users/:id" element={<PrivateRoute><UserDetail /></PrivateRoute>} />
-          <Route path="/user/edit" element={<PrivateRoute><UserEdit /></PrivateRoute>} />
-          <Route path="/auth/signout" element={<PrivateRoute><SignOut /></PrivateRoute>} />
-          <Route path="/auth/signup" element={<SignUp />} />
-          <Route path="/auth/signin" element={<SignIn />} />
-          <Route path="/createroom" element={<CreateRoom />} />
-          <Route path="/join" element={<Join />} />
-        </Routes>
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/users" element={<PrivateRoute><UserList /></PrivateRoute>} />
+        <Route path="/users/:id" element={<PrivateRoute><UserDetail /></PrivateRoute>} />
+        <Route path="/auth/signout" element={<PrivateRoute><SignOut /></PrivateRoute>} />
+        <Route path="/user/PA" element={<PrivateRoute><PersonalArea /></PrivateRoute>} />
+        <Route path="/auth/signup" element={<SignUp />} />
+        <Route path="/auth/signin" element={<SignIn />} />
+        <Route path="/createroom" element={<CreateRoom />} />
+        <Route path="/room" element={<Room />} />
+        <Route path="/join" element={<Join />} />
+      </Routes>
+      <Footr />
+    </div>
   );
 }
 
