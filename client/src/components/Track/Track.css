@@ -1,8 +1,12 @@
 .pleer{
-
 }
 
+.card{
+  border: 1px solid #535252; 
+}
 
-.label{
-  justify-content: center;
+.newmus{
+
+  display: flex;
+  flex-direction: row;
 }

@@ -1,78 +1,58 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import Track from '../Track/Track';
-import './CreateRoom.css';
+import { useNavigate } from 'react-router-dom';
 
 function CreateRoom() {
   const [input, setInput] = useState({});
+  const [userall, setUserall] = useState([]);
+  const [guest, setGuest] = useState({ id: '' });
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:3001/createroom', {
       credentials: 'include',
     })
       .then((res) => (res.json()))
-      .then((date) => console.log(date));
+      .then((date) => setUserall(date));
   }, []);
 
   const inputHandler = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
+  const createHandler = async () => {
+    const response = await fetch('http://localhost:3001/createroom', {
+      credentials: 'include',
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ input, guest }),
+    })
+      .then((res) => (res.json()))
+      .then((date) => setInput(date));
+    if (response.ok) {
+      console.log('+++++++', response);
+      navigate('/room');
+    }
+  };
+
+  const valueHandle = (e) => {
+    setGuest((prev) => ({ ...prev, id: e.target.value }));
+  };
+
   return (
     <>
-      <div>
-        <input
-          value={input.name || ''}
-          onChange={inputHandler}
-          name="name"
-          type="text"
-          placeholder="name"
-          className="input input-bordered
-        input-md w-full max-w-xs"
-        />
-        <div className="form-control">
-          <div className="input-group">
-            <button type="button" className="btn btn-primary">Добвить гостя</button>
-          </div>
-        </div>
-      </div>
+      <div>CreateRoom</div>
+      <input name="name" type="text" value={input.name || ''} onChange={inputHandler} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
 
-      <div className="overflow-x-auto">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th />
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <ul>
-        <li className="nav-item">
-          <NavLink
-            to="/room"
-            className="nav-link"
-          >
-            Кабинет
-          </NavLink>
-        </li>
-      </ul>
+      <form>
+        <label>
+          Выберите гостя:
+          <select value={guest.id} onChange={valueHandle}>
+            {userall && userall.map((el) => (<option value={el.id}>{el.userName}</option>))}
+          </select>
+        </label>
+        <button type="submit" onClick={createHandler} className="btn btn-outline-info">Создать комнату</button>
+      </form>
+
     </>
   );
 }

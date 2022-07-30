@@ -1,5 +1,6 @@
 import React from 'react';
 import Track from '../Track/Track';
+import './CreateRoom.css';
 
 function Room() {
   return (
