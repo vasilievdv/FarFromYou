@@ -9,6 +9,7 @@ const FileStore = require('session-file-store')(session);
 const http = require('http');
 const { Sequelize } = require('sequelize');
 const cors = require('cors');
+const welcomeRouter = require('./src/routes/welcome.router');
 const authRouter = require('./src/routes/auth.router');
 const usersRouter = require('./src/routes/users.router');
 
@@ -69,6 +70,7 @@ app.use(
     },
   }),
 );
+app.use('/', welcomeRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 

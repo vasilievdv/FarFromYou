@@ -26,14 +26,6 @@ function Nav() {
                 </li>
                 <li className="nav-item">
                   <NavLink
-                    to="/user/edit"
-                    className="nav-link"
-                  >
-                    Edit
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
                     to="/users"
                     className="nav-link"
                   >
