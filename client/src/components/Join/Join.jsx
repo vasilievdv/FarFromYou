@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Chat from '../Chat/Chat';
 
 function Join() {
   useEffect(() => {
@@ -10,7 +11,7 @@ function Join() {
   }, []);
 
   return (
-    <div>Join</div>
+    <div><Chat /></div>
   );
 }
 
