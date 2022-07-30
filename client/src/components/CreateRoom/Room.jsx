@@ -17,7 +17,6 @@ function Room() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

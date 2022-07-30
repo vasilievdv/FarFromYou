@@ -33,7 +33,6 @@ function CreateRoom() {
         <div className="form-control">
           <div className="input-group">
             <button type="button" className="btn btn-primary">Добвить гостя</button>
-            <button type="button" className="btn btn-primary">Информация</button>
           </div>
         </div>
       </div>
