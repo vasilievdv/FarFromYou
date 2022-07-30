@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Op } = require('sequelize');
 const checkAuth = require('../middlewares/checkAuth');
 const {
-  User, Room, Role, Users_Room,
+  User, Room, Users_Room,
 } = require('../../db/models');
 
 router.get('/createorguest', checkAuth, async (req, res) => {
@@ -29,11 +29,11 @@ router.post('/createroom', checkAuth, async (req, res) => {
       // console.log('+++++++++++', updateuser);
       const guests = await Users_Room.create({ user_id: req.body.guest.id, room_id: newRoom.id });
       const updateguest = await User.update({ role_id: 3 }, { where: { id: guests.user_id } });
-      console.log(updateuser, { guests, raw: true });
-      return res.json({ newRoom, guests });
-    } res.sendStatus(401);
+      console.log(updateuser, guests);
+      return res.sendStatus(200);
+    } return res.sendStatus(402);
   } catch (error) {
-    res.sendStatus(402);
+    return res.sendStatus(401);
   }
 });
 

@@ -19,16 +19,18 @@ function UserEdit() {
 
   useEffect(() => {
     dispatch(enableLoader());
-    fetch(endPoints.getUser(user.id), { credentials: 'include' })
-      .then((response) => response.json())
-      .then((userData) => setUserEdit((prev) => ({
-        ...prev,
-        email: userData.email,
-        userName: userData.userName,
-      })))
-      .finally(() => {
-        dispatch(disableLoader());
-      });
+    if (user) {
+      fetch(endPoints.getUser(user.id), { credentials: 'include' })
+        .then((response) => response.json())
+        .then((userData) => setUserEdit((prev) => ({
+          ...prev,
+          email: userData.email,
+          userName: userData.userName,
+        })))
+        .finally(() => {
+          dispatch(disableLoader());
+        });
+    }
   }, []);
 
   const changeHandler = (e) => {
