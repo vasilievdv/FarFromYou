@@ -19,8 +19,8 @@ function CreateRoom() {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const createHandler = () => {
-    const responce = fetch('http://localhost:3001/createroom', {
+  const createHandler = async () => {
+    const response = await fetch('http://localhost:3001/createroom', {
       credentials: 'include',
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
@@ -28,7 +28,10 @@ function CreateRoom() {
     })
       .then((res) => (res.json()))
       .then((date) => setInput(date));
-    if (responce.ok) navigate('/room');
+    if (response.ok) {
+      console.log('+++++++', response);
+      navigate('/room');
+    }
   };
 
   const valueHandle = (e) => {
