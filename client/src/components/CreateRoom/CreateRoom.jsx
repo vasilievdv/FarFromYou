@@ -27,31 +27,28 @@ function CreateRoom() {
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({ input, guest }),
     });
-    console.log('+++++++', response);
     if (response.ok) {
       navigate('/room');
     }
   };
-  console.log(guest);
   const valueHandle = (e) => {
     setGuest((prev) => ({ ...prev, id: e.target.value }));
   };
+  console.log(guest);
 
   return (
-    <>
+    <form>
       <div>CreateRoom</div>
       <input name="name" type="text" value={input.name || ''} onChange={inputHandler} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-      <form>
-        <label>
-          Выберите гостя:
-          <select value={guest.id} onChange={valueHandle}>
-            {userall
+      <label>
+        Выберите гостя:
+        <select value={guest.id} onChange={valueHandle}>
+          {userall
             && userall.map((el) => (<option key={uuidv4()} value={el.id}>{el.userName}</option>))}
-          </select>
-        </label>
-        <button type="button" onClick={createHandler} className="btn btn-outline-info">Создать комнату</button>
-      </form>
-    </>
+        </select>
+      </label>
+      <button type="button" onClick={createHandler} className="btn btn-outline-info">Создать комнату</button>
+    </form>
   );
 }
 

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function Join() {
   const [roomall, setRoomall] = useState([]);
-  const [finroom, setFinroom] = useState([]);
+  const [finroom, setFinroom] = useState({ id: '' });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,7 +15,9 @@ function Join() {
       .then((date) => setRoomall(date));
   }, []);
 
-  console.log(roomall);
+  const roomHandler = (e) => {
+    setFinroom((prev) => ({ ...prev, id: e.target.value }));
+  };
 
   const guestHandler = async () => {
     const response = await fetch('http://localhost:3001/join', {
@@ -27,28 +29,23 @@ function Join() {
     // console.log('+++++++', response);
 
     if (response.ok) {
-      console.log('+++++++', response);
       navigate('/room');
     }
   };
+  // console.log(roomall);
 
-  const roomHandler = (e) => {
-    setFinroom((prev) => ({ ...prev, id: e.target.value }));
-  };
   console.log(finroom);
   return (
-    <>
-      <form>
-        <label>
-          Выберите комнату:
-          <select value={roomall.id} onChange={roomHandler}>
-            {roomall
+    <form>
+      <label>
+        Выберите комнату:
+        <select value={finroom.id} onChange={roomHandler}>
+          {roomall
             && roomall.map((el) => (<option key={uuidv4()} value={el.id}>{el.roomName}</option>))}
-          </select>
-        </label>
-      </form>
-      <button type="submit" onClick={guestHandler} className="btn btn-outline-info">Присоединиться к комнате</button>
-    </>
+        </select>
+      </label>
+      <button type="button" onClick={guestHandler} className="btn btn-outline-info">Присоединиться к комнате</button>
+    </form>
   );
 }
 
