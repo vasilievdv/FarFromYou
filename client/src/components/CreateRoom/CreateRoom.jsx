@@ -28,7 +28,8 @@ function CreateRoom() {
       body: JSON.stringify({ input, guest }),
     });
     if (response.ok) {
-      navigate('/room');
+      const result = await response.json();
+      navigate(`/room/${result.id}`);
     }
   };
   const valueHandle = (e) => {
