@@ -34,6 +34,7 @@ export const signUp = (payload, navigate) => async (dispatch) => {
     dispatch(setUser(user));
     navigate('/');
   } else {
+    alert('E-mail или имя уже используются.');
     navigate('/auth/signup');
   }
   dispatch(disableLoader());

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+// import Chat from '../Chat/Chat';
 
 function Join() {
   const [roomall, setRoomall] = useState([]);
