@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as endPoints from '../../config/endPoints';
 import { disableLoader, enableLoader } from '../../redux/actions/loaderAction';
 import Loader from '../Loader/Loader';
@@ -10,7 +10,7 @@ function UserList() {
 
   const dispatch = useDispatch();
   const loader = useSelector((state) => state.loader);
-  const userId = useSelector((state) => state.user.id);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(enableLoader());
@@ -28,20 +28,25 @@ function UserList() {
   if (list.length === 0) return <p>Not users</p>;
 
   return (
-    <div className="list">
-      {list.map((user) => (
-        <Link
-          key={user.id}
-          className={`list-group-item list-group-item-action ${userId === user.id ? 'active' : ''
-          }`}
-          to={`/users/${user.id}`}
-        >
-          {user.userName}
-        </Link>
-      ))}
+    <div className="overflow-x-auto">
+      <table className="table w-full">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list.map((item, index) => (
+            <tr onClick={() => navigate(`/users/${item.id}`)}>
+              <th>{index + 1}</th>
+              <td>{item.userName}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
 
   );
 }
-
 export default UserList;
