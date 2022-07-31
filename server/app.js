@@ -43,8 +43,6 @@ const corsOptions = {
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   credentials: true,
 };
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions)); // app.use(cors(corsOptions));
 
 // sign
@@ -72,7 +70,7 @@ app.use(
   }),
 );
 app.use('/', welcomeRouter);
-app.use('/:id/:roomName', roomRouter);
+app.use('/room/:id', roomRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 

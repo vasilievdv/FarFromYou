@@ -29,8 +29,8 @@ router.post('/createroom', checkAuth, async (req, res) => {
       // console.log('+++++++++++', updateuser);
       const guests = await Users_Room.create({ user_id: req.body.guest.id, room_id: newRoom.id });
       const updateguest = await User.update({ role_id: 3 }, { where: { id: guests.user_id } });
-      console.log(updateuser, guests);
-      return res.sendStatus(200);
+      console.log(newRoom.id);
+      return res.json({ id: newRoom.id });
     } return res.sendStatus(402);
   } catch (error) {
     return res.sendStatus(401);
