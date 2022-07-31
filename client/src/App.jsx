@@ -37,7 +37,7 @@ function App() {
         <Route path="/user/PA" element={<PrivateRoute><PersonalArea /></PrivateRoute>} />
         <Route path="/auth/signup" element={<SignUp />} />
         <Route path="/auth/signin" element={<SignIn />} />
-        <Route path="/room" element={<Room />} />
+        <Route path="/room/:id" element={<Room />} />
         <Route path="/createroom" element={<CreateRoom />} />
         <Route path="/join" element={<Join />} />
       </Routes>

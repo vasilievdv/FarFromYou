@@ -1,8 +1,15 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import Track from '../Track/Track';
 import './CreateRoom.css';
 
 function Room() {
+  const id = useParams();
+
+  setInterval(() => {
+    console.log('+++++++++++++', id);
+  }, 5000);
+
   return (
     <div className="private">
       <div className="track">
