@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Chat.css';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import ScrollToBottom from 'react-scroll-to-bottom';
 import socket from '../../socket';
 import Message from './Message/Message';
 
@@ -10,15 +11,17 @@ function Chat({ room }) {
   const [messageList, setMessageList] = useState([]);
   const user = useSelector((state) => state.user);
   const roomID = useParams();
+  const bottomRef = useRef(null);
+
   socket.on('message', (message) => {
     console.log(message);
   });
 
   const messageHandler = (event) => {
     const msg = event.target.value;
-
     setNewMessage(msg);
   };
+
   const sendHandler = async () => {
     if (newMessage !== '') {
       const messageData = {
@@ -37,18 +40,24 @@ function Chat({ room }) {
     });
   }, [socket]);
 
+  useEffect(() => {
+    // 👇️ scroll to bottom every time messages change
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [newMessage]);
   return (
     <div className="chat-contaitner">
-      <div className="message-block">
-        {messageList.map((el) => (
-          <Message
+      <ScrollToBottom className="message-block">
+        <div className="message-block-inner">
+          {messageList.map((el) => (
+            <Message
             // key={Date.now()}
-            author={el.author}
-            message={el.message}
-            time={el.time}
-          />
-        ))}
-      </div>
+              author={el.author}
+              message={el.message}
+              time={el.time}
+            />
+          ))}
+        </div>
+      </ScrollToBottom>
       <div className="chat-input-block">
         <textarea className="chat-input" placeholder="Напиши мне" onChange={messageHandler} />
         <button type="button" className="send-message-btn" onClick={sendHandler}>Отправить</button>

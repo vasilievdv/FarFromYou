@@ -1,7 +1,7 @@
 .chat-contaitner {
     width: 100%;
     height: 98%;
-    margin: 30px 0 0;
+    margin: 30px 0 0px;
     padding: 0 5px;
     display: flex;
     flex-direction: column;
@@ -11,16 +11,17 @@
 .message-block {
     height: 85%;
     overflow-y: scroll;
+    border: 1px solid rgb(0, 60, 255);
 }
 
-.message-block::-webkit-scrollbar {
+/* .message-block::-webkit-scrollbar {
     width: 5px;
     background-color: #f9f9fd;
 }
 
-::-webkit-scrollbar-thumb {
+.message-block::-webkit-scrollbar-thumb {
     background-color: #777e83;
-}
+} */
 
 .chat-input-block {
     position: absolute;
