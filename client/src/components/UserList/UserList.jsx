@@ -28,22 +28,19 @@ function UserList() {
   if (list.length === 0) return <p>Not users</p>;
 
   return (
-
-    <div className="d-flex justify-content-center">
-      <div className="list-group">
-        {list.map((user) => (
-          <Link
-            key={user.id}
-            className={`list-group-item list-group-item-action ${
-              userId === user.id ? 'active' : ''
-            }`}
-            to={`/users/${user.id}`}
-          >
-            {user.userName}
-          </Link>
-        ))}
-      </div>
+    <div className="list">
+      {list.map((user) => (
+        <Link
+          key={user.id}
+          className={`list-group-item list-group-item-action ${userId === user.id ? 'active' : ''
+          }`}
+          to={`/users/${user.id}`}
+        >
+          {user.userName}
+        </Link>
+      ))}
     </div>
+
   );
 }
 

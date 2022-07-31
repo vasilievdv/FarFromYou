@@ -34,21 +34,27 @@ function CreateRoom() {
   const valueHandle = (e) => {
     setGuest((prev) => ({ ...prev, id: e.target.value }));
   };
-  console.log(guest);
+  // console.log(guest);
 
   return (
     <form>
-      <div>CreateRoom</div>
-      <input name="name" type="text" value={input.name || ''} onChange={inputHandler} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-      <label>
-        Выберите гостя:
-        <select value={guest.id} onChange={valueHandle}>
-          {userall
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title">Введите название комнаты</h2>
+          <input name="name" type="text" value={input.name || ''} onChange={inputHandler} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+          <h2 className="card-title">Выберите гостя</h2>
+          <select value={guest.id} onChange={valueHandle} className="select select-bordered w-full max-w-xs">
+            <option disabled selected>Выберите комнату</option>
+            {userall
             && userall.map((el) => (<option key={uuidv4()} value={el.id}>{el.userName}</option>))}
-        </select>
-      </label>
-      <button type="button" onClick={createHandler} className="btn btn-outline-info">Создать комнату</button>
+          </select>
+          <div className="card-actions justify-end">
+            <button type="button" onClick={createHandler} className="btn btn-primary">Создание комнаты</button>
+          </div>
+        </div>
+      </div>
     </form>
+
   );
 }
 

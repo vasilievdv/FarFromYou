@@ -29,23 +29,26 @@ function Join() {
     // console.log('+++++++', response);
 
     if (response.ok) {
-      navigate('/room');
+      navigate(`/room/${finroom.id}`);
     }
   };
   // console.log(roomall);
 
-  console.log(finroom);
+  // console.log(finroom.id);
   return (
-    <form>
-      <label>
-        Выберите комнату:
-        <select value={finroom.id} onChange={roomHandler}>
+    <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card-body">
+        <h2 className="card-title">Музыка для вас</h2>
+        <select value={finroom.id} onChange={roomHandler} className="select select-bordered w-full max-w-xs">
+          <option disabled selected>Выберите комнату</option>
           {roomall
             && roomall.map((el) => (<option key={uuidv4()} value={el.id}>{el.roomName}</option>))}
         </select>
-      </label>
-      <button type="button" onClick={guestHandler} className="btn btn-outline-info">Присоединиться к комнате</button>
-    </form>
+        <div className="card-actions justify-end">
+          <button type="button" onClick={guestHandler} className="btn btn-primary">Присоединиться к комнате</button>
+        </div>
+      </div>
+    </div>
   );
 }
 

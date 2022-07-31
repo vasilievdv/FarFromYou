@@ -35,6 +35,7 @@ function UserDetail() {
           <p className="card-text">{currentUser.email}</p>
         </div>
       </div>
+      <button type="submit" className="btn btn-primary">Button</button>
     </div>
   );
 }
