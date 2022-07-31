@@ -72,6 +72,12 @@ app.use('/', welcomeRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 
+// socket-chat - test
+const rooms = new Map();
+app.get('/room', (req, res) => {
+  rooms.set('hello', '');
+  res.json(rooms);
+});
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -82,12 +88,16 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   console.log(`User connected ${socket.id}`);
+  io.emit('message', 'User 111 connected');
   socket.on('disconnect', () => {
     console.log('User disconnected');
   });
-  // socket.on('send_message', (data) => {
-  //   console.log(data);
-  // });
+  // сообщения
+
+  socket.on('send_message', (msg) => {
+    console.log(msg);
+    socket.emit('recieve_message', msg);
+  });
 });
 
 server.listen(PORT, () => console.log('Server has been started on port 3001'));

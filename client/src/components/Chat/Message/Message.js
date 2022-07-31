@@ -1,11 +1,11 @@
 import React from 'react';
 import './Message.css';
 
-function Message({ own }) {
+function Message({ message, time, own }) {
   return (
     <div className={own ? 'chat-item own' : 'chat-item'}>
-      <p className="message">hfhfhhhhhhhhhhh</p>
-      <p className="timestamp">1 hour ago</p>
+      <p className="message">jkl</p>
+      <p className="timestamp">fghj</p>
     </div>
   );
 }
