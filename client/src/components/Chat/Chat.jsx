@@ -33,13 +33,21 @@ function Chat({ room }) {
   useEffect(() => {
     socket.on('recieve_message', (msg) => {
       console.log('front', msg);
+      setMessageList((prev) => [...prev, msg]);
     });
   }, [socket]);
 
   return (
     <div className="chat-contaitner">
       <div className="message-block">
-        <Message />
+        {messageList.map((el) => (
+          <Message
+            // key={Date.now()}
+            author={el.author}
+            message={el.message}
+            time={el.time}
+          />
+        ))}
       </div>
       <div className="chat-input-block">
         <textarea className="chat-input" placeholder="Напиши мне" onChange={messageHandler} />

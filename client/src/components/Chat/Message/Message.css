@@ -5,7 +5,6 @@
 }
 
 .message {
-    
     background-color: rgb(239, 155, 21);
     color: black;
     width: fit-content;
@@ -16,9 +15,13 @@
     margin-top: 10px;
 }
 
-.timestamp {
+.small-text {
     font-size: 0.7rem;
     margin: 0 5px;
+    text-align: left;
+}
+
+.metadata-block {
     text-align: left;
 }
 
