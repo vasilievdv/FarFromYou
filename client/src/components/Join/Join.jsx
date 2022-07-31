@@ -11,7 +11,7 @@ function Join() {
   }, []);
 
   return (
-    <div><Chat /></div>
+    <div>bla</div>
   );
 }
 
