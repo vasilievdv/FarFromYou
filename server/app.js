@@ -9,8 +9,10 @@ const FileStore = require('session-file-store')(session);
 const http = require('http');
 const { Sequelize } = require('sequelize');
 const cors = require('cors');
+const welcomeRouter = require('./src/routes/welcome.router');
 const authRouter = require('./src/routes/auth.router');
 const usersRouter = require('./src/routes/users.router');
+const roomRouter = require('./src/routes/room.touter');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -41,8 +43,6 @@ const corsOptions = {
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   credentials: true,
 };
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions)); // app.use(cors(corsOptions));
 
 // sign
@@ -69,6 +69,8 @@ app.use(
     },
   }),
 );
+app.use('/', welcomeRouter);
+app.use('/:id/:roomName', roomRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 

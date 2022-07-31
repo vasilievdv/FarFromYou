@@ -19,5 +19,17 @@ code {
 .navbar{
   flex-direction: row-reverse;
 }
+.footer{
+  display: flex;
+}
+.drid{
+  display: flex;
+}
+
+.privat{
+display: flex;
+flex-direction: row;  
+}
+
 
 

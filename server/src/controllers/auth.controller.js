@@ -13,7 +13,7 @@ const signUp = async (req, res) => {
       });
       req.session.user = {
         id: newUser.id,
-        name: newUser.name,
+        name: newUser.userName,
       };
 
       return res.json({ id: newUser.id, name: newUser.userName });
@@ -35,7 +35,7 @@ const signIn = async (req, res) => {
       if (currentUser && currentUser.password === sha256(password)) {
         req.session.user = {
           id: currentUser.id,
-          name: currentUser.name,
+          name: currentUser.userName,
         };
 
         return res.json({ id: currentUser.id, name: currentUser.userName });

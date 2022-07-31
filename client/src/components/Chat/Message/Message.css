@@ -1,0 +1,36 @@
+.chat-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.message-block {
+    height: 85%;
+}
+
+.message {
+    
+    background-color: rgb(239, 155, 21);
+    color: black;
+    width: fit-content;
+    padding: 15px;
+    word-wrap: break-word;
+    word-break: break-all;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.timestamp {
+    font-size: 0.7rem;
+    margin: 0 5px;
+    text-align: left;
+}
+
+.chat-item.own {
+    align-items: flex-end;
+}
+
+.chat-item.own .message{
+    background-color: rgb(91, 51, 138);
+    color: white;
+}
+

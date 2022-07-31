@@ -1,4 +1,3 @@
-'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Users_Rooms', {
@@ -6,7 +5,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -19,26 +18,26 @@ module.exports = {
         onDelite: 'cascade',
       },
       room_id: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: {
-          tableName: 'Rooms',
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Rooms',
+          },
+          key: 'id',
         },
-        key: 'id',
+        onDelite: 'cascade',
       },
-      onDelite: 'cascade',
-    },
       createdAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
       updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    }
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
     });
-},
+  },
   async down(queryInterface, Sequelize) {
-  await queryInterface.dropTable('Users_Rooms');
-}
+    await queryInterface.dropTable('Users_Rooms');
+  },
 };
