@@ -42,7 +42,7 @@ function Room() {
           <div className="card room-creator-card bg-base-100 shadow-xl">
             <div className="card-body">
               <h2 className="card-title">
-                Имя комнаты:
+                Название:
                 {' '}
                 {info.info.roomName}
               </h2>
@@ -51,7 +51,6 @@ function Room() {
                 {' '}
                 {info.authorRoom.userName}
               </h2>
-              <p>Track:linkin Park. Scorpions. 30 Seconds to Mars</p>
               <div className="card-actions justify-end" />
             </div>
           </div>
@@ -80,8 +79,9 @@ function Room() {
             </div>
           </div>
           <div className="btn1">
-            <button type="submit" className="btn">Покинуть комнату</button>
-            <button type="submit" className="btn btn-primary ">Удалить комнату</button>
+            {info.authorRoom.id === user.id
+              && <button type="submit" className="btn btn-primary ">Удалить комнату</button>}
+            {info.authorRoom.id !== user.id && <button type="submit" className="btn">Покинуть комнату</button>}
           </div>
         </div>
         <div className="track">
@@ -89,9 +89,6 @@ function Room() {
           <ul className="tracklist scroll-block">
             <li className="track"><Track /></li>
           </ul>
-          <div className="btn1 add-btn">
-            <button type="button" className="btn btn-primary ">Добавить трек</button>
-          </div>
         </div>
         <div className="chat">
           <div className="mockup-phone">
