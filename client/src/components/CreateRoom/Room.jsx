@@ -10,7 +10,6 @@ import './Room.css';
 
 function Room() {
   const id = useParams();
-
   const user = useSelector((state) => (state.user));
 
   const [info, setInfo] = useState([]);
@@ -19,29 +18,38 @@ function Room() {
   console.log(id.id);
 
   const roomFetch = async () => {
-    const response = await fetch(`http://localhost:3001/room/${id.id}`);
+    console.log('tut');
+    const response = await fetch(`http://localhost:3001/room/${id.id}`, {
+      credentials: 'include',
+    });
     console.log(response);
     const result = await response.json();
     console.log(result);
     setInfo(result);
   };
-
+  console.log(info.info);
   useEffect(() => {
-    if (user) {
-      roomFetch();
-    }
+    roomFetch();
   }, []);
 
   console.log('+++++++++++++', info);
 
-  if (user) {
+  if (info.info) {
     return (
       <div className="private">
         <div className="table1">
           <div className="card room-creator-card bg-base-100 shadow-xl">
             <div className="card-body">
-              <h2 className="card-title">Имя комнаты: РОК</h2>
-              <h2 className="card-title">Создатель: IGOR</h2>
+              <h2 className="card-title">
+                Имя комнаты:
+                {' '}
+                {info.info.roomName}
+              </h2>
+              <h2 className="card-title">
+                Создатель:
+                {' '}
+                {info.authorRoom.userName}
+              </h2>
               <p>Track:linkin Park. Scorpions. 30 Seconds to Mars</p>
               <div className="card-actions justify-end" />
             </div>
