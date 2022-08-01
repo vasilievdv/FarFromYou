@@ -11,28 +11,38 @@ import './Room.css';
 function Room() {
   const id = useParams();
   const user = useSelector((state) => (state.user));
-
+  const guest = useSelector((state) => state.guest);
+  const navigate = useNavigate();
   const [info, setInfo] = useState([]);
-  console.log(user);
-
-  console.log(id.id);
 
   const roomFetch = async () => {
-    console.log('tut');
     const response = await fetch(`http://localhost:3001/room/${id.id}`, {
       credentials: 'include',
     });
-    console.log(response);
     const result = await response.json();
-    console.log(result);
     setInfo(result);
   };
-  console.log(info.info);
   useEffect(() => {
     roomFetch();
   }, []);
 
   console.log('+++++++++++++', info);
+
+  const deleteRoomHandler = async () => {
+    const response = await fetch(`http://localhost:3001/room/${id.id}`, {
+      credentials: 'include',
+      method: 'DELETE',
+    });
+    navigate('/');
+  };
+
+  const exitRoomHandler = async () => {
+    const response = await fetch(`http://localhost:3001/room/${id.id}`, {
+      credentials: 'include',
+      method: 'DELETE',
+    });
+    navigate('/');
+  };
 
   if (info.info) {
     return (
@@ -41,7 +51,7 @@ function Room() {
           <div className="card room-creator-card bg-base-100 shadow-xl">
             <div className="card-body">
               <h2 className="card-title">
-                Имя комнаты:
+                Название:
                 {' '}
                 {info.info.roomName}
               </h2>
@@ -50,7 +60,6 @@ function Room() {
                 {' '}
                 {info.authorRoom.userName}
               </h2>
-              <p>Track:linkin Park. Scorpions. 30 Seconds to Mars</p>
               <div className="card-actions justify-end" />
             </div>
           </div>
@@ -79,8 +88,9 @@ function Room() {
             </div>
           </div>
           <div className="btn1">
-            <button type="submit" className="btn btn-primary ">Покинуть комнату</button>
-            <button type="submit" className="btn">Удалить комнату</button>
+            {info.authorRoom.id === user.id
+              && <button type="submit" onClick={deleteRoomHandler} className="btn btn-primary ">Удалить комнату</button>}
+            {info.authorRoom.id !== user.id && <button type="submit" onClick={exitRoomHandler} className="btn">Покинуть комнату</button>}
           </div>
         </div>
         <div className="track">
@@ -88,9 +98,6 @@ function Room() {
           <ul className="tracklist scroll-block">
             <li className="track"><Track /></li>
           </ul>
-          <div className="btn1 add-btn">
-            <button type="button" className="btn btn-primary ">Добавить трек</button>
-          </div>
         </div>
         <div className="chat">
           <div className="mockup-phone">
