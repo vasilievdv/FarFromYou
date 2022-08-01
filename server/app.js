@@ -98,6 +98,11 @@ io.on('connection', (socket) => {
     console.log('back', msg);
     io.emit('recieve_message', msg);
   });
+
+  socket.on('send_guest', (guest) => {
+    console.log('back', guest);
+    io.emit('recieve_guest', guest);
+  });
 });
 
 server.listen(PORT, () => console.log('Server has been started on port 3001'));

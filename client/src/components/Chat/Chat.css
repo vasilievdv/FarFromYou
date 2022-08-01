@@ -11,7 +11,6 @@
 .message-block {
     height: 85%;
     overflow-y: scroll;
-    border: 1px solid rgb(0, 60, 255);
 }
 
 /* .message-block::-webkit-scrollbar {
@@ -23,52 +22,3 @@
     background-color: #777e83;
 } */
 
-.chat-input-block {
-    position: absolute;
-    bottom: 23px;
-    width: 100%;
-    padding: 5px;
-    display: flex;
-    gap: 10px;
-    align-content: center;
-    border: none;
-}
-
-.chat-input,
-.chat-input:active{
-    display: block;
-    width: 70%;
-    border-radius: 10px;
-    padding: 2px 9px;
-    color: black;
-}
-
-.chat-input::placeholder{
-    display: block;
-    text-align: left;
-    padding: 10px;
-}
-
-.chat-input::-webkit-scrollbar {
-    width: 5px;
-    background-color: #f9f9fd;
-}
-
-.chat-input::-webkit-scrollbar-thumb {
-    background-color: #777e83;
-}
-
-.send-message-btn {
-    background-color: aqua;
-    font-size: 0.8rem;
-    padding: 5px;
-    border-radius: 10px;
-    cursor: pointer;
-    color: rgb(60, 55, 70);
-    border: none;
-}
-.send-message-btn:active {
-    box-shadow: 0 0 3px black inset;
-    transition: 0.3s;
-
-}

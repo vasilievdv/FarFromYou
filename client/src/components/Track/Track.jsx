@@ -7,17 +7,12 @@ const socket = io.connect('http://localhost:3001');
 
 function Track() {
   return (
-    <>
-      <audio controls>
-        <track src={audio} type="audio/ogg; codecs=vorbis" />
-        <track src={audio} type="audio/mpeg" />
-        Тег audio не поддерживается вашим браузером.
-        <a href="audio/music.mp3">Скачайте музыку</a>
-      </audio>
-      <input />
-      <button type="submit" className="btn btn-primary">Button</button>
-    </>
-
+    <audio controls>
+      <track src={audio} type="audio/ogg; codecs=vorbis" />
+      <track src={audio} type="audio/mpeg" />
+      Тег audio не поддерживается вашим браузером.
+      <a href="audio/music.mp3">Скачайте музыку</a>
+    </audio>
   );
 }
 

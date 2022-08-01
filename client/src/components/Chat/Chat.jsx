@@ -5,13 +5,13 @@ import { useParams } from 'react-router-dom';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import socket from '../../socket';
 import Message from './Message/Message';
+import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
 
 function Chat({ room }) {
   const [newMessage, setNewMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
   const user = useSelector((state) => state.user);
   const roomID = useParams();
-  const bottomRef = useRef(null);
 
   socket.on('message', (message) => {
     console.log(message);
@@ -37,20 +37,17 @@ function Chat({ room }) {
     socket.on('recieve_message', (msg) => {
       console.log('front', msg);
       setMessageList((prev) => [...prev, msg]);
+      setNewMessage('');
     });
   }, [socket]);
 
-  useEffect(() => {
-    // 👇️ scroll to bottom every time messages change
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [newMessage]);
   return (
     <div className="chat-contaitner">
       <ScrollToBottom className="message-block">
         <div className="message-block-inner">
-          {messageList.map((el) => (
+          {messageList.map((el, i) => (
             <Message
-            // key={Date.now()}
+              key={i}
               author={el.author}
               message={el.message}
               time={el.time}
@@ -58,10 +55,7 @@ function Chat({ room }) {
           ))}
         </div>
       </ScrollToBottom>
-      <div className="chat-input-block">
-        <textarea className="chat-input" placeholder="Напиши мне" onChange={messageHandler} />
-        <button type="button" className="send-message-btn" onClick={sendHandler}>Отправить</button>
-      </div>
+      <InputWithButton placeholder="Напиши мне" changeAction={messageHandler} clickAction={sendHandler} btnText="Отправить" />
     </div>
   );
 }
