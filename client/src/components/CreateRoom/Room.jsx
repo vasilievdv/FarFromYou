@@ -4,22 +4,21 @@ import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../socket';
 import Chat from '../Chat/Chat';
 import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
+import Track from '../Track/Track';
 import './CreateRoom.css';
-// import Track from '../Track/Track';
+import './Room.css';
 
 function Room() {
+  const id = useParams();
+
   const user = useSelector((state) => (state.user));
 
   const [info, setInfo] = useState([]);
   console.log(user);
 
-  let id = useParams();
   console.log(id.id);
-  const idFunction = async () => {
-    id = id.id;
-  };
+
   const roomFetch = async () => {
-    idFunction();
     const response = await fetch(`http://localhost:3001/room/${id.id}`);
     console.log(response);
     const result = await response.json();
