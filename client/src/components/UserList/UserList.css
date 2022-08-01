@@ -1,0 +1,30 @@
+
+.avatar{
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex-direction: row;
+}
+
+.img1{
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  background-image:url('https://placeimg.com/192/192/people') ;
+  background-size: contain;
+}
+tbody{
+display: block;
+width: 100%;
+height: 500px;
+overflow-y: scroll;
+scroll-behavior: smooth;
+
+  
+}
+
+.scroll{
+  display: block;
+  border: 1px solid rgb(40, 40, 40);
+}

@@ -1,0 +1,48 @@
+
+.input-block {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-content: center;
+    border: none;
+}
+
+.input-field,
+.input-field:active{
+    display: block;
+    width: 70%;
+    border-radius: 10px;
+    padding: 2px 9px;
+    color: black;
+}
+
+.input-field::placeholder{
+    display: block;
+    text-align: left;
+    padding: 10px;
+}
+
+.input-field::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f9f9fd;
+}
+
+.input-field::-webkit-scrollbar-thumb {
+    background-color: #777e83;
+}
+
+.input-btn {
+    background-color: aqua;
+    font-size: 0.8rem;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(60, 55, 70);
+    border: none;
+    min-width: 30%;
+}
+.input-btn:active {
+    box-shadow: 0 0 3px black inset;
+    transition: 0.3s;
+
+}

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as endPoints from '../../config/endPoints';
 import { disableLoader, enableLoader } from '../../redux/actions/loaderAction';
 import Loader from '../Loader/Loader';
+import './UserList.css';
 
 function UserList() {
   const [list, setList] = useState([]);
@@ -32,15 +33,21 @@ function UserList() {
       <table className="table w-full">
         <thead>
           <tr>
-            <th>Number</th>
             <th>Name</th>
           </tr>
         </thead>
         <tbody>
           {list.map((item, index) => (
-            <tr onClick={() => navigate(`/users/${item.id}`)}>
+            <tr className="scroll" onClick={() => navigate(`/users/${item.id}`)}>
               <th>{index + 1}</th>
-              <td>{item.userName}</td>
+              <td>
+                <div className="avatar">
+                  <div className="img1" />
+                  <span className="user">
+                    {item.userName}
+                  </span>
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>
