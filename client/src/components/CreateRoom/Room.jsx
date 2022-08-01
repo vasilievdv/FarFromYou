@@ -60,28 +60,40 @@ function Room() {
                 {' '}
                 {info.authorRoom.userName}
               </h2>
-              <div className="card-actions justify-end" />
+              <br />
+              {info.authorRoom.id === user.id
+                && (
+                  <div>
+                    <button type="submit" className="btn btn-ghost ">Start</button>
+                    <button type="submit" className="btn btn-ghost ">Pause</button>
+                    <button type="submit" className="btn btn-ghost ">Stop</button>
+                  </div>
+                )}
+
             </div>
           </div>
 
           <div className="card guests-card bg-base-100 shadow-xl">
             <div className="card-body scroll-block">
               <h2 className="card-title">All guests</h2>
-              <p className="p">Track:linkin Park</p>
-              <p className="p">Scorpions</p>
-              <p className="p">30 Seconds to Mars</p>
-              <p className="p">Track:linkin Park</p>
-              <p className="p">Scorpions</p>
-              <p className="p">30 Seconds to Mars</p>
-              <p className="p">Track:linkin Park</p>
-              <p className="p">Scorpions</p>
-              <p className="p">30 Seconds to Mars</p>
-              <p className="p">Track:linkin Park</p>
-              <p className="p">Scorpions</p>
-              <p className="p">30 Seconds to Mars</p>
-              <p className="p">Track:linkin Park</p>
-              <p className="p">Scorpions</p>
-              <p className="p">30 Seconds to Mars</p>
+              <div className="p">
+                <p>Track:linkin Park</p>
+                <p>Scorpions</p>
+                <p>30 Seconds to Mars</p>
+                <p>Track:linkin Park</p>
+                <p>Scorpions</p>
+                <p>30 Seconds to Mars</p>
+                <p>Track:linkin Park</p>
+                <p>Scorpions</p>
+                <p>30 Seconds to Mars</p>
+                <p>Track:linkin Park</p>
+                <p>Scorpions</p>
+                <p>30 Seconds to Mars</p>
+                <p>Track:linkin Park</p>
+                <p>Scorpions</p>
+                <p>30 Seconds to Mars</p>
+              </div>
+
               <div className="btn-group" />
 
               <div className="card-actions justify-end" />
