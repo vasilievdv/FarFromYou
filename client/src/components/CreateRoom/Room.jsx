@@ -1,21 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+
 import Chat from '../Chat/Chat';
 import Track from '../Track/Track';
 import './CreateRoom.css';
 
 function Room() {
-  const cookie = useCookies(['name']);
-  // console.log('tyt', cookie);
-  const id = useParams();
-
   const user = useSelector((state) => (state.user));
 
+  const [info, setInfo] = useState([]);
   console.log(user);
 
-  // console.log('+++++++++++++', id);
+  let id = useParams();
+  console.log(id.id);
+  const idFunction = async () => {
+    id = id.id;
+  };
+  const roomFetch = async () => {
+    idFunction();
+    const response = await fetch(`http://localhost:3001/room/${id.id}`);
+    console.log(response);
+    const result = await response.json();
+    console.log(result);
+    setInfo(result);
+  };
+
+  useEffect(() => {
+    if (user) {
+      roomFetch();
+    }
+  }, []);
+
+  console.log('+++++++++++++', info);
 
   if (user) {
     return (

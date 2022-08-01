@@ -70,7 +70,7 @@ app.use(
   }),
 );
 app.use('/', welcomeRouter);
-app.use('/room/:id', roomRouter);
+app.use('/room', roomRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 
