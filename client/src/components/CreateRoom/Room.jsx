@@ -13,7 +13,26 @@ function Room() {
 
   const user = useSelector((state) => (state.user));
 
+  const [info, setInfo] = useState([]);
   console.log(user);
+
+  console.log(id.id);
+
+  const roomFetch = async () => {
+    const response = await fetch(`http://localhost:3001/room/${id.id}`);
+    console.log(response);
+    const result = await response.json();
+    console.log(result);
+    setInfo(result);
+  };
+
+  useEffect(() => {
+    if (user) {
+      roomFetch();
+    }
+  }, []);
+
+  console.log('+++++++++++++', info);
 
   if (user) {
     return (
