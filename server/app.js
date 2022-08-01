@@ -97,7 +97,6 @@ io.on('connection', (socket) => {
   // сообщения
 
   socket.on('send_message', (msg) => {
-    console.log('back', msg);
     io.emit('recieve_message', msg);
   });
 

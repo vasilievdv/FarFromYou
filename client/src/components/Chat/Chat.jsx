@@ -37,7 +37,6 @@ function Chat({ room }) {
     socket.on('recieve_message', (msg) => {
       console.log('front', msg);
       setMessageList((prev) => [...prev, msg]);
-      setNewMessage('');
     });
   }, [socket]);
 
