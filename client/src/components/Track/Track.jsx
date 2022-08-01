@@ -12,18 +12,18 @@ function Track() {
       <audio controls>
         <track src={audio} type="audio/ogg; codecs=vorbis" />
         <track src={audio} type="audio/mpeg" />
-        Тег audio не поддерживается вашим браузером.
-        <a href="audio/music.mp3">Скачайте музыку</a>
+        Audio not supported by your browser.
+        <a href="audio/music.mp3">Download music</a>
       </audio>
       <br />
-      <label htmlFor="my-modal-4" className="btn modal-button btn-primary">Добавить трек</label>
+      <label htmlFor="my-modal-4" className="btn modal-button btn-primary">Add track</label>
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label htmlFor="my-modal-4" className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
-          <input type="text" placeholder="Автор" className="input input-ghost w-full max-w-xs" />
-          <input type="text" placeholder="Название трека" className="input input-ghost w-full max-w-xs" />
-          <input type="text" placeholder="Выбрать файл" className="input input-ghost w-full max-w-xs" />
-          <button type="submit" className="btn btn-ghost">Добавить</button>
+          <input type="text" placeholder="Author" className="input input-ghost w-full max-w-xs" />
+          <input type="text" placeholder="Name of the track" className="input input-ghost w-full max-w-xs" />
+          <input type="text" placeholder="Select file" className="input input-ghost w-full max-w-xs" />
+          <button type="submit" className="btn btn-ghost">Add </button>
         </label>
       </label>
     </div>

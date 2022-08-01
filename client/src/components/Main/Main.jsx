@@ -30,8 +30,8 @@ function Main() {
         </div>
         {user && (
           <div className="button-group">
-            <button type="submit" onClick={createHandler} className="btn btn-outline-info">Создать комнату</button>
-            <button type="submit" onClick={guestHandler} className="btn btn-outline-info">Присоединиться к комнате</button>
+            <button type="submit" onClick={createHandler} className="btn btn-outline-info">Create a room</button>
+            <button type="submit" onClick={guestHandler} className="btn btn-outline-info">Join the room</button>
           </div>
         )}
       </div>
