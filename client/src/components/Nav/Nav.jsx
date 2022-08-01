@@ -37,7 +37,7 @@ function Nav() {
                     to="/user/PA"
                     className="nav-link"
                   >
-                    PA
+                    {user.userName}
                   </NavLink>
                 </li>
                 <div className="avatar">

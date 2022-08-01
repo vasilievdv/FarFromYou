@@ -1,0 +1,48 @@
+.private {
+    padding: 30px 0;
+    border: 1px solid red;
+    max-height: 80vh;
+    background-color: rgb(21, 85, 108);
+}
+
+
+.table1 {
+    border: 1px solid rgb(85, 163, 103);
+}
+
+.guests-card {
+    border: 1px solid red;
+    margin-top: 20px;
+    max-height: 50%;
+    overflow-y: scroll;
+}
+
+.scroll-block::-webkit-scrollbar {
+    width: 15px;
+}
+
+.scroll-block::-webkit-scrollbar-thumb {
+    background-color: #777e83;
+}
+.track {
+    border: 1px solid rgb(85, 93, 163);
+}
+
+.btn1 {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.tracklist {
+    margin-top: 20px;
+    max-height: 79%;
+    overflow-y: scroll;
+}
+
+.track {
+    margin: 5px;
+}

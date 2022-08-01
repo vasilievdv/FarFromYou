@@ -6,16 +6,14 @@
 
 .message-block {
     height: 85%;
-    border: 1px solid red;
     overflow-y: scroll;
 }
 
 .message-block::-webkit-scrollbar {
     width: 5px;
-    background-color: #f9f9fd;
 }
 
-.react-scroll-to-bottom--css-elnhn-79elbk {
+.message-block::-webkit-scrollbar-thumb {
     background-color: #777e83;
 }
 
