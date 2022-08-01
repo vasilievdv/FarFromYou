@@ -15,30 +15,17 @@ function Track() {
         Тег audio не поддерживается вашим браузером.
         <a href="audio/music.mp3">Скачайте музыку</a>
       </audio>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left" />
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Автор</span>
-                </label>
-                <input type="text" className="input input-bordered" />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Название трека</span>
-                </label>
-                <input type="text" className="input input-bordered" />
-              </div>
-              <div className="form-control mt-6">
-                <button type="submit" className="btn btn-primary">Добавить трек</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <br />
+      <label htmlFor="my-modal-4" className="btn modal-button">open</label>
+      <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+      <label htmlFor="my-modal-4" className="modal cursor-pointer">
+        <label className="modal-box relative" htmlFor="">
+          <input type="text" placeholder="Автор" className="input input-ghost w-full max-w-xs" />
+          <input type="text" placeholder="Название трека" className="input input-ghost w-full max-w-xs" />
+          <input type="text" placeholder="Выбрать файл" className="input input-ghost w-full max-w-xs" />
+          <button type="submit" className="btn btn-ghost">Добавить</button>
+        </label>
+      </label>
     </div>
 
   );

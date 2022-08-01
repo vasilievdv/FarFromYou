@@ -12,6 +12,7 @@ function Room() {
   const id = useParams();
 
   const user = useSelector((state) => (state.user));
+  const guest = useSelector((state) => state.guest);
 
   console.log(user);
 
@@ -52,8 +53,13 @@ function Room() {
             </div>
           </div>
           <div className="btn1">
-            <button type="submit" className="btn btn-primary ">Покинуть комнату</button>
-            <button type="submit" className="btn">Удалить комнату</button>
+            {
+              guest ? (
+                <button type="submit" className="btn">Покинуть комнату</button>
+              ) : (
+                <button type="submit" className="btn btn-primary ">Удалить комнату</button>
+              )
+            }
           </div>
         </div>
         <div className="track">
