@@ -32,6 +32,7 @@ router.post('/createroom', checkAuth, async (req, res) => {
       return res.json({ id: newRoom.id });
     } return res.sendStatus(402);
   } catch (error) {
+    console.log('in catch', error.message);
     return res.sendStatus(401);
   }
 });

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-// import Chat from '../Chat/Chat';
+import socket from '../../socket';
 
 function Join() {
   const [roomall, setRoomall] = useState([]);
@@ -16,7 +16,6 @@ function Join() {
       .then((res) => (res.json()))
       .then((date) => setRoomall(date));
   }, []);
-  console.log('++++++', roomall);
 
   const roomHandler = (e) => {
     setFinroom((prev) => ({ ...prev, id: e.target.value }));
@@ -31,16 +30,16 @@ function Join() {
       body: JSON.stringify(room), // передать выбранную комнату
     });
     if (response.ok) {
+      await socket.emit('send_guest', user.userName);
       navigate(`/room/${room.id}`);
     }
   };
-  console.log(roomall.id);
+  // console.log(roomall.id);
   if (user && roomall) {
     return (
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Music for you</h2>
-          {console.log(finroom)}
           <select value={finroom?.id} onChange={roomHandler} className="select select-bordered w-full max-w-xs">
             {/* <option disabled selected>Выберите комнату</option> */}
             {roomall

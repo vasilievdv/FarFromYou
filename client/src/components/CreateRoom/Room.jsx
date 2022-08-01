@@ -11,8 +11,9 @@ import './Room.css';
 function Room() {
   const id = useParams();
   const user = useSelector((state) => (state.user));
-  const guest = useSelector((state) => state.guest);
+  // const guest = useSelector((state) => state.guest);
   const navigate = useNavigate();
+  const [guests, setGuests] = useState([]);
   const [info, setInfo] = useState([]);
 
   const roomFetch = async () => {
@@ -44,6 +45,12 @@ function Room() {
   }, []);
 
   console.log('+++++++++++++', info);
+  useEffect(() => {
+    socket.on('recieve_guest', (guest) => {
+      console.log('front', guest);
+      setGuests((prev) => [...prev, guest]);
+    });
+  }, [socket]);
 
   const deleteRoomHandler = async () => {
     const response = await fetch(`http://localhost:3001/room/${id.id}`, {
@@ -80,27 +87,10 @@ function Room() {
               <div className="card-actions justify-end" />
             </div>
           </div>
-
           <div className="card guests-card bg-base-100 shadow-xl">
             <div className="card-body scroll-block">
-              <h2 className="card-title">All guests</h2>
-              <p className="p">Track:linkin Park</p>
-              <p className="p">Scorpions</p>
-              <p className="p">30 Seconds to Mars</p>
-              <p className="p">Track:linkin Park</p>
-              <p className="p">Scorpions</p>
-              <p className="p">30 Seconds to Mars</p>
-              <p className="p">Track:linkin Park</p>
-              <p className="p">Scorpions</p>
-              <p className="p">30 Seconds to Mars</p>
-              <p className="p">Track:linkin Park</p>
-              <p className="p">Scorpions</p>
-              <p className="p">30 Seconds to Mars</p>
-              <p className="p">Track:linkin Park</p>
-              <p className="p">Scorpions</p>
-              <p className="p">30 Seconds to Mars</p>
+              <h2 className="card-title">Гости</h2>
               <div className="btn-group" />
-
               <div className="card-actions justify-end" />
             </div>
           </div>
