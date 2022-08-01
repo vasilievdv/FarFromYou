@@ -13,6 +13,7 @@ const welcomeRouter = require('./src/routes/welcome.router');
 const authRouter = require('./src/routes/auth.router');
 const usersRouter = require('./src/routes/users.router');
 const roomRouter = require('./src/routes/room.router');
+const audioRouter = require('./src/routes/audio.router');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -71,6 +72,7 @@ app.use(
 );
 app.use('/', welcomeRouter);
 app.use('/room', roomRouter);
+app.use('/audio', audioRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 

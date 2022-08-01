@@ -26,6 +26,23 @@ function Room() {
     roomFetch();
   }, []);
 
+  // find All Tracks
+
+  const [audioAll, setAudioAll] = useState();
+
+  const findAudioFetch = async () => {
+    const response = await fetch('http://localhost:3001/audio', {
+      credentials: 'include',
+    });
+    const result = await response.json();
+    console.log(result);
+    setAudioAll(result);
+  };
+
+  useEffect(() => {
+    findAudioFetch();
+  }, []);
+
   console.log('+++++++++++++', info);
 
   const deleteRoomHandler = async () => {
