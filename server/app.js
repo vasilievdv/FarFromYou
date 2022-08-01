@@ -12,7 +12,7 @@ const cors = require('cors');
 const welcomeRouter = require('./src/routes/welcome.router');
 const authRouter = require('./src/routes/auth.router');
 const usersRouter = require('./src/routes/users.router');
-const roomRouter = require('./src/routes/room.touter');
+const roomRouter = require('./src/routes/room.router');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -74,6 +74,12 @@ app.use('/room', roomRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 
+// socket-chat - test
+const rooms = new Map();
+app.get('/room', (req, res) => {
+  rooms.set('hello', '');
+  res.json(rooms);
+});
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -84,12 +90,21 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   console.log(`User connected ${socket.id}`);
+  io.emit('message', 'User 111 connected');
   socket.on('disconnect', () => {
     console.log('User disconnected');
   });
-  // socket.on('send_message', (data) => {
-  //   console.log(data);
-  // });
+  // сообщения
+
+  socket.on('send_message', (msg) => {
+    console.log('back', msg);
+    io.emit('recieve_message', msg);
+  });
+
+  socket.on('send_guest', (guest) => {
+    console.log('back', guest);
+    io.emit('recieve_guest', guest);
+  });
 });
 
 server.listen(PORT, () => console.log('Server has been started on port 3001'));
