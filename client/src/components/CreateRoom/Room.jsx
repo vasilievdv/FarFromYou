@@ -4,7 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../socket';
 import Chat from '../Chat/Chat';
 import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
-import Track from '../Track/Track';
+// import Track from '../Track/Track';
+import Multer from '../Multer/Multer';
+
 import './CreateRoom.css';
 import './Room.css';
 
@@ -78,11 +80,12 @@ function Room() {
         <div className="track">
           <InputWithButton placeholder="Поиск" btnText="Искать" />
           <ul className="tracklist scroll-block">
-            <li className="track"><Track /></li>
+            {/* <li className="track"><Track /></li> */}
           </ul>
-          <div className="btn1 add-btn">
+          {/* <div className="btn1 add-btn">
             <button type="button" className="btn btn-primary ">Добавить трек</button>
-          </div>
+          </div> */}
+          <Multer />
         </div>
         <div className="chat">
           <div className="mockup-phone">
