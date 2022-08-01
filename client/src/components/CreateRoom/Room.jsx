@@ -5,8 +5,9 @@ import socket from '../../socket';
 import Chat from '../Chat/Chat';
 import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
 import Track from '../Track/Track';
-import './CreateRoom.css';
+import SearchBar from './SearchBar';
 import './Room.css';
+import './CreateRoom.css';
 
 function Room() {
   const id = useParams();
@@ -101,7 +102,7 @@ function Room() {
           </div>
         </div>
         <div className="track">
-          <InputWithButton placeholder="Name" btnText="Search" />
+          <SearchBar placeholder="Enter a auidio name..." audioAll={audioAll} />
           <ul className="tracklist scroll-block">
             <li className="track"><Track /></li>
           </ul>
