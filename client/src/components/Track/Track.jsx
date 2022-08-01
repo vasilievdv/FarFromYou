@@ -7,11 +7,6 @@ import './Track.css';
 const socket = io.connect('http://localhost:3001');
 
 function Track() {
-  const sendAudio = () => {
-    socket.emit('send_message', { message: 'hello' });
-    console.log('done');
-  };
-
   return (
     <div className="pleer">
       <audio controls>
