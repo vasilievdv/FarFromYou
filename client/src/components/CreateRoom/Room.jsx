@@ -27,8 +27,12 @@ function Room() {
   }, []);
 
   useEffect(() => {
+    console.log('front', guests);
+  });
+
+  useEffect(() => {
     socket.on('recieve_guest', (guest) => {
-      console.log('front', guest);
+      console.log(guest);
       setGuests((prev) => [...prev, guest]);
     });
   }, [socket]);
@@ -57,7 +61,7 @@ function Room() {
             <div className="card-body scroll-block">
               <h2 className="card-title">Гости</h2>
               <div className="btn-group" />
-
+              {guests.map((el) => (<p>{el}</p>))}
               <div className="card-actions justify-end" />
             </div>
           </div>

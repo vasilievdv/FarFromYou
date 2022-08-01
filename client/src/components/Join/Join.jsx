@@ -32,7 +32,7 @@ function Join() {
     // console.log('Emilys', room);
 
     if (response.ok) {
-      await socket.emit('send_guest', user.userName);
+      // await socket.emit('joinRoom', { name: user.userName, roomID: room.id });
       navigate(`/room/${room.id}`);
     }
   };
