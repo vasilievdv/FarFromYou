@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function Join() {
   const [roomall, setRoomall] = useState([]);
-  const [finroom, setFinroom] = useState({ id: '' });
+  const [finroom, setFinroom] = useState(null);
   const navigate = useNavigate();
   const user = useSelector((state) => (state.user));
   useEffect(() => {
@@ -16,36 +16,57 @@ function Join() {
       .then((res) => (res.json()))
       .then((date) => setRoomall(date));
   }, []);
+  console.log('++++++', roomall);
 
   const roomHandler = (e) => {
     setFinroom((prev) => ({ ...prev, id: e.target.value }));
   };
 
   const guestHandler = async () => {
+    const room = finroom || roomall[0];
     const response = await fetch('http://localhost:3001/join', {
       credentials: 'include',
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(finroom), // передать выбранную комнату
+      body: JSON.stringify(room), // передать выбранную комнату
     });
     // console.log('+++++++', response);
 
     if (response.ok) {
-      navigate(`/room/${finroom.id}`);
+      navigate(`/room/${room.id}`);
     }
   };
-  // console.log(roomall);
+  console.log(roomall.id);
 
   // console.log(finroom.id);
-  if (user) {
+  if (user && roomall) {
     return (
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Музыка для вас</h2>
-          <select value={finroom.id} onChange={roomHandler} className="select select-bordered w-full max-w-xs">
-            <option disabled selected>Выберите комнату</option>
+          {console.log(finroom)}
+          <select value={finroom?.id} onChange={roomHandler} className="select select-bordered w-full max-w-xs">
+            {/* <option disabled selected>Выберите комнату</option> */}
             {roomall
-            && roomall.map((el) => (<option key={uuidv4()} value={el.id}>{el.roomName}</option>))}
+            && roomall.map((el) => (
+              <option
+                key={uuidv4()}
+                value={el.id}
+              >
+                {el.roomName}
+              </option>
+            ))}
+            {/* {roomall.length === 1(
+              <option key={uuidv4()} value={roomall[0].id} selected>
+                {roomall[0].roomName}
+              </option>,
+            )} */}
+            {/* {roomall[1]
+            && roomall.map((el) => (
+              <option key={uuidv4()} value={el.id}>
+                {el.roomName}
+              </option>
+            ))} */}
           </select>
           <div className="card-actions justify-end">
             <button type="button" onClick={guestHandler} className="btn btn-primary">Присоединиться к комнате</button>
