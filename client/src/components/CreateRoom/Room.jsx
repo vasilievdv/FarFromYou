@@ -42,7 +42,6 @@ function Room() {
             <div className="card-body">
               <h2 className="card-title">Имя комнаты: РОК</h2>
               <h2 className="card-title">Создатель: IGOR</h2>
-              <p>Track:linkin Park. Scorpions. 30 Seconds to Mars</p>
               <div className="card-actions justify-end" />
             </div>
           </div>
