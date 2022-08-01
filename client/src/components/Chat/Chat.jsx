@@ -55,7 +55,7 @@ function Chat({ room }) {
           ))}
         </div>
       </ScrollToBottom>
-      <InputWithButton placeholder="Напиши мне" changeAction={messageHandler} clickAction={sendHandler} btnText="Отправить" />
+      <InputWithButton placeholder="Write me" changeAction={messageHandler} clickAction={sendHandler} btnText="Send" />
     </div>
   );
 }

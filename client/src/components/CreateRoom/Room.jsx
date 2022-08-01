@@ -68,12 +68,12 @@ function Room() {
           <div className="card room-creator-card bg-base-100 shadow-xl">
             <div className="card-body">
               <h2 className="card-title">
-                Название:
+                Room name:
                 {' '}
                 {info.info.roomName}
               </h2>
               <h2 className="card-title">
-                Создатель:
+                Creator:
                 {' '}
                 {info.authorRoom.userName}
               </h2>
@@ -83,7 +83,7 @@ function Room() {
 
           <div className="card guests-card bg-base-100 shadow-xl">
             <div className="card-body scroll-block">
-              <h2 className="card-title">Гости</h2>
+              <h2 className="card-title">All guests</h2>
               <p className="p">Track:linkin Park</p>
               <p className="p">Scorpions</p>
               <p className="p">30 Seconds to Mars</p>
@@ -106,12 +106,12 @@ function Room() {
           </div>
           <div className="btn1">
             {info.authorRoom.id === user.id
-              && <button type="submit" onClick={deleteRoomHandler} className="btn btn-primary ">Удалить комнату</button>}
-            {info.authorRoom.id !== user.id && <button type="submit" onClick={exitRoomHandler} className="btn">Покинуть комнату</button>}
+              && <button type="submit" onClick={deleteRoomHandler} className="btn btn-primary ">Delete room</button>}
+            {info.authorRoom.id !== user.id && <button type="submit" onClick={exitRoomHandler} className="btn">leave room</button>}
           </div>
         </div>
         <div className="track">
-          <InputWithButton placeholder="Поиск" btnText="Искать" />
+          <InputWithButton placeholder="Name" btnText="Search" />
           <ul className="tracklist scroll-block">
             <li className="track"><Track /></li>
           </ul>

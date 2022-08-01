@@ -16,11 +16,11 @@ function Track() {
       <audio controls>
         <track src={audio} type="audio/ogg; codecs=vorbis" />
         <track src={audio} type="audio/mpeg" />
-        Тег audio не поддерживается вашим браузером.
-        <a href="audio/music.mp3">Скачайте музыку</a>
+        Audio not supported by your browser.
+        <a href="audio/music.mp3">Download music</a>
       </audio>
       <br />
-      <label htmlFor="my-modal-4" className="btn modal-button btn-primary">Добавить трек</label>
+      <label htmlFor="my-modal-4" className="btn modal-button btn-primary">Add track</label>
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label htmlFor="my-modal-4" className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
