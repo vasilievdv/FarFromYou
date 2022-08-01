@@ -46,8 +46,12 @@ router.post('/join', checkAuth, async (req, res) => {
   const { id } = await req.body;
   try {
     if (id) {
+      const infoRoom = await Room.findOne({ where: id });
+      if (infoRoom.user_id === req.session.user.id) {
+        return res.sendStatus(403);
+      }
       const updateuser = await User.update({ role_id: 3 }, { where: { id: req.session.user.id } });
-      const guests = await Users_Room.create({ user_id: req.session.user.id, room_id: id });
+      const guests = await Users_Room.findOrCreate({ user_id: req.session.user.id, room_id: id });
       console.log(updateuser, guests);
       return res.sendStatus(200);
     } return res.sendStatus(402);
