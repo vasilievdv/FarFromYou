@@ -85,7 +85,16 @@ function Room() {
                 {' '}
                 {info.authorRoom.userName}
               </h2>
-              <div className="card-actions justify-end" />
+              <br />
+              {info.authorRoom.id === user.id
+                && (
+                  <div>
+                    <button type="submit" className="btn btn-ghost ">Start</button>
+                    <button type="submit" className="btn btn-ghost ">Pause</button>
+                    <button type="submit" className="btn btn-ghost ">Stop</button>
+                  </div>
+                )}
+
             </div>
           </div>
           <div className="card guests-card bg-base-100 shadow-xl">
