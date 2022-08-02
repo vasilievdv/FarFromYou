@@ -37,9 +37,9 @@ function CreateRoom() {
       // console.log(result);
       navigate(`/room/${result.id}`);
     }
+    // console.log('++++++++', result);
   };
 
-  // console.log(guest);
   if (user) {
     return (
       <form>
