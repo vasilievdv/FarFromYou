@@ -12,7 +12,8 @@ function Track() {
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
 
-  // const inputFiles = { audio, author, title };
+  const inputFiles = { author, title };
+  console.log(inputFiles);
 
   const sendFile = useCallback(async () => {
     // console.log(audio);
@@ -28,7 +29,7 @@ function Track() {
         // .then((res) => setPlay(res.data.path));
         .then((res) => dispatch(getAudioAC(res.data.path)));
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }, [audio]);
   const handleAuthorChange = (e) => {

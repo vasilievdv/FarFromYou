@@ -9,6 +9,7 @@ import './Room.css';
 import './CreateRoom.css';
 import GuestsInfo from './GuestsInfo/GuestsInfo';
 import SearchPannel from './SearchPannel/SearchPannel';
+import Player from './Player/Player';
 
 function Room() {
   const id = useParams();
@@ -42,8 +43,8 @@ function Room() {
         />
         <div className="track">
           <SearchPannel />
+          <Player info={info} />
         </div>
-        {/* Компонент с плеером */}
         <div className="chat">
           <div className="mockup-phone">
             <div className="camera" />
