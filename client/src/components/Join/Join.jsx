@@ -9,6 +9,7 @@ function Join() {
   const [finroom, setFinroom] = useState(null);
   const navigate = useNavigate();
   const user = useSelector((state) => (state.user));
+
   useEffect(() => {
     fetch('http://localhost:3001/join', {
       credentials: 'include',
@@ -16,6 +17,12 @@ function Join() {
       .then((res) => (res.json()))
       .then((date) => setRoomall(date));
   }, []);
+
+  useEffect(() => {
+    socket.on('guest-message', (msg) => {
+      console.log(msg);
+    });
+  }, [socket]);
 
   const roomHandler = (e) => {
     setFinroom((prev) => ({ ...prev, id: e.target.value }));

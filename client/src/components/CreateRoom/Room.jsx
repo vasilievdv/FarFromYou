@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../socket';
 import Chat from '../Chat/Chat';
-import Track from '../Track/Track';
-import SearchBar from './SearchBar';
 import './Room.css';
 import './CreateRoom.css';
 import GuestsInfo from './GuestsInfo/GuestsInfo';
@@ -54,7 +52,7 @@ function Room() {
       </div>
     );
   } return (
-    <div>You not auth</div>
+    <div>You not authorized</div>
   );
 }
 export default Room;

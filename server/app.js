@@ -107,21 +107,18 @@ io.on('connection', (socket) => {
 
   // гости
   socket.on('joinRoom', ({ name, roomID }) => {
-    socket.join(roomID);
-    console.log(roomID);
+    socket.join(name);
+    console.log('====RoomID=====', roomID, name);
     // Welcome current user
     socket.emit('message', 'Welcome to ChatCord!');
 
     // Broadcast when a user connects
     socket.broadcast
-      .to(roomID)
-      .emit('message', `${name} has joined the chat`);
+      .to('joinRoom')
+      .emit('guest-message', `${name} has joined the chat`);
 
     // Send users and room info
-    // io.to(roomID).emit('roomUsers', {
-    //   room: roomID,
-    //   users: getRoomUsers(user.room),
-    // });
+    io.to(roomID).emit('recieve_guest', name);
   });
 });
 

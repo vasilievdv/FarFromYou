@@ -11,9 +11,9 @@ function GuestsInfo({ info }) {
   const [guests, setGuests] = useState([]);
 
   useEffect(() => {
-    socket.on('recieve_guest', (guest) => {
-      console.log(guest);
-      setGuests((prev) => [...prev, guest]);
+    socket.on('recieve_guest', (name) => {
+      console.log(name);
+      setGuests((prev) => [...prev, name]);
     });
   }, [socket]);
 

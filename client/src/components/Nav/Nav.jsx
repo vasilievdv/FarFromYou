@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+import './Nav.css';
 
 function Nav() {
   const user = useSelector((state) => state.user);
@@ -9,8 +10,8 @@ function Nav() {
 
     <div className="navbar bg-info">
       <div className="flex-1">
-        <Link className="btn btn-ghost normal-case text-xl" to="/">
-          Far From You
+        <Link className="btn btn-ghost normal-case text-xl logo" to="/">
+          #FarFromYou
         </Link>
         <div className="navbar">
           <ul className="menu menu-horizontal p-0">

@@ -9,8 +9,8 @@ import { getAudioAC } from '../../redux/actions/audioActions';
 function Track() {
   const dispatch = useDispatch();
   const [audio, setAudio] = useState(null);
-  const [author, setAuthor] = useState('');
-  const [title, setTitle] = useState('');
+  const [artist, setArtist] = useState('');
+  const [trackName, setTrackName] = useState('');
 
   // const inputFiles = { audio, author, title };
 
@@ -31,11 +31,27 @@ function Track() {
       console.log(error);
     }
   }, [audio]);
+
   const handleAuthorChange = (e) => {
-    setAuthor(e.target.value);
+    setArtist(e.target.value);
   };
   const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+    setTrackName(e.target.value);
+  };
+
+  const addTrackHandler = async () => {
+    console.log(artist, trackName);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/audio/createtrack`, {
+      credentials: 'include',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ artist, trackName }),
+    });
+    if (response.ok) {
+      const result = await response.json();
+      console.log(result);
+    }
+    sendFile();
   };
   return (
     <div className="pleer">
@@ -50,6 +66,7 @@ function Track() {
             name="artist"
             placeholder="Автор"
             className="input input-ghost w-full max-w-xs"
+            value={artist}
           />
           <input
             onChange={handleTitleChange}
@@ -57,6 +74,7 @@ function Track() {
             name="trackname"
             placeholder="Название трека"
             className="input input-ghost w-full max-w-xs"
+            value={trackName}
           />
           <input
             onChange={(e) => setAudio(e.target.files[0])}
@@ -66,7 +84,7 @@ function Track() {
             // className="input input-ghost w-full max-w-xs"
           />
           <button
-            onClick={sendFile}
+            onClick={addTrackHandler}
             type="submit"
             className="btn modal-button btn-primary"
           >

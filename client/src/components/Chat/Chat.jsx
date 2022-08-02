@@ -8,7 +8,7 @@ import Message from './Message/Message';
 import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
 
 function Chat({ room }) {
-  const [newMessage, setNewMessage] = useState('');
+  const [newMessage, setNewMessage] = useState(null);
   const [messageList, setMessageList] = useState([]);
   const user = useSelector((state) => state.user);
   const roomID = useParams();
@@ -55,7 +55,7 @@ function Chat({ room }) {
           ))}
         </div>
       </ScrollToBottom>
-      <InputWithButton placeholder="Write me" changeAction={messageHandler} clickAction={sendHandler} btnText="Send" />
+      <InputWithButton placeholder="Write me" changeAction={messageHandler} clickAction={sendHandler} btnText="SEND" />
     </div>
   );
 }
