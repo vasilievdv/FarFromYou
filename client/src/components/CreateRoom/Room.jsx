@@ -6,6 +6,7 @@ import Chat from '../Chat/Chat';
 import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
 import Track from '../Track/Track';
 import SearchBar from './SearchBar';
+import Multer from '../Multer/Multer';
 import './Room.css';
 import './CreateRoom.css';
 

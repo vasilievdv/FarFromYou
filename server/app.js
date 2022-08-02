@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path'); // Dima
 
 // sign
 const { Server } = require('socket.io');
@@ -52,8 +53,10 @@ const { COOKIE_SECRET, COOKIE_NAME } = process.env;
 app.set('cookieName', COOKIE_NAME);
 
 // app.use(cors(corsOptions));
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ extended: true })); // Dima extended: true
+app.use('/audio', express.static(path.join(__dirname, 'audio'))); // Dima
+app.use('/api', require('./routes/upload.route')); // Dima
 
 // sign
 app.use(
