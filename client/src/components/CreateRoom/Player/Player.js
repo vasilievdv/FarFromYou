@@ -4,14 +4,14 @@ import io from 'socket.io-client';
 import { getAudioThunk, getAudioAC } from '../../../redux/actions/audioActions';
 import socket from '../../../socket';
 
-// const socket = io.connect('http://localhost:3001');//
+// const socket = io.connect('${process.env.REACT_APP_HOST}');//
 
-function Player({ info }) {
+function Player({ nameCreater }) {
   const audioFromServer = useSelector((state) => state.audio);
   const user = useSelector((state) => (state.user));
 
-  console.log(info);
-  console.log(user);
+  // console.log('+++++++++++++', audioFromServer);
+  // console.log(user);
 
   // console.log(audioFromServer);
   const dispatch = useDispatch();
@@ -30,7 +30,8 @@ function Player({ info }) {
   const [role, setRole] = useState('');
 
   function showTime(m) {
-    if (role === 'client') {
+    console.log('tyt', m);
+    if (user.userName !== nameCreater) {
       clientAudio.pause();
       clientAudio.src = m.path;
       clientAudio.currentTime = m.timecode;
@@ -43,7 +44,8 @@ function Player({ info }) {
   function adminPlay(m) {
     let i = 0;
     let currentPlay = m[i];
-    if (role === 'server') {
+    console.log('tyt', user.userName === nameCreater);
+    if (user.userName === nameCreater) {
       audio.setAttribute('controls', 'controls');
       // eslint-disable-next-line prefer-destructuring
       audio.src = currentPlay;
@@ -79,12 +81,12 @@ function Player({ info }) {
     socket.emit('stop', { });
   }
 
-  // useEffect(() => {
-  //   socket.emit('time', { }); // При загрузке пользователь получает таймкод и адрес
-  // });
-  function handleTimecode() {
-    socket.emit('time', { }); // поулчить таймкод и адрес по кнопке
-  }
+  useEffect(() => {
+    socket.emit('time', { }); // При загрузке пользователь получает таймкод и адрес
+  }, []);
+  // function handleTimecode() {
+  //   socket.emit('time', { }); // поулчить таймкод и адрес по кнопке
+  // }
 
   function handlePlaySound() {
     adminPlay(audioFromServer);
@@ -105,7 +107,7 @@ function Player({ info }) {
       </div>
       <br />
       <br />
-      <button type="button" onClick={handleTimecode}>Get time</button>
+      {/* <button type="button" onClick={handleTimecode}>Get time</button> */}
 
     </>
 

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const checkAuth = require('../middlewares/checkAuth');
-const { Track } = require('../../db/models');
+const { Track, Room } = require('../../db/models');
 
 router.get('/', checkAuth, async (req, res) => {
   const findAudio = await Track.findAll();
@@ -22,7 +22,3 @@ router.post('/createtrack', async (req, res) => {
   }
 });
 module.exports = router;
-// trackName: DataTypes.STRING,
-//     artist: DataTypes.STRING,
-//     url: DataTypes.TEXT,
-//     user_id: DataTypes.INTEGER,

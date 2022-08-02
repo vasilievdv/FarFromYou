@@ -8,7 +8,7 @@ function Main() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    fetch('http://localhost:3001/createorguest', {
+    fetch(`${process.env.REACT_APP_HOST}/createorguest`, {
       credentials: 'include',
     });
     //   .then((res) => console.log(res));

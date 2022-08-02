@@ -11,7 +11,7 @@ function CreateRoom() {
   const user = useSelector((state) => (state.user));
 
   // useEffect(() => {
-  //   fetch('http://localhost:3001/createroom', {
+  //   fetch('${process.env.REACT_APP_HOST}/createroom', {
   //     credentials: 'include',
   //   })
   //     .then((res) => (res.json()))
@@ -26,7 +26,7 @@ function CreateRoom() {
   };
 
   const createHandler = async () => {
-    const response = await fetch('http://localhost:3001/createroom', {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/createroom`, {
       credentials: 'include',
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
@@ -34,7 +34,7 @@ function CreateRoom() {
     });
     if (response.ok) {
       const result = await response.json();
-      // console.log(result);
+      console.log('ffffffffffffff', result);
       navigate(`/room/${result.id}`);
     }
   };

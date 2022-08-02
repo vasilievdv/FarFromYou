@@ -22,7 +22,7 @@ router.post('/createroom', checkAuth, async (req, res) => {
     if (req.body.name) {
       const { id } = await req.session.user;
       const { name } = await req.body;
-
+      console.log('welcome router back', name);
       const newRoom = await Room.create({ roomName: name });
 
       const createrUser = await Users_Rooms_Role.create({

@@ -21,7 +21,7 @@ function Track() {
       const data = new FormData();
       data.append('audiofile', audio);
 
-      await axios.post('http://localhost:3001/api/upload', data, {
+      await axios.post(`${process.env.REACT_APP_HOST}/api/upload`, data, {
         headers: {
           'content-type': 'multipart/form-data',
         },
