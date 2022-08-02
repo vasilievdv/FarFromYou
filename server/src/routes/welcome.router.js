@@ -39,12 +39,23 @@ router.get('/join', checkAuth, async (req, res) => {
 
 router.post('/join', checkAuth, async (req, res) => {
   const { id } = await req.body;
+  const { user } = req.session;
+  const infoRoom = await Room.findOne({ where: { id: +id } });
   try {
-    if (id) {
+    if (infoRoom.user_id === user.id) {
+      return res.sendStatus(403);
+    }
+    if (infoRoom.user_id !== user.id) {
       const updateuser = await User.update({ role_id: 3 }, { where: { id: req.session.user.id } });
-      const guests = await Users_Room.create({ user_id: req.session.user.id, room_id: id });
+      const [guests, created] = await Users_Room.findOrCreate({
+        where: {
+          user_id: user.id,
+          room_id: +id,
+        },
+      });
+      console.log(updateuser, guests);
       return res.sendStatus(200);
-    } return res.sendStatus(402);
+    }
   } catch (error) {
     return res.sendStatus(401);
   }

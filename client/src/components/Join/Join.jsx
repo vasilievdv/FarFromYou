@@ -29,20 +29,17 @@ function Join() {
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(room), // передать выбранную комнату
     });
-    // console.log('Emilys', room);
-
     if (response.ok) {
       // await socket.emit('joinRoom', { name: user.userName, roomID: room.id });
       navigate(`/room/${room.id}`);
     }
   };
-
-  // console.log(finroom.id);
+  // console.log(roomall.id);
   if (user && roomall) {
     return (
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">Музыка для вас</h2>
+          <h2 className="card-title">Music for you</h2>
           <select value={finroom?.id} onChange={roomHandler} className="select select-bordered w-full max-w-xs">
             {/* <option disabled selected>Выберите комнату</option> */}
             {roomall
@@ -54,20 +51,9 @@ function Join() {
                 {el.roomName}
               </option>
             ))}
-            {/* {roomall.length === 1(
-              <option key={uuidv4()} value={roomall[0].id} selected>
-                {roomall[0].roomName}
-              </option>,
-            )} */}
-            {/* {roomall[1]
-            && roomall.map((el) => (
-              <option key={uuidv4()} value={el.id}>
-                {el.roomName}
-              </option>
-            ))} */}
           </select>
           <div className="card-actions justify-end">
-            <button type="button" onClick={guestHandler} className="btn btn-primary">Присоединиться к комнате</button>
+            <button type="button" onClick={guestHandler} className="btn btn-primary">Join the room</button>
           </div>
         </div>
       </div>
