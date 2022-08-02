@@ -49,7 +49,6 @@ function Room() {
             <div className="display">
               <div className="artboard artboard-demo phone-1">
                 <Chat />
-                1
               </div>
             </div>
           </div>

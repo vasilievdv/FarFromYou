@@ -17,12 +17,11 @@ router.get('/createorguest', checkAuth, async (req, res) => {
 // });
 
 router.post('/createroom', checkAuth, async (req, res) => {
-  console.log(req.body);
   try {
     if (req.body.name) {
       const { id } = await req.session.user;
       const { name } = await req.body;
-
+      console.log('wheres my user', id);
       const newRoom = await Room.create({ roomName: name });
 
       const createrUser = await Users_Rooms_Role.create({
@@ -31,11 +30,10 @@ router.post('/createroom', checkAuth, async (req, res) => {
         role_id: 2,
       });
       // await User.update({ role_id: 2 }, { where: { id } });
-console
       return res.json({ id: newRoom.id });
     } return res.sendStatus(402);
   } catch (error) {
-    console.log('in catch', error.message);
+    console.log('in catch blabla', error.message);
     return res.sendStatus(401);
   }
 });
