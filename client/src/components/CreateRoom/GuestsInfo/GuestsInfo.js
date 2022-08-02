@@ -19,7 +19,7 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
   }, [socket]);
 
   const deleteRoomHandler = async () => {
-    const response = await fetch(`http://localhost:3001/room/${id.id}`, {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/room/${id.id}`, {
       credentials: 'include',
       method: 'DELETE',
     });
@@ -27,7 +27,7 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
   };
 
   const exitRoomHandler = async () => {
-    const response = await fetch(`http://localhost:3001/room/${id.id}`, {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/room/${id.id}`, {
       credentials: 'include',
       method: 'DELETE',
     });

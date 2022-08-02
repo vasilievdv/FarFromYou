@@ -6,7 +6,7 @@ function InputWithButton({
 }) {
   return (
     <div className="input-block">
-      <textarea className="input-field" placeholder={placeholder} onChange={changeAction} />
+      <textarea className="input-field" placeholder={placeholder} onChange={changeAction} required />
       <button type="button" className="input-btn" onClick={clickAction}>{btnText}</button>
     </div>
   );
