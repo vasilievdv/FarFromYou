@@ -31,7 +31,7 @@ router.post('/createroom', checkAuth, async (req, res) => {
         role_id: 2,
       });
       // await User.update({ role_id: 2 }, { where: { id } });
-
+console
       return res.json({ id: newRoom.id });
     } return res.sendStatus(402);
   } catch (error) {
