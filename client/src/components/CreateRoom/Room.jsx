@@ -16,7 +16,7 @@ function Room() {
   // const [guests, setGuests] = useState([]);
 
   const [info, setInfo] = useState([]);
-
+  console.log('id', id);
   const roomFetch = async () => {
     const response = await fetch(`${process.env.REACT_APP_HOST}/room/${id.id}`, {
       credentials: 'include',

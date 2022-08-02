@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import './Track.css';
 import axios from 'axios';
 
+import { useParams } from 'react-router-dom';
 import { getAudioAC } from '../../redux/actions/audioActions';
 
 function Track() {
@@ -11,7 +12,7 @@ function Track() {
   const [audio, setAudio] = useState(null);
   const [artist, setArtist] = useState('');
   const [trackName, setTrackName] = useState('');
-
+  const id = useParams();
   // const inputFiles = { artist, trackName };
   // console.log(inputFiles);
 
@@ -46,7 +47,7 @@ function Track() {
       credentials: 'include',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ artist, trackName }),
+      body: JSON.stringify({ artist, trackName, room_id: id }),
     });
     if (response.ok) {
       const result = await response.json();
