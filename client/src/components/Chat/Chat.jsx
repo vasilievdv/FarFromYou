@@ -7,7 +7,7 @@ import socket from '../../socket';
 import Message from './Message/Message';
 import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
 
-function Chat({ room }) {
+function Chat() {
   const [newMessage, setNewMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
   const user = useSelector((state) => state.user);
@@ -31,11 +31,11 @@ function Chat({ room }) {
         time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`,
       };
       await socket.emit('send_message', messageData);
+      setNewMessage('');
     }
   };
   useEffect(() => {
     socket.on('recieve_message', (msg) => {
-      console.log('front', msg);
       setMessageList((prev) => [...prev, msg]);
       setNewMessage('');
     });

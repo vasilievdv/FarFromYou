@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 function SearchBar({ placeholder, audioAll }) {
   const [findaudio, setFindaudio] = useState([]);
   const [auidio, setAuidio] = useState([]);
-  console.log('-----------------+', auidio);
+  // console.log('-----------------+', auidio);
 
   const heandlerFilter = (e) => {
     const searchAuidio = e.target.value;

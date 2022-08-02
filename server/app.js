@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path'); // Dima
 
 // sign
 const { Server } = require('socket.io');
@@ -52,8 +53,10 @@ const { COOKIE_SECRET, COOKIE_NAME } = process.env;
 app.set('cookieName', COOKIE_NAME);
 
 // app.use(cors(corsOptions));
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ extended: true })); // Dima extended: true
+app.use('/audio', express.static(path.join(__dirname, 'audio'))); // Dima
+app.use('/api', require('./routes/upload.route')); // Dima
 
 // sign
 app.use(
@@ -75,6 +78,7 @@ app.use('/room', roomRouter);
 app.use('/audio', audioRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
+// app.use('/*',);
 
 // socket-chat - test
 const rooms = new Map();
@@ -102,9 +106,23 @@ io.on('connection', (socket) => {
     io.emit('recieve_message', msg);
   });
 
-  socket.on('send_guest', (guest) => {
-    console.log('back', guest);
-    io.emit('recieve_guest', guest);
+  // гости
+  socket.on('joinRoom', ({ name, roomID }) => {
+    socket.join(roomID);
+    console.log(roomID);
+    // Welcome current user
+    socket.emit('message', 'Welcome to ChatCord!');
+
+    // Broadcast when a user connects
+    socket.broadcast
+      .to(roomID)
+      .emit('message', `${name} has joined the chat`);
+
+    // Send users and room info
+    // io.to(roomID).emit('roomUsers', {
+    //   room: roomID,
+    //   users: getRoomUsers(user.room),
+    // });
   });
 });
 

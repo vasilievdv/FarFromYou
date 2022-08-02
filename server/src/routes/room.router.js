@@ -6,6 +6,7 @@ const {
 } = require('../../db/models');
 
 router.get('/:id', checkAuth, async (req, res) => {
+  console.log('tut');
   const { id } = req.params;
 
   const guests = await Users_Rooms_Role.findAll({
@@ -13,13 +14,22 @@ router.get('/:id', checkAuth, async (req, res) => {
     include: [{ model: User }, { model: Room }],
     raw: true,
   });
+  const creater = await Users_Rooms_Role.findAll({
+    where: { room_id: { [Op.eq]: id }, role_id: 2 },
+    include: [{ model: User }, { model: Room }],
+    raw: true,
+  });
+  const nameCreater = creater[0]['User.userName'];
+  const nemeRoom = creater[0]['Room.roomName'];
+  const arrGuest = guests.map((el) => el['User.userName']);
+  // console.log(nameCreater, nemeRoom, arrGuest);
   // const idGuoists = guests.map((el) => el.id);
   // const info = await Room.findOne({ where: { id } });
   // const authorRoom = await User.findOne({ where: { id: info.user_id } });
-  console.log(guests);
+  // console.log('_________', guests, creater);
   //   const res1 = idUser.filter((el) => el.id === idGuoists.el);
   //   const info = await User.findAll({ where: { id: idGuoists.map((el) => el) } });
-  res.json({ guests });
+  res.json({ nameCreater, nemeRoom, arrGuest });
 });
 // el['User.id, User.name']
 

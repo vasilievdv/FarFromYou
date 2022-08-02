@@ -30,7 +30,7 @@ function Join() {
       body: JSON.stringify(room), // передать выбранную комнату
     });
     if (response.ok) {
-      await socket.emit('send_guest', user.userName);
+      await socket.emit('joinRoom', { name: user.userName, roomID: room.id });
       navigate(`/room/${room.id}`);
     }
   };
