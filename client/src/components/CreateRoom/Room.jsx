@@ -105,10 +105,7 @@ function Room() {
             <div className="card-body scroll-block">
               <h2 className="card-title">Гости</h2>
               <div className="btn-group" />
-<<<<<<< HEAD
               {guests.map((el) => (<p>{el}</p>))}
-=======
->>>>>>> 0e7db10bf631a1e2202760f259de4055f6897b5f
               <div className="card-actions justify-end" />
             </div>
           </div>
