@@ -1,6 +1,6 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users_Rooms', {
+    await queryInterface.createTable('Users_Rooms_Roles', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -27,6 +27,16 @@ module.exports = {
         },
         onDelite: 'cascade',
       },
+      role_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Roles',
+          },
+          key: 'id',
+        },
+        onDelite: 'cascade',
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -38,6 +48,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users_Rooms');
+    await queryInterface.dropTable('Users_Rooms_Roles');
   },
 };

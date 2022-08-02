@@ -9,18 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Room, Role, Track }) {
-      this.hasMany(Room, {
-        foreignKey: 'user_id',
-      });
-      this.belongsTo(Role, {
-        foreignKey: 'role_id',
-      });
+    static associate({ Room, Track, Users_Rooms_Role }) {
       this.hasMany(Track, {
         foreignKey: 'user_id',
       });
-      this.belongsToMany(Room, {
-        through: 'Users_Rooms',
+      this.hasMany(Users_Rooms_Role, {
         foreignKey: 'user_id',
       });
     }
@@ -29,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     userName: DataTypes.STRING,
     password: DataTypes.TEXT,
     email: DataTypes.STRING,
-    role_id: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'User',

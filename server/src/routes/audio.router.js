@@ -4,7 +4,7 @@ const { Track } = require('../../db/models');
 
 router.get('/', checkAuth, async (req, res) => {
   const findAudio = await Track.findAll();
-  console.log(findAudio);
+  // console.log(findAudio);
   return res.json(findAudio);
 });
 

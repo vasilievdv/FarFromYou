@@ -2,19 +2,19 @@ const router = require('express').Router();
 const { Op } = require('sequelize');
 const checkAuth = require('../middlewares/checkAuth');
 const {
-  User, Room, Users_Room,
+  User, Room, Users_Rooms_Role,
 } = require('../../db/models');
 
 router.get('/createorguest', checkAuth, async (req, res) => {
   res.sendStatus(200);
 });
 
-router.get('/createroom', checkAuth, async (req, res) => {
-  const { id } = await req.session.user;
-  // console.log(id);
-  const userAllnotId = await User.findAll({ where: { id: { [Op.ne]: id } } });
-  return res.json(userAllnotId);
-});
+// router.get('/createroom', checkAuth, async (req, res) => {
+//   const { id } = await req.session.user;
+//   // console.log(id);
+//   // const userAllnotId = await User.findAll({ where: { id: { [Op.ne]: id } } });
+//   return res.json(userAllnotId);
+// });
 
 router.post('/createroom', checkAuth, async (req, res) => {
   console.log(req.body);
@@ -24,9 +24,15 @@ router.post('/createroom', checkAuth, async (req, res) => {
       const { id } = await req.session.user;
       const { name } = await req.body;
       console.log(id, name);
-      const newRoom = await Room.create({ roomName: name, user_id: id });
+      const newRoom = await Room.create({ roomName: name });
       console.log('+++++++++++', newRoom.id);
-      const createrUser = await User.update({ role_id: 2 }, { where: { id } });
+
+      const createrUser = await Users_Rooms_Role.create({
+        user_id: id,
+        room_id: newRoom.id,
+        role_id: 2,
+      });
+      // await User.update({ role_id: 2 }, { where: { id } });
       console.log('+++++++++++', createrUser);
       console.log(newRoom.id);
       return res.json({ id: newRoom.id });
@@ -45,20 +51,22 @@ router.get('/join', checkAuth, async (req, res) => {
 router.post('/join', checkAuth, async (req, res) => {
   const { id } = await req.body;
   const { user } = req.session;
-  const infoRoom = await Room.findOne({ where: { id: +id } });
+  const infoRoom = await Users_Rooms_Role.findOne({ where: { room_id: +id, role_id: 2 } });
   try {
     if (infoRoom.user_id === user.id) {
       return res.sendStatus(403);
     }
     if (infoRoom.user_id !== user.id) {
-      const updateuser = await User.update({ role_id: 3 }, { where: { id: req.session.user.id } });
-      const [guests, created] = await Users_Room.findOrCreate({
+      // const updateuser = await Users_Rooms_Role.update({ role_id: 3 },
+      //  { where: { id: req.session.user.id } });
+      const [guests, created] = await Users_Rooms_Role.findOrCreate({
         where: {
           user_id: user.id,
           room_id: +id,
+          role_id: 3,
         },
       });
-      console.log(updateuser, guests);
+      console.log(guests);
       return res.sendStatus(200);
     }
   } catch (error) {

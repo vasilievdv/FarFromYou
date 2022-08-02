@@ -10,7 +10,7 @@ function SearchBar({ placeholder, audioAll }) {
 
   const heandlerFilter = (e) => {
     const searchAuidio = e.target.value;
-    const newFilter = audioAll.filter((value) => value.trackName.toLowerCase()
+    const newFilter = audioAll.filter((value) => value.artist.toLowerCase()
       .includes(searchAuidio.toLowerCase()));
     setFindaudio(newFilter);
     if (searchAuidio === '') {

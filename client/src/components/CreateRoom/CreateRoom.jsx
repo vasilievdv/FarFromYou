@@ -5,18 +5,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 function CreateRoom() {
   const [input, setInput] = useState({});
-  const [userall, setUserall] = useState([]);
+  // const [userall, setUserall] = useState([]);
   const [guest, setGuest] = useState({ id: '' });
   const navigate = useNavigate();
   const user = useSelector((state) => (state.user));
 
-  useEffect(() => {
-    fetch('http://localhost:3001/createroom', {
-      credentials: 'include',
-    })
-      .then((res) => (res.json()))
-      .then((date) => setUserall(date));
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:3001/createroom', {
+  //     credentials: 'include',
+  //   })
+  //     .then((res) => (res.json()))
+  //     .then((date) => setUserall(date));
+  // }, []);
 
   const valueHandle = (e) => {
     setGuest((prev) => ({ ...prev, id: e.target.value }));
