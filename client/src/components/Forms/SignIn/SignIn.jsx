@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../../redux/actions/userAction';
+import './signin.css';
 
 function SignIn() {
   const [userSignIn, setUserSignIn] = useState({
@@ -28,40 +29,43 @@ function SignIn() {
       <form onSubmit={submitHandler}>
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left" />
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  onChange={changeHandler}
-                  value={userSignIn.email}
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                />
-              </div>
+          <div className="mycard">
+            <div className="card1 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+              <div className="card-body">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <input
+                    onChange={changeHandler}
+                    value={userSignIn.email}
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    className="input input-bordered"
+                  />
+                </div>
 
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  onChange={changeHandler}
-                  value={userSignIn.password}
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                />
-              </div>
-              <div className="form-control mt-6">
-                <button type="submit" className="btn btn-primary">SIGN IN</button>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    onChange={changeHandler}
+                    value={userSignIn.password}
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control mt-6">
+                  <button type="submit" className="btn btn-primary">SIGN IN</button>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
       </form>
     </div>

@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const { Op } = require('sequelize');
 const checkAuth = require('../middlewares/checkAuth');
-const { Users_Room, Room, User } = require('../../db/models');
+const {
+  Users_Room, Room, User,
+} = require('../../db/models');
 
 router.get('/:id', checkAuth, async (req, res) => {
   const { id } = req.params;
@@ -43,5 +45,6 @@ router.delete('/:id', checkAuth, async (req, res) => {
     return res.sendStatus(401);
   }
 });
+
 
 module.exports = router;

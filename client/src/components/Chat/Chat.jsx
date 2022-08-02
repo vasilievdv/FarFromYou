@@ -31,11 +31,11 @@ function Chat({ room }) {
         time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`,
       };
       await socket.emit('send_message', messageData);
+      setNewMessage('');
     }
   };
   useEffect(() => {
     socket.on('recieve_message', (msg) => {
-      console.log('front', msg);
       setMessageList((prev) => [...prev, msg]);
       setNewMessage('');
     });

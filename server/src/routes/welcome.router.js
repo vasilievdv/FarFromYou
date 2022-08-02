@@ -20,18 +20,14 @@ router.post('/createroom', checkAuth, async (req, res) => {
   console.log(req.body);
   try {
     if (req.body.name) {
-      console.log('tyt');
       const { id } = await req.session.user;
       const { name } = await req.body;
-      console.log(id, name);
       const newRoom = await Room.create({ roomName: name, user_id: id });
-      console.log('+++++++++++', newRoom.id);
       const createrUser = await User.update({ role_id: 2 }, { where: { id } });
-      console.log('+++++++++++', createrUser);
-      console.log(newRoom.id);
       return res.json({ id: newRoom.id });
     } return res.sendStatus(402);
   } catch (error) {
+    console.log('in catch', error.message);
     return res.sendStatus(401);
   }
 });

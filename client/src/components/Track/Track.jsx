@@ -1,29 +1,79 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React from 'react';
-import io from 'socket.io-client';
-import audio from './audio/Nirvana.mp3';
+import React, { useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import './Track.css';
+import axios from 'axios';
 
-const socket = io.connect('http://localhost:3001');
+import { getAudioAC } from '../../redux/actions/audioActions';
 
 function Track() {
+  const dispatch = useDispatch();
+  const [audio, setAudio] = useState(null);
+  const [author, setAuthor] = useState('');
+  const [title, setTitle] = useState('');
+
+  // const inputFiles = { audio, author, title };
+
+  const sendFile = useCallback(async () => {
+    console.log(audio);
+    try {
+      const data = new FormData();
+      data.append('audiofile', audio);
+
+      await axios.post('http://localhost:3001/api/upload', data, {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      })
+        // .then((res) => setPlay(res.data.path));
+        .then((res) => dispatch(getAudioAC(res.data.path)));
+    } catch (error) {
+      console.log(error);
+    }
+  }, [audio]);
+  const handleAuthorChange = (e) => {
+    setAuthor(e.target.value);
+  };
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
   return (
     <div className="pleer">
-      <audio controls>
-        <track src={audio} type="audio/ogg; codecs=vorbis" />
-        <track src={audio} type="audio/mpeg" />
-        Audio not supported by your browser.
-        <a href="audio/music.mp3">Download music</a>
-      </audio>
       <br />
       <label htmlFor="my-modal-4" className="btn modal-button btn-primary">Add track</label>
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label htmlFor="my-modal-4" className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
-          <input type="text" placeholder="Author" className="input input-ghost w-full max-w-xs" />
-          <input type="text" placeholder="Name of the track" className="input input-ghost w-full max-w-xs" />
-          <input type="text" placeholder="Select file" className="input input-ghost w-full max-w-xs" />
-          <button type="submit" className="btn btn-ghost">Add </button>
+          <input
+            onChange={handleAuthorChange}
+            type="text"
+            name="artist"
+            placeholder="
+            singer"
+            className="input input-ghost w-full max-w-xs"
+          />
+          <input
+            onChange={handleTitleChange}
+            type="text"
+            name="trackname"
+            placeholder="
+            Name track"
+            className="input input-ghost w-full max-w-xs"
+          />
+          <input
+            onChange={(e) => setAudio(e.target.files[0])}
+            type="file"
+            name="choosefile"
+            placeholder="Выбрать файл"
+          // className="input input-ghost w-full max-w-xs"
+          />
+          <button
+            onClick={sendFile}
+            type="submit"
+            className="btn modal-button btn-primary"
+          >
+            ADD
+          </button>
         </label>
       </label>
     </div>
