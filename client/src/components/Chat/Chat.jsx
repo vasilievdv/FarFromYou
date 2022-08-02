@@ -31,11 +31,11 @@ function Chat({ room }) {
         time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`,
       };
       await socket.emit('send_message', messageData);
+      setNewMessage('');
     }
   };
   useEffect(() => {
     socket.on('recieve_message', (msg) => {
-      console.log('front', msg);
       setMessageList((prev) => [...prev, msg]);
       setNewMessage('');
     });
@@ -55,7 +55,7 @@ function Chat({ room }) {
           ))}
         </div>
       </ScrollToBottom>
-      <InputWithButton placeholder="Напиши мне" changeAction={messageHandler} clickAction={sendHandler} btnText="Отправить" />
+      <InputWithButton placeholder="Write me" changeAction={messageHandler} clickAction={sendHandler} btnText="Send" />
     </div>
   );
 }
