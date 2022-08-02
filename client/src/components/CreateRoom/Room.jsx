@@ -7,12 +7,14 @@ import './Room.css';
 import './CreateRoom.css';
 import GuestsInfo from './GuestsInfo/GuestsInfo';
 import SearchPannel from './SearchPannel/SearchPannel';
+import Player from './Player/Player';
 
 function Room() {
   const id = useParams();
   const user = useSelector((state) => (state.user));
-  const navigate = useNavigate();
-  const [guests, setGuests] = useState([]);
+  // const navigate = useNavigate();
+  // const [guests, setGuests] = useState([]);
+
   const [info, setInfo] = useState([]);
 
   const roomFetch = async () => {
@@ -25,26 +27,29 @@ function Room() {
   useEffect(() => {
     roomFetch();
   }, []);
+  // console.log('++++++++++++', info);
 
   // find All Tracks
 
-  if (info.info) {
+  if (user) {
     return (
       <div className="private">
         <GuestsInfo
-          info={info}
-
+          nameCreater={info.nameCreater}
+          nemeRoom={info.nemeRoom}
+          arrGuest={info.arrGuest}
         />
         <div className="track">
           <SearchPannel />
+          <Player info={info} />
         </div>
-        {/* Компонент с плеером */}
         <div className="chat">
           <div className="mockup-phone">
             <div className="camera" />
             <div className="display">
               <div className="artboard artboard-demo phone-1">
                 <Chat />
+                1
               </div>
             </div>
           </div>

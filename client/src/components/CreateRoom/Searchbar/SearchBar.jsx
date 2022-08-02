@@ -6,11 +6,11 @@ import SearchIcon from '@mui/icons-material/Search';
 function SearchBar({ placeholder, audioAll }) {
   const [findaudio, setFindaudio] = useState([]);
   const [auidio, setAuidio] = useState([]);
-  console.log('-----------------+', auidio);
+  // console.log('-----------------+', auidio);
 
   const heandlerFilter = (e) => {
     const searchAuidio = e.target.value;
-    const newFilter = audioAll.filter((value) => value.trackName.toLowerCase()
+    const newFilter = audioAll.filter((value) => value.artist.toLowerCase()
       .includes(searchAuidio.toLowerCase()));
     setFindaudio(newFilter);
     if (searchAuidio === '') {

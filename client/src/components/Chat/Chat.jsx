@@ -8,7 +8,7 @@ import Message from './Message/Message';
 import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
 
 function Chat() {
-  const [newMessage, setNewMessage] = useState(null);
+  const [newMessage, setNewMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
   const user = useSelector((state) => state.user);
   const roomID = useParams();
@@ -31,7 +31,7 @@ function Chat() {
         time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`,
       };
       await socket.emit('send_message', messageData);
-      console.log();
+      console.log(messageData.newMessage);
       localStorage.setItem('message', messageData.newMessage);
       setNewMessage('');
     }

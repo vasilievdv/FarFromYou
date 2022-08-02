@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Rooms_Track extends Model {
     /**
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Rooms_Track.init({
     room_id: DataTypes.INTEGER,
-    track_id: DataTypes.INTEGER
+    track_id: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Rooms_Track',

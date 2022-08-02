@@ -12,10 +12,11 @@ function Track() {
   const [artist, setArtist] = useState('');
   const [trackName, setTrackName] = useState('');
 
-  // const inputFiles = { audio, author, title };
+  const inputFiles = { artist, trackName };
+  console.log(inputFiles);
 
   const sendFile = useCallback(async () => {
-    console.log(audio);
+    // console.log(audio);
     try {
       const data = new FormData();
       data.append('audiofile', audio);
@@ -28,7 +29,7 @@ function Track() {
         // .then((res) => setPlay(res.data.path));
         .then((res) => dispatch(getAudioAC(res.data.path)));
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }, [audio]);
 
