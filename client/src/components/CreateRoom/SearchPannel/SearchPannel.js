@@ -6,7 +6,7 @@ function SearchPannel() {
   const [audioAll, setAudioAll] = useState();
 
   const findAudioFetch = async () => {
-    const response = await fetch('http://localhost:3001/audio', {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/audio`, {
       credentials: 'include',
     });
     const result = await response.json();

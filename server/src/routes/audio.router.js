@@ -1,12 +1,16 @@
 const router = require('express').Router();
 const checkAuth = require('../middlewares/checkAuth');
-const { Track } = require('../../db/models');
+const { Track, Room } = require('../../db/models');
 
 router.get('/', checkAuth, async (req, res) => {
+  
   const findAudio = await Track.findAll();
+  const audioRoom = await Rooms_Track.create({room_id: })
   // console.log(findAudio);
   return res.json(findAudio);
 });
+
+
 
 router.post('/createtrack', async (req, res) => {
   const { artist, trackName } = req.body;

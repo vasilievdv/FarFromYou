@@ -18,7 +18,7 @@ function Room() {
   const [info, setInfo] = useState([]);
 
   const roomFetch = async () => {
-    const response = await fetch(`http://localhost:3001/room/${id.id}`, {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/room/${id.id}`, {
       credentials: 'include',
     });
     const result = await response.json();
@@ -41,7 +41,7 @@ function Room() {
         />
         <div className="track">
           <SearchPannel />
-          <Player info={info} />
+          <Player nameCreater={info.nameCreater} />
         </div>
         <div className="chat">
           <div className="mockup-phone">

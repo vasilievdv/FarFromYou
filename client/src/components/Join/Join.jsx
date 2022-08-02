@@ -11,7 +11,7 @@ function Join() {
   const user = useSelector((state) => (state.user));
 
   useEffect(() => {
-    fetch('http://localhost:3001/join', {
+    fetch(`${process.env.REACT_APP_HOST}/join`, {
       credentials: 'include',
     })
       .then((res) => (res.json()))
@@ -30,7 +30,7 @@ function Join() {
 
   const guestHandler = async () => {
     const room = finroom || roomall[0];
-    const response = await fetch('http://localhost:3001/join', {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/join`, {
       credentials: 'include',
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
