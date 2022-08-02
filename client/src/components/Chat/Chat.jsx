@@ -7,7 +7,7 @@ import socket from '../../socket';
 import Message from './Message/Message';
 import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
 
-function Chat({ room }) {
+function Chat() {
   const [newMessage, setNewMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
   const user = useSelector((state) => state.user);

@@ -10,7 +10,7 @@ function SearchPannel() {
       credentials: 'include',
     });
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     setAudioAll(result);
   };
 
