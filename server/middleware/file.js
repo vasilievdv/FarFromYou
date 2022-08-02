@@ -1,4 +1,5 @@
 const multer = require('multer');
+// const { Tracks } = require('../db/models');
 
 const DB = [];
 
@@ -7,7 +8,7 @@ const storage = multer.diskStorage({
     cb(null, 'audio/');
   },
   filename(req, file, cb) {
-    console.log(file, '===============');
+    console.log(file);
     const name = `${new Date().toISOString()}-${file.originalname}`;
     cb(null, name);
     DB.push(name);

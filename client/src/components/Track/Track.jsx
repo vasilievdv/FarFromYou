@@ -12,7 +12,8 @@ function Track() {
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
 
-  // const inputFiles = { audio, author, title };
+  const inputFiles = { author, title };
+  console.log(inputFiles);
 
   const sendFile = useCallback(async () => {
     // console.log(audio);

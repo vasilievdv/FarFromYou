@@ -6,8 +6,13 @@ import socket from '../../../socket';
 
 // const socket = io.connect('http://localhost:3001');//
 
-function Player() {
+function Player({ info }) {
   const audioFromServer = useSelector((state) => state.audio);
+  const user = useSelector((state) => (state.user));
+
+  console.log(info);
+  console.log(user);
+
   // console.log(audioFromServer);
   const dispatch = useDispatch();
 

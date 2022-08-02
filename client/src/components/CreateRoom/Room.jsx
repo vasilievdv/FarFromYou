@@ -40,7 +40,7 @@ function Room() {
         />
         <div className="track">
           <SearchPannel />
-          <Player />
+          <Player info={info} />
         </div>
         <div className="chat">
           <div className="mockup-phone">
