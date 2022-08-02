@@ -3,22 +3,22 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../socket';
 import Chat from '../Chat/Chat';
-import Track from '../Track/Track';
-import SearchBar from './SearchBar';
 import './Room.css';
 import './CreateRoom.css';
 import GuestsInfo from './GuestsInfo/GuestsInfo';
 import SearchPannel from './SearchPannel/SearchPannel';
+import Player from './Player/Player';
 
 function Room() {
   const id = useParams();
   const user = useSelector((state) => (state.user));
-  const navigate = useNavigate();
-  const [guests, setGuests] = useState([]);
+  // const navigate = useNavigate();
+  // const [guests, setGuests] = useState([]);
+
   const [info, setInfo] = useState([]);
 
   const roomFetch = async () => {
-    const response = await fetch(`http://localhost:3001/room/${id.id}`, {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/room/${id.id}`, {
       credentials: 'include',
     });
     const result = await response.json();
@@ -27,20 +27,22 @@ function Room() {
   useEffect(() => {
     roomFetch();
   }, []);
+  // console.log('++++++++++++', info);
 
   // find All Tracks
 
-  if (info.info) {
+  if (user) {
     return (
       <div className="private">
         <GuestsInfo
-          info={info}
-
+          nameCreater={info.nameCreater}
+          nemeRoom={info.nemeRoom}
+          arrGuest={info.arrGuest}
         />
         <div className="track">
           <SearchPannel />
+          <Player nameCreater={info.nameCreater} />
         </div>
-        {/* Компонент с плеером */}
         <div className="chat">
           <div className="mockup-phone">
             <div className="camera" />
@@ -54,7 +56,7 @@ function Room() {
       </div>
     );
   } return (
-    <div>You not auth</div>
+    <div>You not authorized</div>
   );
 }
 export default Room;

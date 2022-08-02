@@ -5,18 +5,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 function CreateRoom() {
   const [input, setInput] = useState({});
-  const [userall, setUserall] = useState([]);
+  // const [userall, setUserall] = useState([]);
   const [guest, setGuest] = useState({ id: '' });
   const navigate = useNavigate();
   const user = useSelector((state) => (state.user));
 
-  useEffect(() => {
-    fetch('http://localhost:3001/createroom', {
-      credentials: 'include',
-    })
-      .then((res) => (res.json()))
-      .then((date) => setUserall(date));
-  }, []);
+  // useEffect(() => {
+  //   fetch('${process.env.REACT_APP_HOST}/createroom', {
+  //     credentials: 'include',
+  //   })
+  //     .then((res) => (res.json()))
+  //     .then((date) => setUserall(date));
+  // }, []);
 
   const valueHandle = (e) => {
     setGuest((prev) => ({ ...prev, id: e.target.value }));
@@ -26,7 +26,7 @@ function CreateRoom() {
   };
 
   const createHandler = async () => {
-    const response = await fetch('http://localhost:3001/createroom', {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/createroom`, {
       credentials: 'include',
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
@@ -34,12 +34,12 @@ function CreateRoom() {
     });
     if (response.ok) {
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       navigate(`/room/${result.id}`);
     }
+    // console.log('++++++++', result);
   };
 
-  // console.log(guest);
   if (user) {
     return (
       <form>

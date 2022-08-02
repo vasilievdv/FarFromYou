@@ -7,7 +7,7 @@ import socket from '../../socket';
 import Message from './Message/Message';
 import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
 
-function Chat({ room }) {
+function Chat() {
   const [newMessage, setNewMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
   const user = useSelector((state) => state.user);
@@ -31,11 +31,14 @@ function Chat({ room }) {
         time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`,
       };
       await socket.emit('send_message', messageData);
+      console.log(messageData.newMessage);
+      localStorage.setItem('message', messageData.newMessage);
       setNewMessage('');
     }
   };
   useEffect(() => {
     socket.on('recieve_message', (msg) => {
+      localStorage.getItem('message');
       setMessageList((prev) => [...prev, msg]);
       setNewMessage('');
     });
@@ -55,7 +58,7 @@ function Chat({ room }) {
           ))}
         </div>
       </ScrollToBottom>
-      <InputWithButton placeholder="Write me" changeAction={messageHandler} clickAction={sendHandler} btnText="Send" />
+      <InputWithButton placeholder="Write me" changeAction={messageHandler} clickAction={sendHandler} btnText="SEND" />
     </div>
   );
 }

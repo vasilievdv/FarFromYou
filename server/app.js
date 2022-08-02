@@ -57,6 +57,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true })); // Dima extended: true
 app.use('/audio', express.static(path.join(__dirname, 'audio'))); // Dima
 app.use('/api', require('./routes/upload.route')); // Dima
+app.use('/api', require('./routes/getAudio.route')); // Dima
 
 // sign
 app.use(
@@ -78,6 +79,7 @@ app.use('/room', roomRouter);
 app.use('/audio', audioRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
+// app.use('/*',);
 
 // socket-chat - test
 const rooms = new Map();
@@ -93,6 +95,8 @@ const io = new Server(server, {
   },
 });
 
+let timeCode; // Dima
+
 io.on('connection', (socket) => {
   console.log(`User connected ${socket.id}`);
   io.emit('message', 'User 111 connected');
@@ -107,22 +111,35 @@ io.on('connection', (socket) => {
 
   // гости
   socket.on('joinRoom', ({ name, roomID }) => {
-    socket.join(roomID);
-    console.log(roomID);
+    socket.join(name);
+    console.log('====RoomID=====', roomID, name);
     // Welcome current user
     socket.emit('message', 'Welcome to ChatCord!');
 
     // Broadcast when a user connects
     socket.broadcast
-      .to(roomID)
-      .emit('message', `${name} has joined the chat`);
+      .to('joinRoom')
+      .emit('guest-message', `${name} has joined the chat`);
 
     // Send users and room info
-    // io.to(roomID).emit('roomUsers', {
-    //   room: roomID,
-    //   users: getRoomUsers(user.room),
-    // });
+    io.to(roomID).emit('recieve_guest', name);
   });
+
+  // Dima
+  socket.on('time', () => io.emit('time', timeCode));
+
+  socket.on('sendTime', (time) => {
+    timeCode = time;
+  });
+
+  socket.on('stop', () => {
+    io.emit('stop');
+  });
+
+  socket.on('next', (Msg) => {
+    io.emit('next', Msg);
+  });
+  // END
 });
 
 server.listen(PORT, () => console.log('Server has been started on port 3001'));

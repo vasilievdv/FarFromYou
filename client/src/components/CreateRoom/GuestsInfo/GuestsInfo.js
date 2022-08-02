@@ -3,22 +3,23 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../../socket';
 
-function GuestsInfo({ info }) {
+function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
+//   console.log('00000', nameCreater, nemeRoom, arrGuest);
   const id = useParams();
   const user = useSelector((state) => (state.user));
   // const guest = useSelector((state) => state.guest);
   const navigate = useNavigate();
-  const [guests, setGuests] = useState([]);
+  const [guestsArr, setGuestsArr] = useState([]);
 
   useEffect(() => {
     socket.on('recieve_guest', (guest) => {
-      console.log(guest);
-      setGuests((prev) => [...prev, guest]);
+    //   console.log(info);
+      setGuestsArr((prev) => [...prev, guest]);
     });
   }, [socket]);
 
   const deleteRoomHandler = async () => {
-    const response = await fetch(`http://localhost:3001/room/${id.id}`, {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/room/${id.id}`, {
       credentials: 'include',
       method: 'DELETE',
     });
@@ -26,29 +27,30 @@ function GuestsInfo({ info }) {
   };
 
   const exitRoomHandler = async () => {
-    const response = await fetch(`http://localhost:3001/room/${id.id}`, {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/room/${id.id}`, {
       credentials: 'include',
       method: 'DELETE',
     });
     navigate('/');
   };
 
-  return (
-    <div className="table1">
-      <div className="card room-creator-card bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h2 className="card-title">
-            Room name:
-            {' '}
-            {info.info.roomName}
-          </h2>
-          <h2 className="card-title">
-            Creator:
-            {' '}
-            {info.authorRoom.userName}
-          </h2>
-          <br />
-          {info.authorRoom.id === user.id
+  if (user) {
+    return (
+      <div className="table1">
+        <div className="card room-creator-card bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title">
+              Room name:
+              {' '}
+              {nemeRoom}
+            </h2>
+            <h2 className="card-title">
+              Creator:
+              {' '}
+              {nameCreater}
+            </h2>
+            <br />
+            {nameCreater === user.userName
           && (
             <div>
               <button type="submit" className="btn btn-ghost ">Start</button>
@@ -57,23 +59,40 @@ function GuestsInfo({ info }) {
             </div>
           )}
 
+          </div>
+        </div>
+        <div className="card guests-card bg-base-100 shadow-xl">
+          <div className="card-body scroll-block">
+            <h2 className="card-title">Гости</h2>
+            <div className="btn-group" />
+            {arrGuest && arrGuest.map((el) => (<p>{el}</p>))}
+            <div className="card-actions justify-end" />
+          </div>
+        </div>
+        <div className="btn1">
+          {nameCreater === user.userName
+        && (
+        <button
+          type="submit"
+          onClick={deleteRoomHandler}
+          className="btn btn-primary "
+        >
+          Delete room
+        </button>
+        )}
+          {nameCreater !== user.userName && (
+          <button
+            type="submit"
+            onClick={exitRoomHandler}
+            className="btn"
+          >
+            leave room
+          </button>
+          )}
         </div>
       </div>
-      <div className="card guests-card bg-base-100 shadow-xl">
-        <div className="card-body scroll-block">
-          <h2 className="card-title">Гости</h2>
-          <div className="btn-group" />
-          {guests.map((el) => (<p>{el}</p>))}
-          <div className="card-actions justify-end" />
-        </div>
-      </div>
-      <div className="btn1">
-        {info.authorRoom.id === user.id
-        && <button type="submit" onClick={deleteRoomHandler} className="btn btn-primary ">Delete room</button>}
-        {info.authorRoom.id !== user.id && <button type="submit" onClick={exitRoomHandler} className="btn">leave room</button>}
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default GuestsInfo;
