@@ -32,12 +32,13 @@
 }
 
 .input-btn {
-    background-color: aqua;
-    font-size: 0.8rem;
+    background-color: rgb(9, 171, 171);
+    font-size: 1rem;
+    font-weight: bolder;
+    color: rgb(231, 244, 244);
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
-    color: rgb(60, 55, 70);
     border: none;
     min-width: 30%;
 }

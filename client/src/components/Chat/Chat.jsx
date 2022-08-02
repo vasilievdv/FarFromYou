@@ -55,7 +55,7 @@ function Chat() {
           ))}
         </div>
       </ScrollToBottom>
-      <InputWithButton placeholder="Write me" changeAction={messageHandler} clickAction={sendHandler} btnText="Send" />
+      <InputWithButton placeholder="Write me" changeAction={messageHandler} clickAction={sendHandler} btnText="SEND" />
     </div>
   );
 }

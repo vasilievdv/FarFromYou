@@ -9,13 +9,20 @@ function Join() {
   const [finroom, setFinroom] = useState(null);
   const navigate = useNavigate();
   const user = useSelector((state) => (state.user));
+
   useEffect(() => {
-    fetch('http://localhost:3001/join', {
+    fetch(`${process.env.REACT_APP_HOST}/join`, {
       credentials: 'include',
     })
       .then((res) => (res.json()))
       .then((date) => setRoomall(date));
   }, []);
+
+  useEffect(() => {
+    socket.on('guest-message', (msg) => {
+      console.log(msg);
+    });
+  }, [socket]);
 
   const roomHandler = (e) => {
     setFinroom((prev) => ({ ...prev, id: e.target.value }));
@@ -23,7 +30,7 @@ function Join() {
 
   const guestHandler = async () => {
     const room = finroom || roomall[0];
-    const response = await fetch('http://localhost:3001/join', {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/join`, {
       credentials: 'include',
       method: 'POST',
       headers: { 'Content-type': 'application/json' },

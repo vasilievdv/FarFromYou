@@ -9,11 +9,11 @@ import { getAudioAC } from '../../redux/actions/audioActions';
 function Track() {
   const dispatch = useDispatch();
   const [audio, setAudio] = useState(null);
-  const [author, setAuthor] = useState('');
-  const [title, setTitle] = useState('');
+  const [artist, setArtist] = useState('');
+  const [trackName, setTrackName] = useState('');
 
-  const inputFiles = { author, title };
-  console.log(inputFiles);
+  // const inputFiles = { artist, trackName };
+  // console.log(inputFiles);
 
   const sendFile = useCallback(async () => {
     // console.log(audio);
@@ -21,7 +21,7 @@ function Track() {
       const data = new FormData();
       data.append('audiofile', audio);
 
-      await axios.post('http://localhost:3001/api/upload', data, {
+      await axios.post(`${process.env.REACT_APP_HOST}/api/upload`, data, {
         headers: {
           'content-type': 'multipart/form-data',
         },
@@ -32,11 +32,27 @@ function Track() {
       // console.log(error);
     }
   }, [audio]);
+
   const handleAuthorChange = (e) => {
-    setAuthor(e.target.value);
+    setArtist(e.target.value);
   };
   const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+    setTrackName(e.target.value);
+  };
+
+  const addTrackHandler = async () => {
+    console.log(artist, trackName);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/audio/createtrack`, {
+      credentials: 'include',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ artist, trackName }),
+    });
+    if (response.ok) {
+      const result = await response.json();
+      console.log(result);
+    }
+    sendFile();
   };
   return (
     <div className="pleer">
@@ -52,6 +68,7 @@ function Track() {
             placeholder="
             singer"
             className="input input-ghost w-full max-w-xs"
+            value={artist}
           />
           <input
             onChange={handleTitleChange}
@@ -60,6 +77,7 @@ function Track() {
             placeholder="
             Name track"
             className="input input-ghost w-full max-w-xs"
+            value={trackName}
           />
           <input
             onChange={(e) => setAudio(e.target.files[0])}
@@ -69,7 +87,7 @@ function Track() {
           // className="input input-ghost w-full max-w-xs"
           />
           <button
-            onClick={sendFile}
+            onClick={addTrackHandler}
             type="submit"
             className="btn modal-button btn-primary"
           >
