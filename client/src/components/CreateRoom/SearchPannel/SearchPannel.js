@@ -22,7 +22,7 @@ function SearchPannel() {
   return (
     <div className="track1">
       <SearchBar placeholder="Enter a auidio name..." audioAll={audioAll} />
-      <li className="track2">blanal</li>
+      <li className="track2"><Track /></li>
     </div>
   );
 }

@@ -96,7 +96,7 @@ const io = new Server(server, {
 });
 
 let timeCode; // Dima
-
+const chatArray = [];
 io.on('connection', (socket) => {
   console.log(`User connected ${socket.id}`);
   io.emit('message', 'User 111 connected');
@@ -106,7 +106,9 @@ io.on('connection', (socket) => {
   // сообщения
 
   socket.on('send_message', (msg) => {
-    io.emit('recieve_message', msg);
+    console.log(msg);
+    chatArray.push(msg);
+    io.emit('recieve_message', msg, chatArray);
   });
 
   // гости

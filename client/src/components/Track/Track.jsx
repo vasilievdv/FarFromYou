@@ -16,6 +16,9 @@ function Track() {
   // const inputFiles = { artist, trackName };
   // console.log(inputFiles);
 
+  const inputFiles = { artist, trackName };
+  console.log(inputFiles);
+
   const sendFile = useCallback(async () => {
     // console.log(audio);
     try {

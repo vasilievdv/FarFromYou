@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../socket';
 import Chat from '../Chat/Chat';
-import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
-import Track from '../Track/Track';
+// import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
+// import Track from '../Track/Track';
 import './Room.css';
 import './CreateRoom.css';
 import GuestsInfo from './GuestsInfo/GuestsInfo';
 import SearchPannel from './SearchPannel/SearchPannel';
-import Player from './Player/Player';
+// import Player from './Player/Player';
 
 function Room() {
   const id = useParams();
@@ -48,7 +48,7 @@ function Room() {
         />
         <div className="track">
           <SearchPannel />
-          <Player nameCreater={info.nameCreater} />
+
         </div>
         <div className="chat">
           <div className="mockup-phone">

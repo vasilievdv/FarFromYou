@@ -22,7 +22,7 @@ function Chat() {
     setNewMessage(msg);
   };
 
-  const sendHandler = async () => {
+  const sendHandler = () => {
     if (newMessage !== '') {
       const messageData = {
         room: roomID.id,
@@ -30,12 +30,12 @@ function Chat() {
         message: newMessage,
         time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`,
       };
-      await socket.emit('send_message', messageData);
+      socket.emit('send_message', messageData);
       setNewMessage('');
     }
   };
   useEffect(() => {
-    socket.on('recieve_message', (msg) => {
+    socket.on('recieve_message', (msg, chatArray) => {
       setMessageList((prev) => [...prev, msg]);
       setNewMessage('');
     });
@@ -55,7 +55,7 @@ function Chat() {
           ))}
         </div>
       </ScrollToBottom>
-      <InputWithButton placeholder="Write me" changeAction={messageHandler} clickAction={sendHandler} btnText="SEND" />
+      <InputWithButton placeholder="Write me" changeAction={messageHandler} clickAction={sendHandler} btnText="SEND" value={newMessage} />
     </div>
   );
 }

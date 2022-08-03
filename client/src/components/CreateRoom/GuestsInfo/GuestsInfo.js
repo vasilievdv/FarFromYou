@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../../socket';
-import './GuestsInfo.css';
+import Player from '../Player/Player';
 
 function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
 //   console.log('00000', nameCreater, nemeRoom, arrGuest);
@@ -54,9 +54,7 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
             {nameCreater === user.userName
           && (
             <div>
-              <button type="submit" className="btn btn-primary ">Start</button>
-              <button type="submit" className="btn btn-primary ">Pause</button>
-              <button type="submit" className="btn btn-primary ">Stop</button>
+              <Player nameCreater={nameCreater} />
             </div>
           )}
 
