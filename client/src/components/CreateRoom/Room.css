@@ -3,11 +3,6 @@
     max-height: 80vh;
 }
 
-
-.table1 {
-    /* border: 1px solid rgb(85, 163, 103); */
-}
-
 .guests-card {
     /* border: 1px solid red; */
     margin-top: 20px;
@@ -17,10 +12,6 @@
 
 .scroll-block::-webkit-scrollbar {
     width: 15px;
-}
-
-.track {
-    /* border: 1px solid rgb(85, 93, 163); */
 }
 
 .btn1 {
@@ -54,4 +45,8 @@ scroll-behavior: smooth;
 
 .track {
     margin: 5px;
+}
+.mockup-phone{
+
+
 }

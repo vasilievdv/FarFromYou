@@ -3,7 +3,7 @@ const audioReducer = (state = [], action) => {
   const { type, payload } = action;
   switch (type) {
     case 'GET_AUDIO':
-      return [...state, payload];
+      return [...state, `${process.env.REACT_APP_HOST}/${payload}`];
     case 'GET_FROMSERVER':
       return payload;
     default:

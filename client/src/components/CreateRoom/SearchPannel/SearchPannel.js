@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Track from '../../Track/Track';
 import SearchBar from '../Searchbar/SearchBar';
+import './SearchPannel.css';
 
 function SearchPannel() {
   const [audioAll, setAudioAll] = useState();

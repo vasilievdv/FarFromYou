@@ -6,12 +6,14 @@
     display: flex;
     flex-direction: column;
     position: relative;
+;
 }
 
 .message-block {
     height: 85%;
     overflow-y: scroll;
 }
+
 
 /* .message-block::-webkit-scrollbar {
     width: 5px;
