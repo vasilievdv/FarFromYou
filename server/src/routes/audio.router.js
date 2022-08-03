@@ -16,6 +16,7 @@ router.post('/createtrack', async (req, res) => {
     const newAudio = await Track.create({
       trackName, artist, url: 'url', user_id: id,
     });
+    // const audioRoom = await Rooms_Track.create({room_id: })
     res.json(newAudio);
   } catch (er) {
     console.log(er);
