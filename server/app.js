@@ -57,7 +57,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true })); // Dima extended: true
 app.use('/audio', express.static(path.join(__dirname, 'audio'))); // Dima
 app.use('/api', require('./routes/upload.route')); // Dima
-app.use('/api', require('./routes/getAudio.route')); // Dima
+// app.use('/api', require('./routes/getAudio.route')); // Dima
 
 // sign
 app.use(
