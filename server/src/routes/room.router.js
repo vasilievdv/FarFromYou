@@ -47,10 +47,8 @@ router.get('/:id', checkGuestOrAuthor, async (req, res) => {
 router.delete('/:id', checkAuth, async (req, res) => {
   const { id } = req.params;
   const { user } = req.session;
-  // console.log(id);
-  const infoRoom = await Users_Rooms_Role.findOne({ where: { id: +id, role_id: 2 } });
-  // console.log(infoRoom);
-
+  const infoRoom = await Users_Rooms_Role.findOne({ where: { room_id: +id, role_id: 2 } });
+  // console.log(infoRoom.user_id === user.id);
   try {
     if (infoRoom.user_id === user.id) { // удаление комнаты
       const deleteGuest = await Users_Rooms_Role.destroy({ where: { room_id: +id } });
@@ -59,7 +57,10 @@ router.delete('/:id', checkAuth, async (req, res) => {
       return res.sendStatus(200);
     }
     if (infoRoom.user_id !== user.id) { // выход из комнаты
-      const deleteGuest = await Users_Rooms_Role.destroy({ where: { room_id: +id } });
+      const deleteGuest = await Users_Rooms_Role.destroy({
+        where:
+        { room_id: +id, user_id: user.id },
+      });
       // const updateUser = await User.update({ role_id: null }, { where: { id: user.id } });
       return res.sendStatus(200);
     }

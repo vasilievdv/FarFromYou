@@ -15,7 +15,7 @@ router.get('/', checkAuth, async (req, res) => {
 router.post('/createtrack', async (req, res) => {
   const { artist, trackName, room_id } = req.body;
 
-  console.log(req.body, req.session.user);
+  // console.log(req.body, req.session.user);
   const { id } = req.session.user;
   try {
     const newAudio = await Track.create({
@@ -25,9 +25,15 @@ router.post('/createtrack', async (req, res) => {
       room_id: +room_id.id,
       track_id: +newAudio.id,
     });
+    // const audioRoom = await Rooms_Track.findAll({
+    //   where: { room_id: room_id.id },
+    //   include: [{ model: Track }],
+    //   raw: true,
+    // });
+    // console.log(audioRoom, '=================');
 
-    const arr = [];
-    const artistsTracks = audioRoom.map((el) => arr.push([el['Track.artist'], el['Track.trackName']]));
+    // const roomTracksInfo = [];
+    // const artistsTracks = audioRoom.map((el) => roomTracksInfo.push([el['Track.artist'], el['Track.trackName'], el['Track.url']]));
     // console.log('+++++++++++++', artistAll);
     // const tracksName = audioRoom.map((el) => );
     // console.log('----------------', tracksName);
@@ -35,10 +41,27 @@ router.post('/createtrack', async (req, res) => {
     // for (let i = 0; i < tracksName.length; i += 1) {el['Track.trackName']
     //   arr.push([artistAll[i], tracksName[i]]);
     // }
-    console.log(arr);
-    res.json(arr);
+    res.json();
   } catch (er) {
     console.log(er);
   }
 });
+
+router.get('/gettracksinfo/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const audioRoom = await Rooms_Track.findAll({
+      where: { room_id: id },
+      include: [{ model: Track }],
+      raw: true,
+    });
+
+    const roomTracksInfo = [];
+    audioRoom.map((el) => roomTracksInfo.push(el['Track.url']));
+    res.json(roomTracksInfo);
+  } catch (er) {
+    console.log(er);
+  }
+});
+
 module.exports = router;

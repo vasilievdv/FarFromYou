@@ -48,7 +48,7 @@ router.post('/join', checkAuth, async (req, res) => {
   const infoRoom = await Users_Rooms_Role.findOne({ where: { room_id: +id, role_id: 2 } });
   try {
     if (infoRoom.user_id === user.id) {
-      return res.sendStatus(403);
+      return res.sendStatus(200);
     }
     if (infoRoom.user_id !== user.id) {
       const [guests, created] = await Users_Rooms_Role.findOrCreate({

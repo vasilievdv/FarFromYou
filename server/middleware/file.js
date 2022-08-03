@@ -11,9 +11,8 @@ const storage = multer.diskStorage({
     console.log(file);
     const name = `${new Date().toISOString()}-${file.originalname}`;
     cb(null, name);
-    DB.push(name);
     const findAudio = Track.update({ url: name }, { where: { url: 'url' } });
-    console.log(findAudio);
+    console.log('FIND ME!!!! ------------------------', findAudio);
   },
 });
 
