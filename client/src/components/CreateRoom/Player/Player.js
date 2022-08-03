@@ -45,26 +45,31 @@ function Player({ nameCreater }) {
     let i = 0;
     let currentPlay = m[i];
     console.log('tyt', user.userName === nameCreater);
-    if (user.userName === nameCreater) {
-      audio.setAttribute('controls', 'controls');
-      // eslint-disable-next-line prefer-destructuring
-      audio.src = currentPlay;
-      audio.play();
-      setInterval(() => {
-        // console.log(audio.paused);
-        if (audio.paused && stopCheck) {
-          // eslint-disable-next-line no-plusplus
-          ++i;
-          // console.log(i);
-          currentPlay = m[i];
-          audio.src = currentPlay;
-          audio.play();
-          socket.emit('next', { timecode: audio.currentTime, path: currentPlay });
-        }
-        if (!audio.paused) {
-          socket.emit('sendTime', { timecode: audio.currentTime, path: currentPlay });
-        }
-      }, 100);
+    try {
+      if (user.userName === nameCreater) {
+        audio.setAttribute('controls', 'controls');
+        // eslint-disable-next-line prefer-destructuring
+        audio.src = currentPlay;
+
+        audio.play();
+        setInterval(() => {
+          // console.log(audio.paused);
+          if (audio.paused && stopCheck) {
+            // eslint-disable-next-line no-plusplus
+            ++i;
+            // console.log(i);
+            currentPlay = m[i];
+            audio.src = currentPlay;
+            audio.play();
+            socket.emit('next', { timecode: audio.currentTime, path: currentPlay });
+          }
+          if (!audio.paused) {
+            socket.emit('sendTime', { timecode: audio.currentTime, path: currentPlay });
+          }
+        }, 100);
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   }
 
