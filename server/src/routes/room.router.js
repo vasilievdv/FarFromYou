@@ -19,16 +19,16 @@ router.get('/:id', checkGuestOrAuthor, async (req, res) => {
     include: [{ model: User }, { model: Room }],
     raw: true,
   });
-  console.log('tut');
+  // console.log('tut');
 
   const nameCreater = creater[0]['User.userName'];
   const nemeRoom = creater[0]['Room.roomName'];
-  console.log('+++++++', guests[0]);
+  // console.log('+++++++', guests[0]);
   let arrGuest = [];
   if (guests[0]) {
-    console.log('555555');
+    // console.log('555555');
     arrGuest = guests.map((el) => el['User.userName']);
-    console.log({ nameCreater, nemeRoom, arrGuest });
+    // console.log({ nameCreater, nemeRoom, arrGuest });
     // return res.json({ nameCreater, nemeRoom, arrGuest });
   }
   // console.log('444444');

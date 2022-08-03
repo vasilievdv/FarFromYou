@@ -26,7 +26,6 @@ router.post('/createtrack', async (req, res) => {
       track_id: +newAudio.id,
     });
 
-
     const arr = [];
     const artistsTracks = audioRoom.map((el) => arr.push([el['Track.artist'], el['Track.trackName']]));
     // console.log('+++++++++++++', artistAll);
@@ -43,7 +42,3 @@ router.post('/createtrack', async (req, res) => {
   }
 });
 module.exports = router;
-// trackName: DataTypes.STRING,
-//     artist: DataTypes.STRING,
-//     url: DataTypes.TEXT,
-//     user_id: DataTypes.INTEGER,

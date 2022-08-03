@@ -28,7 +28,7 @@ function SignUp() {
       <form onSubmit={submitHandler}>
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left" />
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card2 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
               <div className="form-control">
                 <label className="label">

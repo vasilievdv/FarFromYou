@@ -66,7 +66,8 @@ function Track() {
             onChange={handleAuthorChange}
             type="text"
             name="artist"
-            placeholder="Автор"
+            placeholder="
+            singer"
             className="input input-ghost w-full max-w-xs"
             value={artist}
           />
@@ -74,7 +75,8 @@ function Track() {
             onChange={handleTitleChange}
             type="text"
             name="trackname"
-            placeholder="Название трека"
+            placeholder="
+            Name track"
             className="input input-ghost w-full max-w-xs"
             value={trackName}
           />
@@ -83,14 +85,14 @@ function Track() {
             type="file"
             name="choosefile"
             placeholder="Выбрать файл"
-            // className="input input-ghost w-full max-w-xs"
+          // className="input input-ghost w-full max-w-xs"
           />
           <button
             onClick={addTrackHandler}
             type="submit"
             className="btn modal-button btn-primary"
           >
-            Добавить
+            ADD
           </button>
         </label>
       </label>
