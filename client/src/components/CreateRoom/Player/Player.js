@@ -45,26 +45,31 @@ function Player({ nameCreater }) {
     let i = 0;
     let currentPlay = m[i];
     console.log('tyt', user.userName === nameCreater);
-    if (user.userName === nameCreater) {
-      audio.setAttribute('controls', 'controls');
-      // eslint-disable-next-line prefer-destructuring
-      audio.src = currentPlay;
-      audio.play();
-      setInterval(() => {
-        // console.log(audio.paused);
-        if (audio.paused && stopCheck) {
-          // eslint-disable-next-line no-plusplus
-          ++i;
-          // console.log(i);
-          currentPlay = m[i];
-          audio.src = currentPlay;
-          audio.play();
-          socket.emit('next', { timecode: audio.currentTime, path: currentPlay });
-        }
-        if (!audio.paused) {
-          socket.emit('sendTime', { timecode: audio.currentTime, path: currentPlay });
-        }
-      }, 100);
+    try {
+      if (user.userName === nameCreater) {
+        audio.setAttribute('controls', 'controls');
+        // eslint-disable-next-line prefer-destructuring
+        audio.src = currentPlay;
+
+        audio.play();
+        setInterval(() => {
+          // console.log(audio.paused);
+          if (audio.paused && stopCheck) {
+            // eslint-disable-next-line no-plusplus
+            ++i;
+            // console.log(i);
+            currentPlay = m[i];
+            audio.src = currentPlay;
+            audio.play();
+            socket.emit('next', { timecode: audio.currentTime, path: currentPlay });
+          }
+          if (!audio.paused) {
+            socket.emit('sendTime', { timecode: audio.currentTime, path: currentPlay });
+          }
+        }, 100);
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   }
 
@@ -94,20 +99,12 @@ function Player({ nameCreater }) {
 
   return (
     <>
+
+      <button type="submit" className="btn btn-ghost" onClick={handlePlaySound}>Start</button>
+      <button type="submit" className="btn btn-ghost " onClick={handleAudioNext}>Next</button>
+      <button type="submit" className="btn btn-ghost " onClick={handleAudioStop}>Stop</button>
       <br />
       <br />
-      <button type="button" onClick={() => setRole('client')}>Client__</button>
-      <button type="button" onClick={() => setRole('server')}>Server__</button>
-      <button type="button" onClick={handlePlaySound}>Play sound!</button>
-      <br />
-      <br />
-      <div>
-        <button type="button" onClick={handleAudioNext}>NEXT!__</button>
-        <button type="button" onClick={handleAudioStop}>!STOP</button>
-      </div>
-      <br />
-      <br />
-      {/* <button type="button" onClick={handleTimecode}>Get time</button> */}
 
     </>
 

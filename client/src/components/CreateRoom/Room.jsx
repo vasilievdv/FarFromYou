@@ -43,7 +43,7 @@ function Room() {
         />
         <div className="track">
           <SearchPannel />
-          <Player nameCreater={info.nameCreater} />
+
         </div>
         <div className="chat">
           <div className="mockup-phone">
