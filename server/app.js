@@ -141,7 +141,11 @@ io.on('connection', (socket) => {
   socket.on('next', (Msg) => {
     io.emit('next', Msg);
   });
-  // END
+
+  socket.on('tracksForAll', () => {
+    io.emit('tracksForAll');
+  });
+  // THE END
 });
 
 server.listen(PORT, () => console.log('Server has been started on port 3001'));

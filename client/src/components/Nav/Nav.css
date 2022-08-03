@@ -2,3 +2,15 @@
     color: rgb(66, 232, 224);
     font-size: 2rem;
 }
+
+@media screen and (max-width: 568px) {
+    .flex-1{
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+}
+.navbar {
+    justify-content: space-around;
+    font-size: 0.8rem;
+}
+}

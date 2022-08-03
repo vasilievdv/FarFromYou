@@ -3,8 +3,8 @@ import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import './Track.css';
 import axios from 'axios';
-
 import { useParams } from 'react-router-dom';
+import socket from '../../socket';
 import { getAudioAC } from '../../redux/actions/audioActions';
 
 function Track() {
@@ -13,11 +13,6 @@ function Track() {
   const [artist, setArtist] = useState('');
   const [trackName, setTrackName] = useState('');
   const id = useParams();
-  // const inputFiles = { artist, trackName };
-  // console.log(inputFiles);
-
-  // const inputFiles = { artist, trackName };
-  // console.log(inputFiles);
 
   const sendFile = useCallback(async () => {
     console.log(audio);
@@ -30,8 +25,11 @@ function Track() {
           'content-type': 'multipart/form-data',
         },
       })
-        // .then((res) => setPlay(res.data.path));
-        .then((res) => dispatch(getAudioAC(res.data.path)));
+
+        .then((res) => {
+          dispatch(getAudioAC(res.data.path));
+          socket.emit('tracksForAll', { });
+        });
     } catch (error) {
       // console.log(error);
     }
@@ -45,7 +43,6 @@ function Track() {
   };
 
   const addTrackHandler = async () => {
-    // console.log(artist, trackName);
     const response = await fetch(`${process.env.REACT_APP_HOST}/audio/createtrack`, {
       credentials: 'include',
       method: 'POST',

@@ -54,7 +54,10 @@ scroll-behavior: smooth;
     align-items: center;
     width: 40%;
 }
-.mockup-phone{
+@media screen and (max-width: 568px) {
+    .private {
+        flex-direction: column;
+        justify-content: space-between;
 
-
+    }
 }

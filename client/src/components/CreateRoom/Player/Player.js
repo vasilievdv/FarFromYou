@@ -92,9 +92,13 @@ function Player({ nameCreater }) {
     }
   }
 
+  function tracksForAll() {
+    dispatch(getAudioThunk(roomId.id));
+  }
   socket.on('time', showTime);
   socket.on('next', showTime);
   socket.on('stop', clientAudioStop);
+  socket.on('tracksForAll', tracksForAll);
 
   function handleAudioNext() {
     audio.pause();
