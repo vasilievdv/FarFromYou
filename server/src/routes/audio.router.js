@@ -33,7 +33,8 @@ router.post('/createtrack', async (req, res) => {
     // console.log(audioRoom, '=================');
 
     // const roomTracksInfo = [];
-    // const artistsTracks = audioRoom.map((el) => roomTracksInfo.push([el['Track.artist'], el['Track.trackName'], el['Track.url']]));
+    // const artistsTracks = audioRoom.map((el) =>
+    // roomTracksInfo.push([el['Track.artist'], el['Track.trackName'], el['Track.url']]));
     // console.log('+++++++++++++', artistAll);
     // const tracksName = audioRoom.map((el) => );
     // console.log('----------------', tracksName);

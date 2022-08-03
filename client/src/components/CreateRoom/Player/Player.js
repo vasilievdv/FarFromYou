@@ -30,6 +30,7 @@ function Player({ nameCreater }) {
   const [role, setRole] = useState('');
 
   function showTime(m) {
+    console.log(m);
     if (user.userName !== nameCreater) {
       clientAudio.pause();
       clientAudio.src = m.path;
@@ -105,11 +106,13 @@ function Player({ nameCreater }) {
   }
 
   useEffect(() => {
-    socket.emit('time', {}); // При загрузке пользователь получает таймкод и адрес
+    // console.log('dfdfdfd');
+    socket.emit('time', { }); // При загрузке пользователь получает таймкод и адрес
   }, []);
-  // function handleTimecode() {
-  //   socket.emit('time', { }); // поулчить таймкод и адрес по кнопке
-  // }
+
+  function handleTimecode() {
+    socket.emit('time', { }); // поулчить таймкод и адрес по кнопке
+  }
 
   function handlePlaySound() {
     adminPlay(audioFromServer);
@@ -117,13 +120,16 @@ function Player({ nameCreater }) {
 
   return (
     <>
-
-      <button type="submit" className="btn btn-ghost" onClick={handlePlaySound}>Start</button>
-      <button type="submit" className="btn btn-ghost " onClick={handleAudioNext}>Next</button>
-      <button type="submit" className="btn btn-ghost " onClick={handleAudioStop}>Stop</button>
-      <br />
-      <br />
-
+      {user.userName !== nameCreater
+    && <button type="button" className="btn btn-ghost" onClick={handleTimecode}>Start</button>}
+      {user.userName === nameCreater
+    && (
+    <>
+      <button type="button" className="btn btn-ghost" onClick={handlePlaySound}>Start</button>
+      <button type="button" className="btn btn-ghost " onClick={handleAudioNext}>Next</button>
+      <button type="button" className="btn btn-ghost " onClick={handleAudioStop}>Stop</button>
+    </>
+    )}
     </>
 
   );

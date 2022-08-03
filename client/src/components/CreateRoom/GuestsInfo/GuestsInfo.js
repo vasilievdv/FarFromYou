@@ -51,12 +51,10 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
               {nameCreater}
             </h2>
             <br />
-            {nameCreater === user.userName
-          && (
+
             <div>
               <Player nameCreater={nameCreater} />
             </div>
-          )}
 
           </div>
         </div>
