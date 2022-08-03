@@ -49,10 +49,6 @@ function Track() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ artist, trackName, room_id: id }),
     });
-    if (response.ok) {
-      const result = await response.json();
-      // console.log(result);
-    }
     sendFile();
   };
   return (
