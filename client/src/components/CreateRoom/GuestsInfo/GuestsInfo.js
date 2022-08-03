@@ -12,6 +12,8 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
   const navigate = useNavigate();
   const [guestsArr, setGuestsArr] = useState([]);
 
+  console.log('MWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM\n', nameCreater, user?.userName);
+
   useEffect(() => {
     socket.on('recieve_guest', (guest) => {
     //   console.log(info);
@@ -67,25 +69,24 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
           </div>
         </div>
         <div className="btn1">
-          {nameCreater === user.userName
-        && (
-        <button
-          type="submit"
-          onClick={deleteRoomHandler}
-          className="btn btn-primary "
-        >
-          Delete room
-        </button>
-        )}
-          {nameCreater !== user.userName && (
-          <button
-            type="submit"
-            onClick={exitRoomHandler}
-            className="btn"
-          >
-            leave room
-          </button>
-          )}
+          {nameCreater === user?.userName ? (
+            <button
+              type="submit"
+              onClick={deleteRoomHandler}
+              className="btn btn-primary "
+            >
+              Delete room
+            </button>
+          ) : ''}
+          {nameCreater !== user?.userName ? (
+            <button
+              type="submit"
+              onClick={exitRoomHandler}
+              className="btn"
+            >
+              leave room
+            </button>
+          ) : ''}
         </div>
       </div>
     );

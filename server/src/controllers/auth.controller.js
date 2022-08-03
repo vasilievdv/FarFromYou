@@ -16,7 +16,7 @@ const signUp = async (req, res) => {
         name: newUser.userName,
       };
 
-      return res.json({ id: newUser.id, name: newUser.userName });
+      return res.json({ id: newUser.id, userName: newUser.userName });
     } catch (error) {
       console.error(error);
       return res.sendStatus(500);
@@ -38,7 +38,7 @@ const signIn = async (req, res) => {
           name: currentUser.userName,
         };
 
-        return res.json({ id: currentUser.id, name: currentUser.userName });
+        return res.json({ id: currentUser.id, userName: currentUser.userName });
       }
       return res.sendStatus(401);
     } catch (error) {

@@ -74,7 +74,7 @@ function UserEdit() {
               <input
                 onChange={changeHandler}
                 value={userEdit.userName}
-                type="text"
+                type="password"
                 name="userName"
                 placeholder="password"
                 className="input input-bordered"
