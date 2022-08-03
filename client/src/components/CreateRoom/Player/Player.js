@@ -94,20 +94,12 @@ function Player({ nameCreater }) {
 
   return (
     <>
+
+      <button type="submit" className="btn btn-ghost" onClick={handlePlaySound}>Start</button>
+      <button type="submit" className="btn btn-ghost " onClick={handleAudioNext}>Next</button>
+      <button type="submit" className="btn btn-ghost " onClick={handleAudioStop}>Stop</button>
       <br />
       <br />
-      <button type="button" onClick={() => setRole('client')}>Client__</button>
-      <button type="button" onClick={() => setRole('server')}>Server__</button>
-      <button type="button" onClick={handlePlaySound}>Play sound!</button>
-      <br />
-      <br />
-      <div>
-        <button type="button" onClick={handleAudioNext}>NEXT!__</button>
-        <button type="button" onClick={handleAudioStop}>!STOP</button>
-      </div>
-      <br />
-      <br />
-      {/* <button type="button" onClick={handleTimecode}>Get time</button> */}
 
     </>
 
