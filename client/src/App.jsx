@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import useLocalStorege from 'use-local-storage';
+// import useLocalStorege from 'use-local-storage';
 import PrivateRoute from './components/PrivateRouter/PrivateRouter';
 import UserList from './components/UserList/UserList';
 import UserDetail from './components/UserDetail/UserDetail';
