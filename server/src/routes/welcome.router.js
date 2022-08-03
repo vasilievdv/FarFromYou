@@ -21,7 +21,6 @@ router.post('/createroom', checkAuth, async (req, res) => {
     if (req.body.name) {
       const { id } = await req.session.user;
       const { name } = await req.body;
-      console.log('wheres my user', id);
       const newRoom = await Room.create({ roomName: name });
 
       const createrUser = await Users_Rooms_Role.create({
@@ -52,8 +51,6 @@ router.post('/join', checkAuth, async (req, res) => {
       return res.sendStatus(403);
     }
     if (infoRoom.user_id !== user.id) {
-      // const updateuser = await Users_Rooms_Role.update({ role_id: 3 },
-      //  { where: { id: req.session.user.id } });
       const [guests, created] = await Users_Rooms_Role.findOrCreate({
         where: {
           user_id: user.id,
