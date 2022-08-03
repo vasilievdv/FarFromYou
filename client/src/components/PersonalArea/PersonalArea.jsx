@@ -6,6 +6,23 @@ import InfoPA from '../InfoPA/InfoPA';
 
 function PersonalArea() {
   const user = useSelector((state) => state.user);
+  const [info, setInfo] = useState({});
+
+  const infoPA = async () => {
+    console.log('id');
+    const response = await fetch(`${process.env.REACT_APP_HOST}/user/PA`, {
+      credentials: 'include',
+    });
+    console.log('tut');
+    const result = await response.json();
+    console.log('666666', result);
+    setInfo(result);
+    console.log(info);
+  };
+  useEffect(() => {
+    infoPA();
+  }, []);
+
   return (
     <div>
       {user && (
