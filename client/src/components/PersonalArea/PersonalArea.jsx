@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UserEdit from '../UserEdit/UserEdit';
+import InfoPA from '../InfoPA/InfoPA';
 
 function PersonalArea() {
   const user = useSelector((state) => state.user);
@@ -10,14 +11,20 @@ function PersonalArea() {
       {user && (
       <div tabIndex="0" className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
         <div className="collapse-title text-xl font-medium">
-          {user.name}
+          Personal Area -
+          {' '}
+          {user?.userName}
         </div>
         <div className="collapse-content">
-          <p>{user.email}</p>
-          <p>bla</p>
+          {/* <p>
+
+            {' '}
+            {user.email}
+          </p> */}
         </div>
       </div>
       )}
+      <InfoPA />
       <UserEdit />
     </div>
   );
