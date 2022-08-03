@@ -35,9 +35,9 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
     navigate('/');
   };
 
-  if (user) {
+  if (nameCreater) {
     return (
-      <div className="table1">
+      <div className="table">
         <div className="card room-creator-card bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="card-title">
@@ -51,12 +51,10 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
               {nameCreater}
             </h2>
             <br />
-            {nameCreater === user.userName
-          && (
+
             <div>
               <Player nameCreater={nameCreater} />
             </div>
-          )}
 
           </div>
         </div>

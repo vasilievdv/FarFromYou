@@ -44,16 +44,23 @@ scroll-behavior: smooth;
 }
 
 .track {
+  position: relative;
+  
     margin: 5px;
+    margin-top: -20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
 }
-.mockup-phone{
+/* .mockup-phone{
 
+} */
 
-}
-
-@media  (max-width: 600px)
+/* @media  (max-width: 600px)
 {
   .track{
     border: 1px solid red;
   }
-}
+} */
