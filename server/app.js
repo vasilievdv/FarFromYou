@@ -57,7 +57,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true })); // Dima extended: true
 app.use('/audio', express.static(path.join(__dirname, 'audio'))); // Dima
 app.use('/api', require('./routes/upload.route')); // Dima
-app.use('/api', require('./routes/getAudio.route')); // Dima
+// app.use('/api', require('./routes/getAudio.route')); // Dima
 
 // sign
 app.use(
@@ -96,7 +96,7 @@ const io = new Server(server, {
 });
 
 let timeCode; // Dima
-
+const chatArray = [];
 io.on('connection', (socket) => {
   console.log(`User connected ${socket.id}`);
   io.emit('message', 'User 111 connected');
@@ -106,7 +106,9 @@ io.on('connection', (socket) => {
   // сообщения
 
   socket.on('send_message', (msg) => {
-    io.emit('recieve_message', msg);
+    console.log(msg);
+    chatArray.push(msg);
+    io.emit('recieve_message', msg, chatArray);
   });
 
   // гости

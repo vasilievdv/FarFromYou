@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 function CreateRoom() {
@@ -34,12 +34,12 @@ function CreateRoom() {
     });
     if (response.ok) {
       const result = await response.json();
-      // console.log(result);
+      console.log('ffffffffffffff', result);
       navigate(`/room/${result.id}`);
     }
+    // console.log('++++++++', result);
   };
 
-  // console.log(guest);
   if (user) {
     return (
       <form>
