@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const checkAuth = require('../middlewares/checkAuth');
-const { Track, Room, Rooms_Track } = require('../../db/models');
+const {
+  Track, Users_Rooms_Role, Rooms_Track, User,
+} = require('../../db/models');
 
 router.get('/', checkAuth, async (req, res) => {
   const findAudio = await Track.findAll();
@@ -56,9 +58,9 @@ router.get('/gettracksinfo/:id', async (req, res) => {
       include: [{ model: Track }],
       raw: true,
     });
-
     const roomTracksInfo = [];
     audioRoom.map((el) => roomTracksInfo.push(el['Track.url']));
+    console.log(userNames[0].User.userName);
     res.json(roomTracksInfo);
   } catch (er) {
     console.log(er);

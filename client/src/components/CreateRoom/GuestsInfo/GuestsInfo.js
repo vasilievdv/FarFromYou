@@ -4,20 +4,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../../socket';
 import Player from '../Player/Player';
 
-function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
+function GuestsInfo({ nameCreater, nemeRoom }) {
 //   console.log('00000', nameCreater, nemeRoom, arrGuest);
   const id = useParams();
   const user = useSelector((state) => (state.user));
   // const guest = useSelector((state) => state.guest);
   const navigate = useNavigate();
-  const [guestsArr, setGuestsArr] = useState([]);
-
-  useEffect(() => {
-    socket.on('recieve_guest', (guest) => {
-    //   console.log(info);
-      setGuestsArr((prev) => [...prev, guest]);
-    });
-  }, [socket]);
+  const [arrGuest, setArrGuest] = useState([]);
+  // const [guestsArr, setGuestsArr] = useState([]);
+  // useEffect(() => {
+  //   socket.on('recieve_guest', (guest) => {
+  //   //   console.log(info);
+  //     setGuestsArr((prev) => [...prev, guest]);
+  //   });
+  // }, [socket]);
 
   const deleteRoomHandler = async () => {
     const response = await fetch(`${process.env.REACT_APP_HOST}/room/${id.id}`, {
@@ -34,6 +34,11 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
     });
     navigate('/');
   };
+
+  socket.on('joinRoom', (users) => {
+    setArrGuest(users.data);
+    console.log(users);
+  });
 
   if (nameCreater) {
     return (
