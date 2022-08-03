@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UserEdit from '../UserEdit/UserEdit';
+import InfoPA from '../InfoPA/InfoPA';
 
 function PersonalArea() {
   const user = useSelector((state) => state.user);
@@ -23,6 +24,7 @@ function PersonalArea() {
         </div>
       </div>
       )}
+      <InfoPA />
       <UserEdit />
     </div>
   );
