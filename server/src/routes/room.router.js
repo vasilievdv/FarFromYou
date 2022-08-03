@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const { Op } = require('sequelize');
 const checkAuth = require('../middlewares/checkAuth');
+const checkGuestOrAuthor = require('../middlewares/checkGuestOrAuthor');
 const {
   Users_Rooms_Role, Room, User,
 } = require('../../db/models');
 
-router.get('/:id', checkAuth, async (req, res) => {
-  console.log('tut');
+router.get('/:id', checkGuestOrAuthor, async (req, res) => {
   const { id } = req.params;
 
   const guests = await Users_Rooms_Role.findAll({
@@ -19,18 +19,29 @@ router.get('/:id', checkAuth, async (req, res) => {
     include: [{ model: User }, { model: Room }],
     raw: true,
   });
+  console.log('tut');
+
   const nameCreater = creater[0]['User.userName'];
   const nemeRoom = creater[0]['Room.roomName'];
-  const arrGuest = guests.map((el) => el['User.userName']);
-  // console.log(nameCreater, nemeRoom, arrGuest);
-  // const idGuoists = guests.map((el) => el.id);
-  // const info = await Room.findOne({ where: { id } });
-  // const authorRoom = await User.findOne({ where: { id: info.user_id } });
-  // console.log('_________', guests, creater);
-  //   const res1 = idUser.filter((el) => el.id === idGuoists.el);
-  //   const info = await User.findAll({ where: { id: idGuoists.map((el) => el) } });
-  res.json({ nameCreater, nemeRoom, arrGuest });
+  console.log('+++++++', guests[0]);
+  let arrGuest = [];
+  if (guests[0]) {
+    console.log('555555');
+    arrGuest = guests.map((el) => el['User.userName']);
+    console.log({ nameCreater, nemeRoom, arrGuest });
+    // return res.json({ nameCreater, nemeRoom, arrGuest });
+  }
+  // console.log('444444');
+  // console.log({ nameCreater, nemeRoom, arrGuest });
+  return res.json({ nameCreater, nemeRoom, arrGuest });
 });
+// console.log(nameCreater, nemeRoom, arrGuest);
+// const idGuoists = guests.map((el) => el.id);
+// const info = await Room.findOne({ where: { id } });
+// const authorRoom = await User.findOne({ where: { id: info.user_id } });
+// console.log('_________', guests, creater);
+//   const res1 = idUser.filter((el) => el.id === idGuoists.el);
+//   const info = await User.findAll({ where: { id: idGuoists.map((el) => el) } });
 // el['User.id, User.name']
 
 router.delete('/:id', checkAuth, async (req, res) => {

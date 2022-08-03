@@ -25,11 +25,7 @@ router.post('/createtrack', async (req, res) => {
       room_id: +room_id.id,
       track_id: +newAudio.id,
     });
-    const audioRoom = await Rooms_Track.findAll({
-      where: { room_id: room_id.id },
-      include: [{ model: Track }],
-      raw: true,
-    });
+
 
     const arr = [];
     const artistsTracks = audioRoom.map((el) => arr.push([el['Track.artist'], el['Track.trackName']]));

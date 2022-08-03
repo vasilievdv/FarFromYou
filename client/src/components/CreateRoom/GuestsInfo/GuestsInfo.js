@@ -34,7 +34,7 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
     navigate('/');
   };
 
-  if (user) {
+  if (nameCreater) {
     return (
       <div className="table1">
         <div className="card room-creator-card bg-base-100 shadow-xl">

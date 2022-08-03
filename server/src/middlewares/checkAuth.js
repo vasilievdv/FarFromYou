@@ -1,5 +1,4 @@
 const checkAuth = (req, res, next) => {
-  console.log('tyt');
   if (!req.session.user) {
     console.log('no session');
     return res.sendStatus(401);
