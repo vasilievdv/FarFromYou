@@ -59,6 +59,7 @@ router.get('/gettracksinfo/:id', async (req, res) => {
 
     const roomTracksInfo = [];
     audioRoom.map((el) => roomTracksInfo.push(el['Track.url']));
+    console.log('55555555555', roomTracksInfo);
     res.json(roomTracksInfo);
   } catch (er) {
     console.log(er);
