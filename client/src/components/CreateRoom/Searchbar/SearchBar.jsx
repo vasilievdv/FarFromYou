@@ -22,7 +22,6 @@ function SearchBar({ placeholder, audioAll }) {
     <div className="search">
       <div className="searchInputs">
         <input text="text" placeholder={placeholder} onChange={heandlerFilter} />
-
         {/* <select value={findaudio?.id}
         onChange={auidioHandler} className="select select-bordered w-full max-w-xs"> */}
         <div className="searchIncon">
@@ -30,19 +29,27 @@ function SearchBar({ placeholder, audioAll }) {
         </div>
       </div>
       {findaudio.length !== 0 && (
-        <div className="audioResult">
-          {findaudio && findaudio.slice(0, 15).map((el) => (
-            <div key={uuidv4()} value={el.id} onClick={() => setAuidio((prev) => [...prev, el])}>
-
-              { el.artist }
-              {' '}
-              ||
-              {' '}
-              { el.trackName }
+        <div className="card guests-card bg-base-100 shadow-xl">
+          <div className="card-body scroll-block">
+            <div className="btn-group" />
+            <div className="audioResult">
+              {findaudio && findaudio.slice(0, 15).map((el) => (
+                <div
+                  key={uuidv4()}
+                  value={el.id}
+                  onClick={() => setAuidio((prev) => [...prev, el])}
+                >
+                  {el.artist}
+                  {' '}
+                  ||
+                  {' '}
+                  {el.trackName}
+                </div>
+              ))}
             </div>
-          ))}
+            <div className="card-actions justify-end" />
+          </div>
         </div>
-
       )}
     </div>
   );

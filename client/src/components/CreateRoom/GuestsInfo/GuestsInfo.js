@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../../socket';
+import './GuestsInfo.css';
 
 function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
 //   console.log('00000', nameCreater, nemeRoom, arrGuest);
@@ -36,7 +37,7 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
 
   if (user) {
     return (
-      <div className="table1">
+      <div className="table">
         <div className="card room-creator-card bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="card-title">
@@ -53,9 +54,9 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
             {nameCreater === user.userName
           && (
             <div>
-              <button type="submit" className="btn btn-ghost ">Start</button>
-              <button type="submit" className="btn btn-ghost ">Pause</button>
-              <button type="submit" className="btn btn-ghost ">Stop</button>
+              <button type="submit" className="btn btn-primary ">Start</button>
+              <button type="submit" className="btn btn-primary ">Pause</button>
+              <button type="submit" className="btn btn-primary ">Stop</button>
             </div>
           )}
 

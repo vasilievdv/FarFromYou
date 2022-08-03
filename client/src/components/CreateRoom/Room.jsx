@@ -29,9 +29,6 @@ function Room() {
   useEffect(() => {
     roomFetch();
   }, []);
-  // console.log('++++++++++++', info);
-
-  console.log('+++++++++++++', info);
 
   if (user) {
     return (
@@ -51,7 +48,6 @@ function Room() {
             <div className="display">
               <div className="artboard artboard-demo phone-1">
                 <Chat />
-                1
               </div>
             </div>
           </div>

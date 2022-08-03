@@ -78,11 +78,11 @@ function Player({ nameCreater }) {
   function handleAudioStop() {
     stopCheck = false;
     audio.pause();
-    socket.emit('stop', { });
+    socket.emit('stop', {});
   }
 
   useEffect(() => {
-    socket.emit('time', { }); // При загрузке пользователь получает таймкод и адрес
+    socket.emit('time', {}); // При загрузке пользователь получает таймкод и адрес
   }, []);
   // function handleTimecode() {
   //   socket.emit('time', { }); // поулчить таймкод и адрес по кнопке
