@@ -31,16 +31,23 @@ function SearchBar({ placeholder, audioAll }) {
       </div>
       {findaudio.length !== 0 && (
         <div className="audioResult">
-          {findaudio && findaudio.slice(0, 15).map((el) => (
-            <div key={uuidv4()} value={el.id} onClick={() => setAuidio((prev) => [...prev, el])}>
-
-              { el.artist }
-              {' '}
-              ||
-              {' '}
-              { el.trackName }
+          <div className="card guests-card bg-base-100 shadow-xl">
+            <div className="card-body scroll-block">
+              <h2 className="card-title">Track</h2>
+              <div className="btn-group" />
+              {findaudio && findaudio.slice(0, 15).map((el) => (
+                <div className="modalsearch" key={uuidv4()} value={el.id} onClick={() => setAuidio((prev) => [...prev, el])}>
+                  {el.artist}
+                  {' '}
+                  ||
+                  {' '}
+                  {el.trackName}
+                </div>
+              ))}
+              <div className="card-actions justify-end" />
             </div>
-          ))}
+          </div>
+
         </div>
 
       )}

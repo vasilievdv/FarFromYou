@@ -5,6 +5,7 @@
     gap: 10px;
     align-content: center;
     border: none;
+    margin-bottom: 10px;
 }
 
 .input-field,
@@ -47,3 +48,4 @@
     transition: 0.3s;
 
 }
+
