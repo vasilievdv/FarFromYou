@@ -48,7 +48,6 @@ function Room() {
         />
         <div className="track">
           <SearchPannel />
-
         </div>
         <div className="chat">
           <div className="mockup-phone">

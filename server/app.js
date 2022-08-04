@@ -15,6 +15,7 @@ const authRouter = require('./src/routes/auth.router');
 const usersRouter = require('./src/routes/users.router');
 const roomRouter = require('./src/routes/room.router');
 const audioRouter = require('./src/routes/audio.router');
+const userPARouter = require('./src/routes/personal.router');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -79,6 +80,7 @@ app.use('/room', roomRouter);
 app.use('/audio', audioRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
+app.use('/user', userPARouter);
 // app.use('/*',);
 
 // socket-chat - test

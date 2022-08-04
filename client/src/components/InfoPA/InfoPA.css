@@ -1,0 +1,31 @@
+.userspa{
+
+  display: flex;
+  flex-direction:row ;
+ justify-content: space-around;
+
+}
+.card3{
+  margin: 40px;
+  display: flex;
+  width: 300px;
+  height: 450px;
+  border: 2px solid rgb(78, 77, 76);
+  border-radius: 6%;
+
+}
+.myp{
+
+
+margin-top: 10px;
+  /* margin-bottom: 70px; */
+
+}
+.textcentr{
+
+
+}
+.usered{
+
+  margin-left: -52px;
+}

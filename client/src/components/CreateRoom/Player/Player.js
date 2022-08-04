@@ -31,7 +31,7 @@ function Player({ nameCreater }) {
 
   function showTime(m) {
     console.log(m);
-    if (user.userName !== nameCreater) {
+    if (user?.userName !== nameCreater) {
       clientAudio.pause();
       clientAudio.src = m.path;
       clientAudio.currentTime = m.timecode;
@@ -126,7 +126,7 @@ function Player({ nameCreater }) {
     <div className="player-btn-group">
       {user.userName !== nameCreater
     && <button type="button" className="btn btn-ghost" onClick={handleTimecode}>Start</button>}
-      {user.userName === nameCreater
+      {user?.userName === nameCreater
     && (
     <>
       <button type="button" className="btn player-btn" onClick={handlePlaySound}>Start</button>

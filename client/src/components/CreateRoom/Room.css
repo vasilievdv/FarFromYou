@@ -134,6 +134,16 @@ scroll-behavior: smooth;
         display: none;
     }
 
+} */
 
+<<<<<<< HEAD
 }
 
+=======
+/* @media  (max-width: 600px)
+{
+  .track{
+    border: 1px solid red;
+  }
+} */
+>>>>>>> deaaae5a0e2f45e623a7f3f67b18aae951c68fa6
