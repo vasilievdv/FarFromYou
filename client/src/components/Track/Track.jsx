@@ -3,9 +3,10 @@ import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Track.css';
 import axios from 'axios';
+
 import { useParams } from 'react-router-dom';
-import socket from '../../socket';
 import { getAudioAC } from '../../redux/actions/audioActions';
+import socket from '../../socket';
 
 function Track() {
   const audioFromServer = useSelector((state) => state.audio);
@@ -15,6 +16,11 @@ function Track() {
   const [trackName, setTrackName] = useState('');
 
   const id = useParams();
+  // const inputFiles = { artist, trackName };
+  // console.log(inputFiles);
+
+  // const inputFiles = { artist, trackName };
+  // console.log(inputFiles);
 
   const sendFile = useCallback(async () => {
     try {
@@ -26,7 +32,7 @@ function Track() {
           'content-type': 'multipart/form-data',
         },
       })
-
+        // .then((res) => setPlay(res.data.path));
         .then((res) => {
           dispatch(getAudioAC(res.data.path));
           socket.emit('tracksForAll', { });
@@ -44,6 +50,7 @@ function Track() {
   };
 
   const addTrackHandler = async () => {
+    // console.log(artist, trackName);
     const response = await fetch(`${process.env.REACT_APP_HOST}/audio/createtrack`, {
       credentials: 'include',
       method: 'POST',
@@ -57,11 +64,11 @@ function Track() {
     <div className="pleer">
       <br />
       <div className="card track-card">
-        {audioFromServer && audioFromServer.map((el) => (
+        {audioFromServer && audioFromServer.map((el, index) => (
           // item.map((el) => (
           <div className="track-item">
-            <div className="artist-name">{el[1]}</div>
-            <div className="track-name">{el[2]}</div>
+            <div className="artist-name" key={index}>{el[1]}</div>
+            <div className="track-name" key={`${index}${'i'}`}>{el[2]}</div>
           </div>
           // ))
         ))}
@@ -69,44 +76,42 @@ function Track() {
       </div>
       <label htmlFor="my-modal-4" className="btn modal-button btn-primary">Add track</label>
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
-      <label htmlFor="my-modal-4" className="modal cursor-pointer">
-        <label className="modal-box relative" htmlFor="">
-          <input
-            onChange={handleAuthorChange}
-            type="text"
-            name="artist"
-            placeholder="
+      <label htmlFor="my-modal-4" className="modal cursor-pointer" />
+      <label className="modal-box relative" htmlFor="" />
+      <input
+        onChange={handleAuthorChange}
+        type="text"
+        name="artist"
+        placeholder="
             singer"
-            className="input input-ghost w-full max-w-xs"
-            value={artist}
-          />
-          <input
-            onChange={handleTitleChange}
-            type="text"
-            name="trackname"
-            placeholder="
+        className="input input-ghost w-full max-w-xs"
+        value={artist}
+      />
+      <input
+        onChange={handleTitleChange}
+        type="text"
+        name="trackname"
+        placeholder="
             Name track"
-            className="input input-ghost w-full max-w-xs"
-            value={trackName}
-          />
-          <input
-            onChange={(e) => setAudio(e.target.files[0])}
-            type="file"
-            name="choosefile"
-            placeholder="Выбрать файл"
-          // className="input input-ghost w-full max-w-xs"
-          />
-          <button
-            onClick={addTrackHandler}
-            type="submit"
-            className="btn modal-button btn-primary"
-          >
-            ADD
-          </button>
-        </label>
-      </label>
+        className="input input-ghost w-full max-w-xs"
+        value={trackName}
+      />
+      <input
+        onChange={(e) => setAudio(e.target.files[0])}
+        type="file"
+        name="choosefile"
+        placeholder="Выбрать файл"
+      />
+      <button
+        onClick={addTrackHandler}
+        type="submit"
+        className="btn modal-button btn-primary"
+      >
+        ADD
+      </button>
     </div>
-
+  //   </div>
+  // </div>
   );
 }
 

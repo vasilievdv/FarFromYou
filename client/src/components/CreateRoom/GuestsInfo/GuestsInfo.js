@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../../socket';
 import Player from '../Player/Player';
+import './GuestsInfo.css';
 
 function GuestsInfo({ nameCreater, nemeRoom }) {
 //   console.log('00000', nameCreater, nemeRoom, arrGuest);
@@ -44,16 +45,20 @@ function GuestsInfo({ nameCreater, nemeRoom }) {
     return (
       <div className="table">
         <div className="card room-creator-card bg-base-100 shadow-xl">
-          <div className="card-body">
+          <div className="card-body room-info">
             <h2 className="card-title">
               Room name:
               {' '}
-              {nemeRoom}
+              <div className="name">
+                {nemeRoom}
+              </div>
             </h2>
             <h2 className="card-title">
               Creator:
               {' '}
-              {nameCreater}
+              <div className="name">
+                {nameCreater}
+              </div>
             </h2>
             <br />
 
@@ -65,8 +70,7 @@ function GuestsInfo({ nameCreater, nemeRoom }) {
         </div>
         <div className="card guests-card bg-base-100 shadow-xl">
           <div className="card-body scroll-block">
-            <h2 className="card-title">Гости</h2>
-            <div className="btn-group" />
+            <h2 className="card-title name">Guests</h2>
             {arrGuest && arrGuest.map((el) => (<p>{el}</p>))}
             <div className="card-actions justify-end" />
           </div>

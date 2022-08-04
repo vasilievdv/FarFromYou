@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAudioThunk, getAudioAC } from '../../../redux/actions/audioActions';
 import socket from '../../../socket';
+import useDebounce from '../../../Debounce/Debounce';
 
 function Player({ nameCreater }) {
   const audioFromServer = useSelector((state) => state.audio);
   const user = useSelector((state) => (state.user));
 
-  console.log('+++++++++++++', audioFromServer);
-
   const dispatch = useDispatch();
 
   const clientAudio = new Audio();
+  clientAudio.addEventListener('onplay', (event) => {});
   let adminStop = false;
   function clientAudioStop() {
     clientAudio.pause();
@@ -25,6 +25,7 @@ function Player({ nameCreater }) {
   }, []);
 
   function showTime(m) {
+    console.log('client timeCode', m);
     if (user?.userName !== nameCreater) {
       clientAudio.pause();
       clientAudio.src = m.path;
@@ -35,6 +36,8 @@ function Player({ nameCreater }) {
 
   let stopCheck = true;
   const audio = new Audio();
+  audio.addEventListener('canplay', (event) => {});
+
   function adminPlay(m) {
     let i = 0;
     let currentPlay = m[i][0];
@@ -71,9 +74,11 @@ function Player({ nameCreater }) {
   socket.on('stop', clientAudioStop);
   socket.on('tracksForAll', tracksForAll);
 
-  function handleAudioNext() {
-    audio.pause();
-  }
+  // function handleAudioNext() {
+  //   audio.pause();
+  // }
+  const handleAudioNext = useDebounce(() => audio.pause(), 100);
+
   function handleAudioStop() {
     stopCheck = false;
     audio.pause();
@@ -81,31 +86,29 @@ function Player({ nameCreater }) {
   }
 
   useEffect(() => {
-    // console.log('dfdfdfd');
     socket.emit('time', { }); // При загрузке пользователь получает таймкод и адрес
   }, []);
 
-  function handleTimecode() {
-    socket.emit('time', { }); // поулчить таймкод и адрес по кнопке
-  }
+  const handleTimecode = useDebounce(() => socket.emit('time', { }), 200);
 
   function handlePlaySound() {
+    stopCheck = true;
     adminPlay(audioFromServer);
   }
 
   return (
-    <>
-      {user?.userName !== nameCreater
-    && <button type="button" className="btn btn-ghost" onClick={handleTimecode}>Start</button>}
+    <div className="player-btn-group">
+      {user.userName !== nameCreater
+    && <button type="button" className="btn player-btn" onClick={handleTimecode}>Start</button>}
       {user?.userName === nameCreater
     && (
     <>
-      <button type="button" className="btn btn-ghost" onClick={handlePlaySound}>Start</button>
-      <button type="button" className="btn btn-ghost " onClick={handleAudioNext}>Next</button>
-      <button type="button" className="btn btn-ghost " onClick={handleAudioStop}>Stop</button>
+      <button type="button" className="btn player-btn" onClick={handlePlaySound}>Start</button>
+      <button type="button" className="btn player-btn" onClick={handleAudioNext}>Next</button>
+      <button type="button" className="btn player-btn" onClick={handleAudioStop}>Stop</button>
     </>
     )}
-    </>
+    </div>
 
   );
 }

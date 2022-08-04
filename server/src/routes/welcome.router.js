@@ -5,6 +5,10 @@ const {
   User, Room, Users_Rooms_Role,
 } = require('../../db/models');
 
+router.get('/', checkAuth, async (req, res) => {
+  res.sendStatus(200);
+});
+
 router.get('/createorguest', checkAuth, async (req, res) => {
   res.sendStatus(200);
 });

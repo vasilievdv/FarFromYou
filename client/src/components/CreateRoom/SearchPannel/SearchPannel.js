@@ -20,9 +20,11 @@ function SearchPannel() {
   }, []);
 
   return (
-    <div className="track1">
-      <SearchBar placeholder="Enter a auidio name..." audioAll={audioAll} />
-      <li className="track2"><Track /></li>
+    <div className="search-pannel">
+      <Track />
+      <div className="search-block">
+        <SearchBar placeholder="Search for .." audioAll={audioAll} />
+      </div>
     </div>
   );
 }

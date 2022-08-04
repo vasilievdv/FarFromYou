@@ -6,12 +6,20 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    /* grid-area: chat; */
+    order: 2;
 ;
 }
 
 .message-block {
     height: 85%;
     overflow-y: scroll;
+}
+
+@media screen and (max-width: 480px){
+    .chat-contaitner {
+        order: -1;
+    }
 }
 
 

@@ -24,7 +24,7 @@ function SearchBar({ placeholder, audioAll }) {
         <input text="text" placeholder={placeholder} onChange={heandlerFilter} />
         {/* <select value={findaudio?.id}
         onChange={auidioHandler} className="select select-bordered w-full max-w-xs"> */}
-        <div className="searchIncon">
+        <div className="searchIcon">
           <SearchIcon />
         </div>
       </div>
