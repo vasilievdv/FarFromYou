@@ -126,7 +126,7 @@ io.on('connection', (socket) => {
       .emit('guest-message', `${name} has joined the chat`);
 
     // Send users and room info
-    io.to(roomID).emit('recieve_guest', name);
+    // io.to(roomID).emit('recieve_guest', name);
   });
 
   // Dima
@@ -138,12 +138,21 @@ io.on('connection', (socket) => {
 
   socket.on('stop', () => {
     io.emit('stop');
+    timeCode = null;
   });
 
   socket.on('next', (Msg) => {
     io.emit('next', Msg);
   });
-  // END
+
+  socket.on('tracksForAll', () => {
+    io.emit('tracksForAll');
+  });
+
+  socket.on('joinRoom', (users) => {
+    io.emit('joinRoom', users);
+  });
+  // THE END
 });
 
 server.listen(PORT, () => console.log('Server has been started on port 3001'));

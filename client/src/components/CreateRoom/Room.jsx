@@ -9,6 +9,7 @@ import './Room.css';
 import './CreateRoom.css';
 import GuestsInfo from './GuestsInfo/GuestsInfo';
 import SearchPannel from './SearchPannel/SearchPannel';
+import InfoPA from '../InfoPA/InfoPA';
 // import Player from './Player/Player';
 
 function Room() {
@@ -41,24 +42,30 @@ function Room() {
   if (info) {
     return (
       <div className="private">
-        <GuestsInfo
-          nameCreater={info.nameCreater}
-          nemeRoom={info.nemeRoom}
-          arrGuest={info.arrGuest}
-        />
         <div className="track">
           <SearchPannel />
         </div>
-        <div className="chat">
-          <div className="mockup-phone">
-            <div className="camera" />
-            <div className="display">
-              <div className="artboard artboard-demo phone-1">
-                <Chat />
+        <div className="main-container">
+          <GuestsInfo
+            nameCreater={info.nameCreater}
+            nemeRoom={info.nemeRoom}
+            arrGuest={info.arrGuest}
+          />
+          {/* <div className="track-list">
+            <InfoPA />
+          </div> */}
+          <div className="chat">
+            <div className="mockup-phone">
+              <div className="camera" />
+              <div className="display">
+                <div className="artboard artboard-demo phone-1">
+                  <Chat />
+                </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     );
   } return (

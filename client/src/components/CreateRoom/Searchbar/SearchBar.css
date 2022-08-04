@@ -1,6 +1,8 @@
 .searchInputs {
     /* margin-top: 105px; */
     display: flex;
+    align-items: flex-start;
+    gap: 10px;
   }
   
   .search input {
@@ -14,15 +16,17 @@
     font-size: 20px;
     padding: 20px;
     height: 30px;
-    width: 360px;
+    max-width: 20vw;
   }
   
   .searchIcon {
-    height: 60px;
+    height: 50px;
     width: 50px;
-    background-color: white;
     display: grid;
     place-items: center;
+    border: 1px solid rgb(105, 103, 103);
+    border-radius: 15px;
+    cursor: pointer;
   }
   
   input:focus {
@@ -71,3 +75,4 @@
   .searchIncon{
     width: 15px;
   }
+
