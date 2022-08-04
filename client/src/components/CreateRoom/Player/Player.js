@@ -13,6 +13,8 @@ function Player({ nameCreater }) {
   const dispatch = useDispatch();
 
   const clientAudio = new Audio();
+  clientAudio.addEventListener('onplay', (event) => {});
+
   let adminStop = false;
   function clientAudioStop() {
     clientAudio.pause();
@@ -36,6 +38,8 @@ function Player({ nameCreater }) {
 
   let stopCheck = true;
   const audio = new Audio();
+  audio.addEventListener('onplay', (event) => {});
+
   function adminPlay(m) {
     console.log(m, '+++++++++++++++++++++++');
     let i = 0;

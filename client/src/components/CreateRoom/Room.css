@@ -15,16 +15,12 @@
 
   
   .table{
-     /* grid-area: guests; */
      order: 1;
-     min-width: 15vw;
-  }
+
+      }
 
 .guests-card {
     margin-top: 20px;
-    max-height: 50%;
-    overflow-y: scroll;
-   
 }
 
 .scroll-block::-webkit-scrollbar {
@@ -92,9 +88,6 @@ scroll-behavior: smooth;
     .player-btn {
         min-width: 100%;
     }
-    .guests-card{
-        max-height: 2rem;
-    }
 }
 @media screen and (max-width: 568px) {
     .App {
@@ -106,10 +99,12 @@ scroll-behavior: smooth;
     }
     .private {
         padding: 10px;; 
-        min-height: 200vh;
+        min-height: 150vh;
+        max-height: 100%;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content:flex-start;
         align-items: center;
+        width: 100%;
 
     }
     .card.room-creator-card,
@@ -125,8 +120,8 @@ scroll-behavior: smooth;
     .table {
         min-width: 80%;
         margin: 0 auto;
+        justify-content: space-between;
         justify-self: center;
-        max-height: 100px;
     }
 
     .footer {

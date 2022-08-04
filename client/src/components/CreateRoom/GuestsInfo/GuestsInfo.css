@@ -1,26 +1,33 @@
 .table{
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
   width: 25%;
   order: 0;
 }
 
 .table .card {
   width: 100%;
+  border: 1px solid whitesmoke
 }
 
 .room-info,
 .scroll-block {
   max-height: 100%;
   padding: 1rem;
+  border: 1px solid rgb(78, 76, 76);
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 .name {
   color: aqua;
 }
 
-.guests-card {
-  min-height: 40vh;
+.table .btn1 {
+  margin-top: auto;
 }
+
 
 @media screen and (max-width:1350px) {
   .table{

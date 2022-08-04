@@ -44,7 +44,7 @@ function GuestsInfo({ nameCreater, nemeRoom }) {
   if (nameCreater) {
     return (
       <div className="table">
-        <div className="card room-creator-card bg-base-100 shadow-xl">
+        <div className="room-creator-card bg-base-100 shadow-xl">
           <div className="card-body room-info">
             <h2 className="card-title">
               Room name:
@@ -68,7 +68,7 @@ function GuestsInfo({ nameCreater, nemeRoom }) {
 
           </div>
         </div>
-        <div className="card guests-card bg-base-100 shadow-xl">
+        <div className="guests-card bg-base-100 shadow-xl">
           <div className="card-body scroll-block">
             <h2 className="card-title name">Guests</h2>
             {arrGuest && arrGuest.map((el) => (<p>{el}</p>))}
@@ -80,7 +80,7 @@ function GuestsInfo({ nameCreater, nemeRoom }) {
             <button
               type="submit"
               onClick={deleteRoomHandler}
-              className="btn btn-primary "
+              className="btn btn-primary guests-btn"
             >
               Delete room
             </button>
@@ -89,7 +89,7 @@ function GuestsInfo({ nameCreater, nemeRoom }) {
             <button
               type="submit"
               onClick={exitRoomHandler}
-              className="btn"
+              className="btn guests-btn"
             >
               leave room
             </button>
