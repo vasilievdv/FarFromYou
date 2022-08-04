@@ -3,14 +3,11 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import socket from '../../socket';
 import Chat from '../Chat/Chat';
-// import InputWithButton from '../Forms/InputWithBtn/InputWithButton';
-// import Track from '../Track/Track';
 import './Room.css';
 import './CreateRoom.css';
 import GuestsInfo from './GuestsInfo/GuestsInfo';
 import SearchPannel from './SearchPannel/SearchPannel';
-import InfoPA from '../InfoPA/InfoPA';
-// import Player from './Player/Player';
+import Track from '../Track/Track';
 
 function Room() {
   const id = useParams();
@@ -24,14 +21,11 @@ function Room() {
     const response = await fetch(`${process.env.REACT_APP_HOST}/room/${id.id}`, {
       credentials: 'include',
     });
-    console.log('tut');
     if (!response.ok) {
       navigate('/');
     }
     const result = await response.json();
-    console.log('+++++++++', result);
     setInfo(result);
-    console.log('++++++++++++', info);
   };
   useEffect(() => {
     roomFetch();
@@ -51,9 +45,7 @@ function Room() {
             nemeRoom={info.nemeRoom}
             arrGuest={info.arrGuest}
           />
-          <div className="track-list">
-            <InfoPA />
-          </div>
+          {/* <div className="track-list" /> */}
           <div className="chat">
             <div className="mockup-phone">
               <div className="camera" />
