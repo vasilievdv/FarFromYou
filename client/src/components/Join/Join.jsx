@@ -20,7 +20,7 @@ function Join() {
 
   useEffect(() => {
     socket.on('guest-message', (msg) => {
-      console.log(msg);
+      // console.log(msg);
     });
   }, [socket]);
 
@@ -37,7 +37,14 @@ function Join() {
       body: JSON.stringify(room), // передать выбранную комнату
     });
     if (response.ok) {
-      await socket.emit('joinRoom', { name: user.userName, roomID: room.id });
+      // Dima
+      const data = await response.json();
+      socket.emit('joinRoom', { data });
+      //
+
+      // Milya
+      // await socket.emit('joinRoom', { name: user.userName, roomID: room.id });
+      //
       navigate(`/room/${room.id}`);
     }
   };

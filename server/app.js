@@ -126,7 +126,7 @@ io.on('connection', (socket) => {
       .emit('guest-message', `${name} has joined the chat`);
 
     // Send users and room info
-    io.to(roomID).emit('recieve_guest', name);
+    // io.to(roomID).emit('recieve_guest', name);
   });
 
   // Dima
@@ -146,6 +146,10 @@ io.on('connection', (socket) => {
 
   socket.on('tracksForAll', () => {
     io.emit('tracksForAll');
+  });
+
+  socket.on('joinRoom', (users) => {
+    io.emit('joinRoom', users);
   });
   // THE END
 });

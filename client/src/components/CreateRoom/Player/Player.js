@@ -9,9 +9,7 @@ function Player({ nameCreater }) {
   const user = useSelector((state) => (state.user));
 
   console.log('+++++++++++++', audioFromServer);
-  // console.log(user);
 
-  // console.log(audioFromServer);
   const dispatch = useDispatch();
 
   const clientAudio = new Audio();
@@ -19,15 +17,12 @@ function Player({ nameCreater }) {
   function clientAudioStop() {
     clientAudio.pause();
     adminStop = false;
-    // console.log(adminStop);
   }
   const roomId = useParams();
 
   useEffect(() => {
     dispatch(getAudioThunk(roomId.id));
   }, []);
-
-  const [role, setRole] = useState('');
 
   function showTime(m) {
     console.log(m);
@@ -42,36 +37,9 @@ function Player({ nameCreater }) {
   let stopCheck = true;
   const audio = new Audio();
   function adminPlay(m) {
+    console.log(m, '+++++++++++++++++++++++');
     let i = 0;
-    let currentPlay = m[i];
-    // console.log('tyt', user.userName === nameCreater);
-    // try {
-    //   if (user.userName === nameCreater) {
-    //     audio.setAttribute('controls', 'controls');
-    //     // eslint-disable-next-line prefer-destructuring
-    //     audio.src = currentPlay;
-
-    //     audio.play();
-    //     setInterval(() => {
-    //       // console.log(audio.paused);
-    //       if (audio.paused && stopCheck) {
-    //         // eslint-disable-next-line no-plusplus
-    //         ++i;
-    //         // console.log(i);
-    //         currentPlay = m[i];
-    //         audio.src = currentPlay;
-    //         audio.play();
-    //         socket.emit('next', { timecode: audio.currentTime, path: currentPlay });
-    //       }
-    //       if (!audio.paused) {
-    //         socket.emit('sendTime', { timecode: audio.currentTime, path: currentPlay });
-    //       }
-    //     }, 100);
-    //   }
-    // } catch (error) {
-    //   console.log(error.message);
-
-    console.log(currentPlay, '--------.............');
+    let currentPlay = m[i][0];
     if (user.userName === nameCreater) {
       // eslint-disable-next-line prefer-destructuring
       audio.src = currentPlay;
@@ -80,9 +48,11 @@ function Player({ nameCreater }) {
         if (audio.paused && stopCheck) {
           // eslint-disable-next-line no-plusplus
           ++i;
-          currentPlay = m[i];
+          // eslint-disable-next-line prefer-destructuring
+          currentPlay = m[i][0];
           audio.src = currentPlay;
           audio.play();
+          console.log(m, 'lkjadfkajsdfksdg');
           socket.emit('next', { timecode: audio.currentTime, path: currentPlay });
         }
         if (!audio.paused) {

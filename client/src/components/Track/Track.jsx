@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Track.css';
 import axios from 'axios';
 
@@ -9,10 +9,12 @@ import { getAudioAC } from '../../redux/actions/audioActions';
 import socket from '../../socket';
 
 function Track() {
+  const audioFromServer = useSelector((state) => state.audio);
   const dispatch = useDispatch();
   const [audio, setAudio] = useState(null);
   const [artist, setArtist] = useState('');
   const [trackName, setTrackName] = useState('');
+
   const id = useParams();
   // const inputFiles = { artist, trackName };
   // console.log(inputFiles);
@@ -57,52 +59,59 @@ function Track() {
     });
     sendFile();
   };
+  setTimeout(console.log(audioFromServer, '++++++++++++++++++'), 3000);
   return (
     <div className="pleer">
       <br />
+      <div className="card track-card">
+        {audioFromServer && audioFromServer.map((el) => (
+          // item.map((el) => (
+          <div className="track-item">
+            <div className="artist-name">{el[1]}</div>
+            <div className="track-name">{el[2]}</div>
+          </div>
+          // ))
+        ))}
 
-      <label htmlFor="my-modal-3" className="btn modal-button">open modal</label>
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box relative">
-          <label htmlFor="my-modal-3" className="btn2 btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <label className="modal-box-3 relative" htmlFor="" />
-          <br />
-          <input
-            onChange={handleAuthorChange}
-            type="text"
-            name="artist"
-            placeholder="
-            singer"
-            className="input input-ghost w-full max-w-xs"
-            value={artist}
-          />
-          <input
-            onChange={handleTitleChange}
-            type="text"
-            name="trackname"
-            placeholder="
-            Name track"
-            className="input input-ghost w-full max-w-xs"
-            value={trackName}
-          />
-          <input
-            onChange={(e) => setAudio(e.target.files[0])}
-            type="file"
-            name="choosefile"
-            placeholder="Выбрать файл"
-          // className="input input-ghost w-full max-w-xs"
-          />
-          <button
-            onClick={addTrackHandler}
-            type="submit"
-            className="btn modal-button btn-primary"
-          >
-            ADD
-          </button>
-        </div>
       </div>
+      <label htmlFor="my-modal-4" className="btn modal-button btn-primary">Add track</label>
+      <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+      <label htmlFor="my-modal-4" className="modal cursor-pointer" />
+      <label className="modal-box relative" htmlFor="" />
+      <input
+        onChange={handleAuthorChange}
+        type="text"
+        name="artist"
+        placeholder="
+            singer"
+        className="input input-ghost w-full max-w-xs"
+        value={artist}
+      />
+      <input
+        onChange={handleTitleChange}
+        type="text"
+        name="trackname"
+        placeholder="
+            Name track"
+        className="input input-ghost w-full max-w-xs"
+        value={trackName}
+      />
+      <input
+        onChange={(e) => setAudio(e.target.files[0])}
+        type="file"
+        name="choosefile"
+        placeholder="Выбрать файл"
+      />
+      <button
+        onClick={addTrackHandler}
+        type="submit"
+        className="btn modal-button btn-primary"
+      >
+        ADD
+      </button>
     </div>
+  //   </div>
+  // </div>
   );
 }
 
