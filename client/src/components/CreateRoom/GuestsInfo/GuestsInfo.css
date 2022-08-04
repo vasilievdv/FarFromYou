@@ -32,7 +32,7 @@
 @media screen and (max-width:1350px) {
   .table{
     justify-content: center;
-    width: 25%;
+    min-width: 40%;
   }
   .guests-card.card{
       min-height: 15vh;
