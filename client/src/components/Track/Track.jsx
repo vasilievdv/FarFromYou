@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Track.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -8,14 +8,15 @@ import socket from '../../socket';
 import { getAudioAC } from '../../redux/actions/audioActions';
 
 function Track() {
+  const audioFromServer = useSelector((state) => state.audio);
   const dispatch = useDispatch();
   const [audio, setAudio] = useState(null);
   const [artist, setArtist] = useState('');
   const [trackName, setTrackName] = useState('');
+
   const id = useParams();
 
   const sendFile = useCallback(async () => {
-    console.log(audio);
     try {
       const data = new FormData();
       data.append('audiofile', audio);
@@ -51,9 +52,21 @@ function Track() {
     });
     sendFile();
   };
+  setTimeout(console.log(audioFromServer, '++++++++++++++++++'), 3000);
   return (
     <div className="pleer">
       <br />
+      <div className="card track-card">
+        {audioFromServer && audioFromServer.map((el) => (
+          // item.map((el) => (
+          <div className="track-item">
+            <div className="artist-name">{el[1]}</div>
+            <div className="track-name">{el[2]}</div>
+          </div>
+          // ))
+        ))}
+
+      </div>
       <label htmlFor="my-modal-4" className="btn modal-button btn-primary">Add track</label>
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label htmlFor="my-modal-4" className="modal cursor-pointer">

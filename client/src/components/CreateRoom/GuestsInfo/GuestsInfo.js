@@ -72,25 +72,24 @@ function GuestsInfo({ nameCreater, nemeRoom }) {
           </div>
         </div>
         <div className="btn1">
-          {nameCreater === user.userName
-        && (
-        <button
-          type="submit"
-          onClick={deleteRoomHandler}
-          className="btn btn-primary "
-        >
-          Delete room
-        </button>
-        )}
-          {nameCreater !== user.userName && (
-          <button
-            type="submit"
-            onClick={exitRoomHandler}
-            className="btn"
-          >
-            leave room
-          </button>
-          )}
+          {nameCreater === user?.userName ? (
+            <button
+              type="submit"
+              onClick={deleteRoomHandler}
+              className="btn btn-primary "
+            >
+              Delete room
+            </button>
+          ) : ''}
+          {nameCreater !== user?.userName ? (
+            <button
+              type="submit"
+              onClick={exitRoomHandler}
+              className="btn"
+            >
+              leave room
+            </button>
+          ) : ''}
         </div>
       </div>
     );
