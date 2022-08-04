@@ -1,3 +1,8 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 .private {
     padding: 30px 100px;
     max-height: 80vh;
@@ -7,11 +12,13 @@
     "guests search chat"
     "guests tracks chat"; */
     display: flex;
-    gap: 3%;
+    flex-direction: column;
+    gap: 50px;
     justify-content: space-between;
-    flex-flow: wrap;
+    flex-wrap: wrap;
     height: 100%;
 }
+
 
   
   .table{
@@ -61,10 +68,9 @@ scroll-behavior: smooth;
     position: relative;  
     margin: 5px;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    max-width: 30%;
 }
 
 .player-btn-group {
@@ -89,7 +95,7 @@ scroll-behavior: smooth;
         min-width: 100%;
     }
 }
-@media screen and (max-width: 568px) {
+@media screen and (max-width: 950px) {
     .App {
         height: fit-content;
         
@@ -114,11 +120,11 @@ scroll-behavior: smooth;
     .track{
         order: 0;
         min-width: 100%;
-        justify-self: center;
+        justify-content: center;
     }
 
     .table {
-        min-width: 80%;
+        min-width: 100%;
         margin: 0 auto;
         justify-content: space-between;
         justify-self: center;
@@ -130,3 +136,8 @@ scroll-behavior: smooth;
 
 }
 
+@media screen and (max-width: 550px) {
+    .main-container {
+        flex-direction: column;
+    }
+}
