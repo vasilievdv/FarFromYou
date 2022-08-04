@@ -5,9 +5,9 @@
 
 @media screen and (max-width: 568px) {
     .flex-1{
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0 15px black;
 }
 .navbar {
     justify-content: space-around;

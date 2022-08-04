@@ -53,7 +53,6 @@ function Track() {
   };
   return (
     <div className="pleer">
-      <br />
       <label htmlFor="my-modal-4" className="btn modal-button btn-primary">Add track</label>
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label htmlFor="my-modal-4" className="modal cursor-pointer">

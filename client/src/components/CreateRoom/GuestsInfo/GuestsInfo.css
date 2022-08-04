@@ -1,19 +1,40 @@
 .table{
-  /* border: 1px solid red; */
-  /* margin-right: 10%; */
-  /* width:25%; */
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
   width: 25%;
+  order: 0;
 }
 
-.card{
-  /* margin-right: 20%; */
-  /* border:  1px solid rgb(17, 222, 51); */
-/* width: 50%; */
+.table .card {
+  width: 100%;
 }
-.btn{
-  margin-left: 2%;
+
+.room-info,
+.scroll-block {
+  max-height: 100%;
+  padding: 1rem;
+}
+
+.name {
+  color: aqua;
+}
+
+.guests-card {
+  min-height: 40vh;
+}
+
+@media screen and (max-width:1350px) {
+  .table{
+    justify-content: center;
+    width: 25%;
+  }
+  .guests-card.card{
+      min-height: 15vh;
+      border: 1px solid rgb(27, 43, 147);
+  }
+}
+
+@media screen and (max-width: 480px){
+  .table{
+      order: 1;
+  }
 }

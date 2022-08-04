@@ -123,18 +123,18 @@ function Player({ nameCreater }) {
   }
 
   return (
-    <>
+    <div className="player-btn-group">
       {user.userName !== nameCreater
     && <button type="button" className="btn btn-ghost" onClick={handleTimecode}>Start</button>}
       {user.userName === nameCreater
     && (
     <>
-      <button type="button" className="btn btn-ghost" onClick={handlePlaySound}>Start</button>
-      <button type="button" className="btn btn-ghost " onClick={handleAudioNext}>Next</button>
-      <button type="button" className="btn btn-ghost " onClick={handleAudioStop}>Stop</button>
+      <button type="button" className="btn player-btn" onClick={handlePlaySound}>Start</button>
+      <button type="button" className="btn player-btn" onClick={handleAudioNext}>Next</button>
+      <button type="button" className="btn player-btn" onClick={handleAudioStop}>Stop</button>
     </>
     )}
-    </>
+    </div>
 
   );
 }
