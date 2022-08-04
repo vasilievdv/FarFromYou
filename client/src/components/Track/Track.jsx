@@ -52,7 +52,7 @@ function Track() {
     });
     sendFile();
   };
-  setTimeout(console.log(audioFromServer, '++++++++++++++++++'), 3000);
+
   return (
     <div className="pleer">
       <br />

@@ -25,7 +25,6 @@ function Player({ nameCreater }) {
   }, []);
 
   function showTime(m) {
-    console.log(m);
     if (user?.userName !== nameCreater) {
       clientAudio.pause();
       clientAudio.src = m.path;
@@ -37,7 +36,6 @@ function Player({ nameCreater }) {
   let stopCheck = true;
   const audio = new Audio();
   function adminPlay(m) {
-    console.log(m, '+++++++++++++++++++++++');
     let i = 0;
     let currentPlay = m[i][0];
     if (user.userName === nameCreater) {
@@ -48,6 +46,9 @@ function Player({ nameCreater }) {
         if (audio.paused && stopCheck) {
           // eslint-disable-next-line no-plusplus
           ++i;
+          if (i > m.length - 1) {
+            i = 0;
+          }
           // eslint-disable-next-line prefer-destructuring
           currentPlay = m[i][0];
           audio.src = currentPlay;
