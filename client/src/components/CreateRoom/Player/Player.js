@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAudioThunk, getAudioAC } from '../../../redux/actions/audioActions';
 import socket from '../../../socket';
+import useDebounce from '../../../Debounce/Debounce';
 
 function Player({ nameCreater }) {
   const audioFromServer = useSelector((state) => state.audio);
   const user = useSelector((state) => (state.user));
 
-  console.log('+++++++++++++', audioFromServer);
-
   const dispatch = useDispatch();
 
   const clientAudio = new Audio();
-  clientAudio.addEventListener('onplay', (event) => {});
+  clientAudio.addEventListener('canplaythrough', (event) => {});
 
   let adminStop = false;
   function clientAudioStop() {
@@ -27,7 +26,7 @@ function Player({ nameCreater }) {
   }, []);
 
   function showTime(m) {
-    console.log(m);
+    console.log('client timeCode', m);
     if (user?.userName !== nameCreater) {
       clientAudio.pause();
       clientAudio.src = m.path;
@@ -38,10 +37,9 @@ function Player({ nameCreater }) {
 
   let stopCheck = true;
   const audio = new Audio();
-  audio.addEventListener('onplay', (event) => {});
+  audio.addEventListener('canplaythrough', (event) => {});
 
   function adminPlay(m) {
-    console.log(m, '+++++++++++++++++++++++');
     let i = 0;
     let currentPlay = m[i][0];
     if (user.userName === nameCreater) {
@@ -52,6 +50,9 @@ function Player({ nameCreater }) {
         if (audio.paused && stopCheck) {
           // eslint-disable-next-line no-plusplus
           ++i;
+          if (i > m.length - 1) {
+            i = 0;
+          }
           // eslint-disable-next-line prefer-destructuring
           currentPlay = m[i][0];
           audio.src = currentPlay;
@@ -74,9 +75,11 @@ function Player({ nameCreater }) {
   socket.on('stop', clientAudioStop);
   socket.on('tracksForAll', tracksForAll);
 
-  function handleAudioNext() {
-    audio.pause();
-  }
+  // function handleAudioNext() {
+  //   audio.pause();
+  // }
+  const handleAudioNext = useDebounce(() => audio.pause(), 200);
+
   function handleAudioStop() {
     stopCheck = false;
     audio.pause();
@@ -84,15 +87,13 @@ function Player({ nameCreater }) {
   }
 
   useEffect(() => {
-    // console.log('dfdfdfd');
     socket.emit('time', { }); // При загрузке пользователь получает таймкод и адрес
   }, []);
 
-  function handleTimecode() {
-    socket.emit('time', { }); // поулчить таймкод и адрес по кнопке
-  }
+  const handleTimecode = useDebounce(() => socket.emit('time', { }), 200);
 
   function handlePlaySound() {
+    stopCheck = true;
     adminPlay(audioFromServer);
   }
 
