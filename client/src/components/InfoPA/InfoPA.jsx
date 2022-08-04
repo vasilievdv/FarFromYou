@@ -10,23 +10,27 @@ function InfoPA({ nameRooms, nameTracks }) {
   if (nameRooms) {
     return (
       <div className="userspa">
-        <div className="card1">
+        <div className="card3">
           <div className="card-body scroll-block">
             <h2 className="card-title">Rooms</h2>
-            <div className="btn-group" />
-            {nameRooms && nameRooms.map((el) => (<p>{el}</p>))}
+            <div className="btn5-group" />
+            <div className="textcentr">
+              {nameRooms && nameRooms.map((el) => (<p className="myp">{el}</p>))}
+            </div>
             <div className="card-actions justify-end" />
           </div>
         </div>
-        <div className="card1">
+        <div className="card3">
           <div className="card-body scroll-block">
             <h2 className="card-title">Tracks</h2>
             <div className="btn-group" />
-            {nameTracks && nameTracks.map((el) => (<p>{el}</p>))}
+            <div className="textcentr">
+              {nameTracks && nameTracks.map((el) => (<p className="myp">{el}</p>))}
+            </div>
             <div className="card-actions justify-end" />
           </div>
         </div>
-        <div className="card1">
+        <div className="card3">
           <div className="card-body scroll-block">
             <h2 className="card-title">User Edit</h2>
             <div className="usered">
