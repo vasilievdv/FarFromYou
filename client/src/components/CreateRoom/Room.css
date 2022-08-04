@@ -59,9 +59,9 @@ scroll-behavior: smooth;
 }
 
 .track-list {
-
+    min-width: 30%;
+    border: 1px solid red;
     margin-top: 20px;
-    overflow-y: scroll;
 }
 
 .track {
