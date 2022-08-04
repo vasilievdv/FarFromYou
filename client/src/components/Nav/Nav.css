@@ -1,4 +1,16 @@
 .logo {
-    color: rgb(66, 232, 224);
-    font-size: 2rem;
+  color: rgb(66, 232, 224);
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 568px) {
+  .flex-1{
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 15px black;
+}
+.navbar {
+  justify-content: space-around;
+  font-size: 0.8rem;
+}
 }
