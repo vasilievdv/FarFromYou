@@ -1,13 +1,26 @@
 .private {
-    padding: 30px 0;
+    padding: 30px 100px;
     max-height: 80vh;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+    "guests search chat"
+    "guests tracks chat"; */
+    display: flex;
+    gap: 3%;
+    justify-content: space-between;
+    flex-flow: wrap;
+    height: 100%;
 }
 
+  
+  .table{
+     order: 1;
+
+      }
+
 .guests-card {
-    /* border: 1px solid red; */
     margin-top: 20px;
-    max-height: 50%;
-    overflow-y: scroll;
 }
 
 .scroll-block::-webkit-scrollbar {
@@ -44,23 +57,76 @@ scroll-behavior: smooth;
 }
 
 .track {
-  position: relative;
-  
+    /* grid-area: search; */
+    position: relative;  
     margin: 5px;
-    margin-top: -20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 40%;
+    max-width: 30%;
 }
-/* .mockup-phone{
 
-} */
+.player-btn-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
 
-/* @media  (max-width: 600px)
-{
-  .track{
-    border: 1px solid red;
-  }
-} */
+.player-btn {
+    background-color: rgb(9, 171, 171);
+    color: rgb(231, 244, 244);
+    max-width: 35%;
+}
+
+@media screen and (max-width:1350px) {
+    .player-btn-group {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .player-btn {
+        min-width: 100%;
+    }
+}
+@media screen and (max-width: 568px) {
+    .App {
+        height: fit-content;
+        
+    }
+    .search-block{
+        display: none;
+    }
+    .private {
+        padding: 10px;; 
+        min-height: 150vh;
+        max-height: 100%;
+        flex-direction: column;
+        justify-content:flex-start;
+        align-items: center;
+        width: 100%;
+
+    }
+    .card.room-creator-card,
+    .card.guests-card {
+        position: static;
+    }
+    .track{
+        order: 0;
+        min-width: 100%;
+        justify-self: center;
+    }
+
+    .table {
+        min-width: 80%;
+        margin: 0 auto;
+        justify-content: space-between;
+        justify-self: center;
+    }
+
+    .footer {
+        display: none;
+    }
+
+}
+

@@ -2,11 +2,14 @@
     background-image: url("https://sun9-44.userapi.com/c858136/v858136748/6a297/433-MVYSqh8.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    object-fit: cover;
     width: 100%;
     min-height: 70vh;
     padding: 2rem;
     justify-content: center;
 }
+
+
 .card{
   display: flex;
   align-self: center;
@@ -34,33 +37,49 @@
     justify-content: center;
     gap: 1rem;
 }
-@media (max-width:480px) {
-  .card{
-    max-width: 100%;
-    height: 570px;
-    margin-top: 15px;
-    left: 10%;
-    border: 1px solid red;
-  }
+@media (max-width:1480px) {
   .welcome-container {
-    max-width: 100%;
-    height: 30px;
-  }
-  .welcome {
-    font-size: 4rem; 
-}
-.welcome-text{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    height: 250px;
-    color: white;
-    width: 320%;
-    margin-top: 35px;
-    
+    justify-content: space-between;
+    height: 30px;
+    background-position-x: -100px;
+  }
+  .welcome-text-block {
+    min-width:40vw; 
 }
+}
+@media (max-width:760px) {
+  .card{
+    max-width: 100%;
+    min-height: 570px;
+    margin-top: 15px;
+    left: 10%;
+ 
+  }
+  .welcome-container {
+    /* background-image: url('https://fullhdoboi.ru/wp-content/uploads/_ph/12/764685091.jpg'); */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 100%;
+    height: 30px;
+    background-size: cover;
+    /* background-position-x: -100px; */
+    font-size: 1.2rem;
+    font-weight: bolder;
+
+  }
+  .welcome {
+    width: 100%;
+    font-size: 3rem;
+  }
+  .welcome-text-block {
+    width: 100%; 
+
+  }
+
 .button-group{
   width: 100%;
 }
-
 }

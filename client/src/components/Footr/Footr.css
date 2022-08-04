@@ -1,7 +1,7 @@
 .footer{
   flex-direction: column;
   position: absolute;
-  bottom: 1%;
+  bottom: 0;
 }
 .grid{
   display: flex;

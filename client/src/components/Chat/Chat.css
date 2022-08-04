@@ -6,6 +6,8 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    /* grid-area: chat; */
+    order: 2;
 ;
 }
 
@@ -14,13 +16,11 @@
     overflow-y: scroll;
 }
 
-
-/* .message-block::-webkit-scrollbar {
-    width: 5px;
-    background-color: #f9f9fd;
+@media screen and (max-width: 480px){
+    .chat-contaitner {
+        order: -1;
+    }
 }
 
-.message-block::-webkit-scrollbar-thumb {
-    background-color: #777e83;
-} */
+
 

@@ -1,17 +1,20 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Track.css';
 import axios from 'axios';
 
 import { useParams } from 'react-router-dom';
 import { getAudioAC } from '../../redux/actions/audioActions';
+import socket from '../../socket';
 
 function Track() {
+  const audioFromServer = useSelector((state) => state.audio);
   const dispatch = useDispatch();
   const [audio, setAudio] = useState(null);
   const [artist, setArtist] = useState('');
   const [trackName, setTrackName] = useState('');
+
   const id = useParams();
   // const inputFiles = { artist, trackName };
   // console.log(inputFiles);
@@ -30,7 +33,10 @@ function Track() {
         },
       })
         // .then((res) => setPlay(res.data.path));
-        .then((res) => dispatch(getAudioAC(res.data.path)));
+        .then((res) => {
+          dispatch(getAudioAC(res.data.path));
+          socket.emit('tracksForAll', { });
+        });
     } catch (error) {
       // console.log(error);
     }
@@ -53,15 +59,14 @@ function Track() {
     });
     sendFile();
   };
+  setTimeout(console.log(audioFromServer, '++++++++++++++++++'), 3000);
   return (
     <div className="pleer">
-      <br />
-
-      <label htmlFor="my-modal-3" className="btn modal-button">open modal</label>
+      <label htmlFor="my-modal-3" className="btn modal-button">ADD FILE</label>
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
-          <label htmlFor="my-modal-3" className="btn2 btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <label htmlFor="my-modal-3" className="btn2 btn-sm absolute right-5 top-2">x</label>
           <label className="modal-box-3 relative" htmlFor="" />
           <br />
           <input
@@ -69,8 +74,8 @@ function Track() {
             type="text"
             name="artist"
             placeholder="
-            singer"
-            className="input input-ghost w-full max-w-xs"
+            Artist"
+            className="input input-artist input-ghost w-full max-w-xs"
             value={artist}
           />
           <input
@@ -78,8 +83,8 @@ function Track() {
             type="text"
             name="trackname"
             placeholder="
-            Name track"
-            className="input input-ghost w-full max-w-xs"
+            Track Name"
+            className="input input-trackname input-ghost w-full max-w-xs"
             value={trackName}
           />
           <input
