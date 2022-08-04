@@ -49,16 +49,23 @@ router.get('/join', checkAuth, async (req, res) => {
 router.post('/join', checkAuth, async (req, res) => {
   const { id } = await req.body;
   const { user } = req.session;
-  const infoRoom = await Users_Rooms_Role.findOne({ where: { room_id: +id, role_id: 2 } });
+  const infoRoom = await Users_Rooms_Role.findOne({
+    where: { room_id: +id, role_id: 2 },
+    include: { model: User },
+    raw: true,
+  });
   // Dima
   const userNames = await Users_Rooms_Role.findAll({
     where: { room_id: id },
     include: { model: User },
   });
-  //
+  console.log(userNames.User);
   try {
     if (infoRoom.user_id === user.id) {
-      return res.sendStatus(200);
+      // console.log('......');
+      // return res.sendStatus(200);
+      const justNames = userNames.filter((el) => el.User.userName !== infoRoom['User.userName']);
+      return res.json(justNames);
     }
     if (infoRoom.user_id !== user.id) {
       const [guests, created] = await Users_Rooms_Role.findOrCreate({
@@ -67,10 +74,15 @@ router.post('/join', checkAuth, async (req, res) => {
           room_id: +id,
           role_id: 3,
         },
+        include: { model: User },
       });
-      // Dima
+      // console.log('55555555555', guests.User);
       const justNames = userNames.map((el) => el.User.userName);
-      res.json(justNames);
+      // console.log('bbbbbbbbbbbb', justNames);
+      const guestsNames = justNames.filter((el) => el !== infoRoom['User.userName']);
+      // console.log(guestsNames);
+      return res.json(guestsNames);
+      // Dima
       //
 
       // Arina
