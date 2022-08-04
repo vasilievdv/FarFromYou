@@ -1,16 +1,13 @@
 .main-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    /* width: 100%;
+    flex-wrap: wrap; */
+    justify-content: space-between;
 }
 .private {
     padding: 30px 100px;
     max-height: 80vh;
-    /* display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas:
-    "guests search chat"
-    "guests tracks chat"; */
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -19,12 +16,16 @@
     height: 100%;
 }
 
+.chat {
+    max-height: 300px;
+    order: 3
+}
 
   
   .table{
      order: 1;
-
-      }
+     min-width: 25%;
+}
 
 .guests-card {
     margin-top: 20px;
@@ -38,7 +39,6 @@
     padding: 20px 0;
     display: flex;
     flex-direction: column;
-    width: 50%;
     margin: 0 auto;
     gap: 20px;
 }
@@ -60,8 +60,9 @@ scroll-behavior: smooth;
 
 .track-list {
     min-width: 30%;
-    border: 1px solid red;
-    margin-top: 20px;
+    order: 2;
+    border-radius: 15px;
+    border: 1px solid rgb(78, 76, 76);
 }
 
 .track {
@@ -95,6 +96,9 @@ scroll-behavior: smooth;
     .player-btn {
         min-width: 100%;
     }
+    .private {
+        padding: 10px;
+    }
 }
 @media screen and (max-width: 950px) {
     .App {
@@ -106,7 +110,6 @@ scroll-behavior: smooth;
     }
     .private {
         padding: 10px;; 
-        min-height: 150vh;
         max-height: 100%;
         flex-direction: column;
         justify-content:flex-start;
@@ -125,7 +128,7 @@ scroll-behavior: smooth;
     }
 
     .table {
-        min-width: 100%;
+        width: 100%;
         margin: 0 auto;
         justify-content: space-between;
         justify-self: center;
@@ -140,5 +143,9 @@ scroll-behavior: smooth;
 @media screen and (max-width: 550px) {
     .main-container {
         flex-direction: column;
+    }
+
+    .chat {
+        max-height: none;
     }
 }
