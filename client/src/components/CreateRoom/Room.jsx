@@ -9,6 +9,7 @@ import './Room.css';
 import './CreateRoom.css';
 import GuestsInfo from './GuestsInfo/GuestsInfo';
 import SearchPannel from './SearchPannel/SearchPannel';
+import InfoPA from '../InfoPA/InfoPA';
 // import Player from './Player/Player';
 
 function Room() {
@@ -50,6 +51,9 @@ function Room() {
             nemeRoom={info.nemeRoom}
             arrGuest={info.arrGuest}
           />
+          <div className="track-list">
+            <InfoPA />
+          </div>
           <div className="chat">
             <div className="mockup-phone">
               <div className="camera" />

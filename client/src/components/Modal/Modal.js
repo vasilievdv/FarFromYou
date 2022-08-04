@@ -11,7 +11,7 @@ function Modal() {
           <input type="text" placeholder="Автор" className="input input-ghost w-full max-w-xs" />
           <input type="text" placeholder="Название трека" className="input input-ghost w-full max-w-xs" />
           <input type="text" placeholder="Выбрать файл" className="input input-ghost w-full max-w-xs" />
-          <button type="submit" className="btn btn-ghost">Добавить</button>
+          <button type="submit" className="btn btn-ghost modal-toggle">Добавить</button>
         </label>
       </label>
     </div>
