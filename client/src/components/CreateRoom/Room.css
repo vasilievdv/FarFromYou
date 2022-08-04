@@ -105,8 +105,7 @@ scroll-behavior: smooth;
         display: none;
     }
     .private {
-        padding: 10px;
-        border: 1px solid red; 
+        padding: 10px;; 
         min-height: 200vh;
         flex-direction: column;
         justify-content: flex-start;

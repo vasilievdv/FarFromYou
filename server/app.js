@@ -138,6 +138,7 @@ io.on('connection', (socket) => {
 
   socket.on('stop', () => {
     io.emit('stop');
+    timeCode = null;
   });
 
   socket.on('next', (Msg) => {
