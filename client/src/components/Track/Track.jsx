@@ -3,6 +3,7 @@ import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Track.css';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 import { useParams } from 'react-router-dom';
 import { getAudioAC } from '../../redux/actions/audioActions';
@@ -67,8 +68,8 @@ function Track() {
         {audioFromServer && audioFromServer.map((el, index) => (
           // item.map((el) => (
           <div className="track-item">
-            <div className="artist-name" key={index}>{el[1]}</div>
-            <div className="track-name" key={`${index}${'i'}`}>{el[2]}</div>
+            <div className="artist-name" key={uuidv4()}>{el[1]}</div>
+            <div className="track-name" key={uuidv4()}>{el[2]}</div>
           </div>
           // ))
         ))}
