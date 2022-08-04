@@ -1,22 +1,28 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Track.css';
 import axios from 'axios';
 
+import { useParams } from 'react-router-dom';
 import { getAudioAC } from '../../redux/actions/audioActions';
+import socket from '../../socket';
 
 function Track() {
+  const audioFromServer = useSelector((state) => state.audio);
   const dispatch = useDispatch();
   const [audio, setAudio] = useState(null);
   const [artist, setArtist] = useState('');
   const [trackName, setTrackName] = useState('');
 
-  const inputFiles = { artist, trackName };
-  console.log(inputFiles);
+  const id = useParams();
+  // const inputFiles = { artist, trackName };
+  // console.log(inputFiles);
+
+  // const inputFiles = { artist, trackName };
+  // console.log(inputFiles);
 
   const sendFile = useCallback(async () => {
-    // console.log(audio);
     try {
       const data = new FormData();
       data.append('audiofile', audio);
@@ -27,7 +33,10 @@ function Track() {
         },
       })
         // .then((res) => setPlay(res.data.path));
-        .then((res) => dispatch(getAudioAC(res.data.path)));
+        .then((res) => {
+          dispatch(getAudioAC(res.data.path));
+          socket.emit('tracksForAll', { });
+        });
     } catch (error) {
       // console.log(error);
     }
@@ -41,40 +50,41 @@ function Track() {
   };
 
   const addTrackHandler = async () => {
-    console.log(artist, trackName);
+    // console.log(artist, trackName);
     const response = await fetch(`${process.env.REACT_APP_HOST}/audio/createtrack`, {
       credentials: 'include',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ artist, trackName }),
+      body: JSON.stringify({ artist, trackName, room_id: id }),
     });
-    if (response.ok) {
-      const result = await response.json();
-      console.log(result);
-    }
     sendFile();
   };
+  setTimeout(console.log(audioFromServer, '++++++++++++++++++'), 3000);
   return (
     <div className="pleer">
-      <br />
-      <label htmlFor="my-modal-4" className="btn modal-button btn-primary">Add track</label>
-      <input type="checkbox" id="my-modal-4" className="modal-toggle" />
-      <label htmlFor="my-modal-4" className="modal cursor-pointer">
-        <label className="modal-box relative" htmlFor="">
+      <label htmlFor="my-modal-3" className="btn modal-button">ADD FILE</label>
+      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative">
+          <label htmlFor="my-modal-3" className="btn2 btn-sm absolute right-5 top-2">x</label>
+          <label className="modal-box-3 relative" htmlFor="" />
+          <br />
           <input
             onChange={handleAuthorChange}
             type="text"
             name="artist"
-            placeholder="Автор"
-            className="input input-ghost w-full max-w-xs"
+            placeholder="
+            Artist"
+            className="input input-artist input-ghost w-full max-w-xs"
             value={artist}
           />
           <input
             onChange={handleTitleChange}
             type="text"
             name="trackname"
-            placeholder="Название трека"
-            className="input input-ghost w-full max-w-xs"
+            placeholder="
+            Track Name"
+            className="input input-trackname input-ghost w-full max-w-xs"
             value={trackName}
           />
           <input
@@ -82,19 +92,18 @@ function Track() {
             type="file"
             name="choosefile"
             placeholder="Выбрать файл"
-            // className="input input-ghost w-full max-w-xs"
+          // className="input input-ghost w-full max-w-xs"
           />
           <button
             onClick={addTrackHandler}
             type="submit"
             className="btn modal-button btn-primary"
           >
-            Добавить
+            ADD
           </button>
-        </label>
-      </label>
+        </div>
+      </div>
     </div>
-
   );
 }
 

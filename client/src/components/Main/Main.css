@@ -6,14 +6,15 @@
     min-height: 70vh;
     padding: 2rem;
     justify-content: center;
-
-    
 }
+
+
 .card{
   display: flex;
   align-self: center;
   width: 80%;
   left: 10%;
+
 }
 
 .welcome-text-block {
@@ -24,12 +25,9 @@
     width: 30%;
     
 }
-
 .welcome {
     font-size: 5rem;
-  
 }
-
 .button-group {
     width: 30%;
     padding: 1rem 0;
@@ -37,7 +35,50 @@
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
-    
-    
 }
+@media (max-width:1480px) {
+  .welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30px;
+    background-position-x: -100px;
+  }
+  .welcome-text-block {
+    min-width:40vw; 
+}
+}
+@media (max-width:760px) {
+  .card{
+    max-width: 100%;
+    min-height: 570px;
+    margin-top: 15px;
+    left: 10%;
+ 
+  }
+  .welcome-container {
+    /* background-image: url('https://fullhdoboi.ru/wp-content/uploads/_ph/12/764685091.jpg'); */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 100%;
+    height: 30px;
+    background-size: cover;
+    background-position-x: -100px;
+    font-size: 1.2rem;
+    font-weight: bolder;
 
+  }
+  .welcome {
+    width: 100%;
+    font-size: 3rem;
+  }
+  .welcome-text-block {
+    width: 100%; 
+
+  }
+
+.button-group{
+  width: 100%;
+}
+}

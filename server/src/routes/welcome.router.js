@@ -5,6 +5,10 @@ const {
   User, Room, Users_Rooms_Role,
 } = require('../../db/models');
 
+router.get('/', checkAuth, async (req, res) => {
+  res.sendStatus(200);
+});
+
 router.get('/createorguest', checkAuth, async (req, res) => {
   res.sendStatus(200);
 });
@@ -46,9 +50,15 @@ router.post('/join', checkAuth, async (req, res) => {
   const { id } = await req.body;
   const { user } = req.session;
   const infoRoom = await Users_Rooms_Role.findOne({ where: { room_id: +id, role_id: 2 } });
+  // Dima
+  const userNames = await Users_Rooms_Role.findAll({
+    where: { room_id: id },
+    include: { model: User },
+  });
+  //
   try {
     if (infoRoom.user_id === user.id) {
-      return res.sendStatus(403);
+      return res.sendStatus(200);
     }
     if (infoRoom.user_id !== user.id) {
       const [guests, created] = await Users_Rooms_Role.findOrCreate({
@@ -58,7 +68,14 @@ router.post('/join', checkAuth, async (req, res) => {
           role_id: 3,
         },
       });
-      return res.sendStatus(200);
+      // Dima
+      const justNames = userNames.map((el) => el.User.userName);
+      res.json(justNames);
+      //
+
+      // Arina
+      // return res.sendStatus(200);
+      //
     }
   } catch (error) {
     return res.sendStatus(401);

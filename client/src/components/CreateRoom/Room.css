@@ -1,26 +1,37 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 .private {
-    padding: 30px 0;
+    padding: 30px 100px;
     max-height: 80vh;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+    "guests search chat"
+    "guests tracks chat"; */
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 100%;
 }
 
 
-.table1 {
-    /* border: 1px solid rgb(85, 163, 103); */
-}
+  
+  .table{
+     order: 1;
+
+      }
 
 .guests-card {
-    /* border: 1px solid red; */
     margin-top: 20px;
-    max-height: 50%;
-    overflow-y: scroll;
 }
 
 .scroll-block::-webkit-scrollbar {
     width: 15px;
-}
-
-.track {
-    /* border: 1px solid rgb(85, 93, 163); */
 }
 
 .btn1 {
@@ -46,12 +57,88 @@ height: 500px;
 overflow-y: scroll;
 scroll-behavior: smooth;
 }
-.tracklist {
+
+.track-list {
+    min-width: 30%;
+    border: 1px solid red;
     margin-top: 20px;
-    max-height: 79%;
-    overflow-y: scroll;
 }
 
 .track {
+    /* grid-area: search; */
+    position: relative;  
     margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-btn-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.player-btn {
+    background-color: rgb(9, 171, 171);
+    color: rgb(231, 244, 244);
+    max-width: 35%;
+}
+
+@media screen and (max-width:1350px) {
+    .player-btn-group {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .player-btn {
+        min-width: 100%;
+    }
+}
+@media screen and (max-width: 950px) {
+    .App {
+        height: fit-content;
+        
+    }
+    .search-block{
+        display: none;
+    }
+    .private {
+        padding: 10px;; 
+        min-height: 150vh;
+        max-height: 100%;
+        flex-direction: column;
+        justify-content:flex-start;
+        align-items: center;
+        width: 100%;
+
+    }
+    .card.room-creator-card,
+    .card.guests-card {
+        position: static;
+    }
+    .track{
+        order: 0;
+        min-width: 100%;
+        justify-content: center;
+    }
+
+    .table {
+        min-width: 100%;
+        margin: 0 auto;
+        justify-content: space-between;
+        justify-self: center;
+    }
+
+    .footer {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+    .main-container {
+        flex-direction: column;
+    }
 }

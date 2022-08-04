@@ -15,6 +15,7 @@ const authRouter = require('./src/routes/auth.router');
 const usersRouter = require('./src/routes/users.router');
 const roomRouter = require('./src/routes/room.router');
 const audioRouter = require('./src/routes/audio.router');
+const userPARouter = require('./src/routes/personal.router');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -57,7 +58,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true })); // Dima extended: true
 app.use('/audio', express.static(path.join(__dirname, 'audio'))); // Dima
 app.use('/api', require('./routes/upload.route')); // Dima
-app.use('/api', require('./routes/getAudio.route')); // Dima
+// app.use('/api', require('./routes/getAudio.route')); // Dima
 
 // sign
 app.use(
@@ -79,6 +80,7 @@ app.use('/room', roomRouter);
 app.use('/audio', audioRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
+app.use('/user', userPARouter);
 // app.use('/*',);
 
 // socket-chat - test
@@ -124,7 +126,7 @@ io.on('connection', (socket) => {
       .emit('guest-message', `${name} has joined the chat`);
 
     // Send users and room info
-    io.to(roomID).emit('recieve_guest', name);
+    // io.to(roomID).emit('recieve_guest', name);
   });
 
   // Dima
@@ -136,12 +138,21 @@ io.on('connection', (socket) => {
 
   socket.on('stop', () => {
     io.emit('stop');
+    timeCode = null;
   });
 
   socket.on('next', (Msg) => {
     io.emit('next', Msg);
   });
-  // END
+
+  socket.on('tracksForAll', () => {
+    io.emit('tracksForAll');
+  });
+
+  socket.on('joinRoom', (users) => {
+    io.emit('joinRoom', users);
+  });
+  // THE END
 });
 
 server.listen(PORT, () => console.log('Server has been started on port 3001'));

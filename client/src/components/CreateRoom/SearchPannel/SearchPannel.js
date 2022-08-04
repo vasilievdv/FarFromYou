@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Track from '../../Track/Track';
 import SearchBar from '../Searchbar/SearchBar';
+import './SearchPannel.css';
 
 function SearchPannel() {
   const [audioAll, setAudioAll] = useState();
@@ -19,11 +20,11 @@ function SearchPannel() {
   }, []);
 
   return (
-    <div className="track">
-      <SearchBar placeholder="Enter a auidio name..." audioAll={audioAll} />
-      <ul className="tracklist scroll-block">
-        <li className="track"><Track /></li>
-      </ul>
+    <div className="search-pannel">
+      <Track />
+      <div className="search-block">
+        <SearchBar placeholder="Search for .." audioAll={audioAll} />
+      </div>
     </div>
   );
 }
