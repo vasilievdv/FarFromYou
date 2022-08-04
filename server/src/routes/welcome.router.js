@@ -64,8 +64,10 @@ router.post('/join', checkAuth, async (req, res) => {
     if (infoRoom.user_id === user.id) {
       // console.log('......');
       // return res.sendStatus(200);
-      const justNames = userNames.filter((el) => el.User.userName !== infoRoom['User.userName']);
-      return res.json(justNames);
+      const justNames = userNames.map((el) => el.User.userName);
+      // console.log('bbbbbbbbbbbb', justNames);
+      const guestsNames = justNames.filter((el) => el !== infoRoom['User.userName']);
+      return res.json(guestsNames);
     }
     if (infoRoom.user_id !== user.id) {
       const [guests, created] = await Users_Rooms_Role.findOrCreate({

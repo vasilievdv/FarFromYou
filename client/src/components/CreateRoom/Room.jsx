@@ -45,7 +45,7 @@ function Room() {
             nemeRoom={info.nemeRoom}
             arrGuest={info.arrGuest}
           />
-          <div className="track-list" />
+          {/* <div className="track-list" /> */}
           <div className="chat">
             <div className="mockup-phone">
               <div className="camera" />

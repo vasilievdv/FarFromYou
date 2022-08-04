@@ -1,8 +1,8 @@
 .main-container {
     display: flex;
     flex-direction: row;
-    /* width: 100%;
-    flex-wrap: wrap; */
+    min-width: 50%;
+    flex-wrap: wrap; 
     justify-content: space-between;
 }
 .private {
@@ -111,8 +111,8 @@ scroll-behavior: smooth;
     .private {
         padding: 10px;; 
         max-height: 100%;
-        flex-direction: column;
-        justify-content:flex-start;
+        /* flex-direction: column;
+        justify-content:flex-start; */
         align-items: center;
         width: 100%;
 

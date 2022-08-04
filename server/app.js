@@ -142,6 +142,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('next', (Msg) => {
+    console.log(Msg);
     io.emit('next', Msg);
   });
 
