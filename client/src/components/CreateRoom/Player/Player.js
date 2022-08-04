@@ -125,7 +125,7 @@ function Player({ nameCreater }) {
   return (
     <div className="player-btn-group">
       {user.userName !== nameCreater
-    && <button type="button" className="btn btn-ghost" onClick={handleTimecode}>Start</button>}
+    && <button type="button" className="btn player-btn" onClick={handleTimecode}>Start</button>}
       {user?.userName === nameCreater
     && (
     <>
