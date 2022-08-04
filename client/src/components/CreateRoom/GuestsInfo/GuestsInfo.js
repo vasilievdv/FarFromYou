@@ -12,7 +12,7 @@ function GuestsInfo({ nameCreater, nemeRoom, arrGuest }) {
   const navigate = useNavigate();
   const [guestsArr, setGuestsArr] = useState([]);
 
-  console.log('MWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM\n', nameCreater, user?.userName);
+  console.log('MWMWMWMW\n', nameCreater, user?.userName);
 
   useEffect(() => {
     socket.on('recieve_guest', (guest) => {
