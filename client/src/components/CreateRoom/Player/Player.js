@@ -12,7 +12,7 @@ function Player({ nameCreater }) {
   const dispatch = useDispatch();
 
   const clientAudio = new Audio();
-  clientAudio.addEventListener('canplaythrough', (event) => {});
+  clientAudio.addEventListener('canplaythrough', (event) => { });
 
   let adminStop = false;
   function clientAudioStop() {
@@ -22,6 +22,7 @@ function Player({ nameCreater }) {
   const roomId = useParams();
 
   useEffect(() => {
+    // clientAudio.pause();
     dispatch(getAudioThunk(roomId.id));
   }, []);
 
@@ -37,7 +38,7 @@ function Player({ nameCreater }) {
 
   let stopCheck = true;
   const audio = new Audio();
-  audio.addEventListener('canplaythrough', (event) => {});
+  audio.addEventListener('canplaythrough', (event) => { });
 
   function adminPlay(m) {
     let i = 0;
@@ -70,15 +71,21 @@ function Player({ nameCreater }) {
   function tracksForAll() {
     dispatch(getAudioThunk(roomId.id));
   }
-  socket.on('time', showTime);
-  socket.on('next', showTime);
+  useEffect(() => {
+    socket.on('next', showTime);
+  }, [socket]);
+  useEffect(() => {
+    socket.on('time', showTime);
+  }, [socket]);
+  // socket.on('time', showTime);
+  // socket.on('next', showTime);
   socket.on('stop', clientAudioStop);
   socket.on('tracksForAll', tracksForAll);
 
   // function handleAudioNext() {
   //   audio.pause();
   // }
-  const handleAudioNext = useDebounce(() => audio.pause(), 200);
+  const handleAudioNext = useDebounce(() => audio.pause(), 300);
 
   function handleAudioStop() {
     stopCheck = false;
@@ -87,10 +94,10 @@ function Player({ nameCreater }) {
   }
 
   useEffect(() => {
-    socket.emit('time', { }); // При загрузке пользователь получает таймкод и адрес
+    socket.emit('time', {}); // При загрузке пользователь получает таймкод и адрес
   }, []);
 
-  const handleTimecode = useDebounce(() => socket.emit('time', { }), 200);
+  const handleTimecode = useDebounce(() => socket.emit('time', {}), 300);
 
   function handlePlaySound() {
     stopCheck = true;
@@ -100,15 +107,15 @@ function Player({ nameCreater }) {
   return (
     <div className="player-btn-group">
       {user.userName !== nameCreater
-    && <button type="button" className="btn player-btn" onClick={handleTimecode}>Start</button>}
+        && <button type="button" className="btn player-btn" onClick={handleTimecode}>Start</button>}
       {user?.userName === nameCreater
-    && (
-    <>
-      <button type="button" className="btn player-btn" onClick={handlePlaySound}>Start</button>
-      <button type="button" className="btn player-btn" onClick={handleAudioNext}>Next</button>
-      <button type="button" className="btn player-btn" onClick={handleAudioStop}>Stop</button>
-    </>
-    )}
+        && (
+          <>
+            <button type="button" className="btn player-btn" onClick={handlePlaySound}>Start</button>
+            <button type="button" className="btn player-btn" onClick={handleAudioNext}>Next</button>
+            <button type="button" className="btn player-btn" onClick={handleAudioStop}>Stop</button>
+          </>
+        )}
     </div>
 
   );

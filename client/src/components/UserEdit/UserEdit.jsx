@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { disableLoader, enableLoader } from '../../redux/actions/loaderAction';
-import Loader from '../Loader/Loader';
+// import Loader from '../Loader/Loader';
 import * as endPoints from '../../config/endPoints';
 import { editUser } from '../../redux/actions/userAction';
 
@@ -46,7 +46,7 @@ function UserEdit() {
     }
   };
 
-  if (loader) return <Loader />;
+  // if (loader) return <Loader />;
 
   return (
     <div className="hero min-h-screen bg-base-200">

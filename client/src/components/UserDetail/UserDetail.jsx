@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { disableLoader, enableLoader } from '../../redux/actions/loaderAction';
-import Loader from '../Loader/Loader';
+// import Loader from '../Loader/Loader';
 import * as endPoints from '../../config/endPoints';
 
 function UserDetail() {
@@ -29,7 +29,7 @@ function UserDetail() {
     navigate('/users');
   };
 
-  if (loader) return <Loader />;
+  // if (loader) return <Loader />;
 
   if (!currentUser) return null;
 

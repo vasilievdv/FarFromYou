@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import * as endPoints from '../../config/endPoints';
 import { disableLoader, enableLoader } from '../../redux/actions/loaderAction';
-import Loader from '../Loader/Loader';
+// import Loader from '../Loader/Loader';
 import './UserList.css';
 
 function UserList() {
@@ -24,7 +24,7 @@ function UserList() {
       });
   }, []);
 
-  if (loader) return <Loader />;
+  // if (loader) return <Loader />;
 
   if (list.length === 0) return <p>Not users</p>;
 

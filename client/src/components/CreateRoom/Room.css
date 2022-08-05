@@ -3,7 +3,7 @@
     flex-direction: row;
     min-width: 50%;
     flex-wrap: wrap; 
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .private {
     padding: 30px 100px;

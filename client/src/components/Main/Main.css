@@ -1,7 +1,4 @@
 .welcome-container {
-    background-image: url("https://sun9-44.userapi.com/c858136/v858136748/6a297/433-MVYSqh8.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
     object-fit: cover;
     width: 100%;
     min-height: 70vh;
@@ -10,8 +7,11 @@
 }
 
 
-.card{
+.card.main-card{
   display: flex;
+  background-image: url("https://sun9-44.userapi.com/c858136/v858136748/6a297/433-MVYSqh8.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   align-self: center;
   width: 80%;
   left: 10%;
