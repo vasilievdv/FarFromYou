@@ -40,6 +40,7 @@ router.delete('/:id', checkAuth, async (req, res) => {
   try {
     if (infoRoom.user_id === user.id) { // удаление комнаты
       const deleteGuest = await Users_Rooms_Role.destroy({ where: { room_id: +id } });
+      const deleteTracks = await Rooms_Track.destroy({ where: { room_id: +id } });
       const deleteroom = await Room.destroy({ where: { id: +id } });
       // const updateUser = await User.update({ role_id: null }, { where: { id: user.id } });
       return res.sendStatus(200);
@@ -47,7 +48,7 @@ router.delete('/:id', checkAuth, async (req, res) => {
     if (infoRoom.user_id !== user.id) { // выход из комнаты
       const deleteGuest = await Users_Rooms_Role.destroy({
         where:
-        { room_id: +id, user_id: user.id },
+          { room_id: +id, user_id: user.id },
       });
       // const updateUser = await User.update({ role_id: null }, { where: { id: user.id } });
       return res.sendStatus(200);
