@@ -99,7 +99,7 @@ function Player({ nameCreater }) {
 
   return (
     <div className="player-btn-group">
-      {user.userName !== nameCreater
+      {user?.userName !== nameCreater
     && <button type="button" className="btn player-btn" onClick={handleTimecode}>Start</button>}
       {user?.userName === nameCreater
     && (

@@ -3,7 +3,7 @@
     flex-direction: row;
     min-width: 50%;
     flex-wrap: wrap; 
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .private {
     padding: 30px 100px;
@@ -14,6 +14,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     height: 100%;
+    justify-items: center;
 }
 
 .chat {
