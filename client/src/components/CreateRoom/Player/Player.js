@@ -18,6 +18,8 @@ function Player({ nameCreater }) {
   function clientAudioStop() {
     clientAudio.pause();
     adminStop = false;
+    clientAudio.src = null;
+    clientAudio.currentTime = null;
   }
   const roomId = useParams();
 

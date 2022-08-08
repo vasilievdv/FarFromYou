@@ -39,7 +39,6 @@ function GuestsInfo({ nameCreater, nemeRoom }) {
   useEffect(() => {
     socket.on('joinRoom', (users) => {
       setArrGuest(users.data);
-      console.log(users);
     });
   }, [socket]);
 
