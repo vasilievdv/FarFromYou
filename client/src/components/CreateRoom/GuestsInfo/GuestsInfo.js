@@ -6,7 +6,7 @@ import Player from '../Player/Player';
 import './GuestsInfo.css';
 
 function GuestsInfo({ nameCreater, nemeRoom }) {
-//   console.log('00000', nameCreater, nemeRoom, arrGuest);
+  //   console.log('00000', nameCreater, nemeRoom, arrGuest);
   const id = useParams();
   const user = useSelector((state) => (state.user));
   // const guest = useSelector((state) => state.guest);
@@ -36,10 +36,11 @@ function GuestsInfo({ nameCreater, nemeRoom }) {
     navigate('/');
   };
 
-  socket.on('joinRoom', (users) => {
-    setArrGuest(users.data);
-    console.log(users);
-  });
+  useEffect(() => {
+    socket.on('joinRoom', (users) => {
+      setArrGuest(users.data);
+    });
+  }, [socket]);
 
   if (nameCreater) {
     return (

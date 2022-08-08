@@ -22,7 +22,7 @@ function Main() {
     navigate('/join');
   };
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card main-card w-96 bg-base-100 shadow-xl">
       <div className="welcome-container">
         <div className="welcome-text-block">
           <div className="welcome">Welcome</div>
