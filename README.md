@@ -3,4 +3,4 @@
 Пользователь, создавший комнату, выполняет роль сервера, а присоединившиеся - становятся клиентами, которым по сокетам передается таймкод играющего трека.
 Треки добавляются по кнопке "Add file", добавлять могут все пользователи.
   
- <img src='https://github.com/vasilievdv/FarFromYou/blob/dev/Screenshot%202022-08-10%20at%2021.19.38.png'>screenshot</img>
+ <img src='https://github.com/vasilievdv/FarFromYou/blob/dev/Screenshot%202022-08-10%20at%2021.19.38.png'></img>
